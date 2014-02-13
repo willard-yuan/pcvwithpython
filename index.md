@@ -10,11 +10,9 @@ layout: default
 		<dt>作者：</dt>
 		<dd>[瑞典] Jan Erik Solem</dd>
 		<dt>译者：</dt>
-		<dd>朱文涛 袁勇</dd>
+		<dd>朱文涛 & 袁勇</dd>
 		<dt>Python：</dt>
 		<dd>2.7.x</dd>
-		<dt>Rails：</dt>
-		<dd>3.2.13</dd>
 		<dt>页数：</dt>
 		<dd>462</dd>
 		<dt>装帧：</dt>
