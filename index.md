@@ -3,16 +3,16 @@ layout: default
 ---
 
 <div class="bookinfo">
-	<img src="{{ site.url }}/assets/images/cover.jpg" title="Ruby on Rails 教程" alt="Ruby on Rails 教程" width="300" height="422" />
+	<img src="{{ site.url }}/assets/images/cover.jpg" title="Python计算机视觉编程" alt="Python计算机视觉编程" width="300" height="422" />
 	<dl>
 		<dt>原书名：</dt>
-		<dd>Ruby on Rails Tutorial (2nd edition)</dd>
+		<dd>Programming Computer Vision with Python</dd>
 		<dt>作者：</dt>
-		<dd>[美] Michael Hartl</dd>
+		<dd>[瑞典] Jan Erik Solem</dd>
 		<dt>译者：</dt>
-		<dd>Andor Chen</dd>
-		<dt>Ruby：</dt>
-		<dd>1.9.3</dd>
+		<dd>朱文涛 袁勇</dd>
+		<dt>Python：</dt>
+		<dd>2.7.x</dd>
 		<dt>Rails：</dt>
 		<dd>3.2.13</dd>
 		<dt>页数：</dt>
@@ -55,7 +55,7 @@ layout: default
 			<li><a href="{{ site.url }}chapter8.html" title="第八章 图像内容分类">第八章 图像内容分类</a></li>
 			<li><a href="{{ site.url }}chapter9.html" title="第九章 图像分割">第九章 图像分割</a></li>
 			<li><a href="{{ site.url }}chapter10.html" title="第十章 OpenCV">第十章 OpenCV</a></li>
-			<li><a href="{{ site.url }}chapter11.html" title="第十一章 用户间互相关注">第十一章 关注用户</a></li>
+			<li><a href="{{ site.url }}chapter11.html" title="附录 用户间互相关注">第十一章 关注用户</a></li>
 		</ol>
 	</div>
 	<div class="clearfix"></div>
