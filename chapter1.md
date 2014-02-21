@@ -1,7 +1,28 @@
 ---
 layout: chapter
-title: 第一章 从零到部署
+title: 第一章 图像处理基础
 ---
+
+```python
+from PIL import Image
+from pylab import *
+
+im = array(Image.open('empire.jpg').convert('L'))  # 打开图像，并转成灰度图像
+
+figure()
+gray()
+contour(im, origin='image')
+axis('equal')
+axis('off')
+
+figure()
+hist(im.flatten(), 128)
+show()
+```
+
+运行上面代码，可以得到书中的图1-3所示的结果:
+![ch01-contour-fig1-2-0](assets/images/figures/ch01-contour-fig1-2-0.png)
+![ch01-contour-fig1-3-1](assets/images/figures/ch01-contour-fig1-3-1.png)
 
 欢迎学习《Ruby on Rails 教程》。本书的目标是成为对“如果想学习使用 Ruby on Rails 进行 Web 开发，我应该从哪儿开始？”这一问题的最好答案。学习完本书的内容之后，你将具备使用 Rails 进行开发和部署 Web 程序的技能。同时你还能够通过一些进阶的书籍、博客和视频教程等活跃的 Rails 教学体系继续深造。本书基于 Rails 3，这里的知识代表着 Web 开发的发展方向。（《Ruby on Rails 教程》的最新版本可以从[本书的网站](http://railstutorial.org/)上获取。）
 
