@@ -1,4 +1,4 @@
-url: http://blog.yuanyong.org/programming-computer-vision-with-python/
+url: http://yuanyong.org/programming-computer-vision-with-python/
 pygments: true
 markdown: redcarpet
 exclude: ['README.md', 'railstutorial-china.sublime-project', 'railstutorial-china.sublime-workspace', 'Gemfile', 'Gemfile.lock', 'CONTRIBUTING.md']
