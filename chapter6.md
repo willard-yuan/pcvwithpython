@@ -3,6 +3,135 @@ layout: chapter
 title: 第六章 用户模型
 ---
 
+<h2 id="sec-6-1">6.1 K-Means聚类</h2>
+P129 Figure6-1
+
+```python
+# coding=utf-8
+"""
+Function:  figure 6.1
+    An example of k-means clustering of 2D points
+Date: 2013-10-27
+"""
+from pylab import *
+from scipy.cluster.vq import *
+
+class1 = 1.5 * randn(100, 2)
+class2 = randn(100, 2) + array([5, 5])
+features = vstack((class1, class2))
+centroids, variance = kmeans(features, 2)
+code, distance = vq(features, centroids)
+figure()
+ndx = where(code == 0)[0]
+plot(features[ndx, 0], features[ndx, 1], '*')
+ndx = where(code == 1)[0]
+plot(features[ndx, 0], features[ndx, 1], 'r.')
+plot(centroids[:, 0], centroids[:, 1], 'go')
+axis('off')
+show()
+```
+运行上面代码，可得到原书P129页图6-1，即：
+![ch06_fig61_kmeans-2D](assets/images/figures/ch06_fig61_kmeans-2D.png)
+
+P131 Figure6-3
+
+```python
+ # -*- coding: utf-8 -*-
+from PCV.tools import imtools, pca
+from PIL import Image, ImageDraw
+from pylab import *
+
+imlist = imtools.get_imlist('../data/selectedfontimages/a_selected_thumbs')
+imnbr = len(imlist)
+
+# Load images, run PCA.
+immatrix = array([array(Image.open(im)).flatten() for im in imlist], 'f')
+V, S, immean = pca.pca(immatrix)
+
+# Project on 2 PCs.
+projected = array([dot(V[[0, 1]], immatrix[i] - immean) for i in range(imnbr)])  # P131 Fig6-3左图
+#projected = array([dot(V[[1, 2]], immatrix[i] - immean) for i in range(imnbr)])  # P131 Fig6-3右图
+
+# height and width
+h, w = 1200, 1200
+
+# create a new image with a white background
+img = Image.new('RGB', (w, h), (255, 255, 255))
+draw = ImageDraw.Draw(img)
+
+# draw axis
+draw.line((0, h/2, w, h/2), fill=(255, 0, 0))
+draw.line((w/2, 0, w/2, h), fill=(255, 0, 0))
+
+# scale coordinates to fit
+scale = abs(projected).max(0)
+scaled = floor(array([(p/scale) * (w/2 - 20, h/2 - 20) + (w/2, h/2)
+                      for p in projected])).astype(int)
+
+# paste thumbnail of each image
+for i in range(imnbr):
+  nodeim = Image.open(imlist[i])
+  nodeim.thumbnail((25, 25))
+  ns = nodeim.size
+  box = (scaled[i][0] - ns[0] // 2, scaled[i][1] - ns[1] // 2,
+         scaled[i][0] + ns[0] // 2 + 1, scaled[i][1] + ns[1] // 2 + 1)
+  img.paste(nodeim, box)
+
+img.show()
+img.save('../images/ch06/pca_font.png')
+```
+运行上面代码，可画出原书P131图6-3中的实例结果。
+![ch06_fig63_kmeans_project_images](assets/images/figures/ch06_fig63_kmeans_project_images.png)
+
+P133 Figure6-4
+
+```python
+ # -*- coding: utf-8 -*-
+"""
+Function: figure 6.4
+    Clustering of pixels based on their color value using k-means.
+Date: 2013-10-27
+"""
+# coding=utf-8
+from scipy.cluster.vq import *
+from scipy.misc import imresize
+from pylab import *
+import Image
+
+steps = 100  # image is divided in steps*steps region
+infile = '../data/empire.jpg'
+im = array(Image.open(infile))
+dx = im.shape[0] / steps
+dy = im.shape[1] / steps
+# compute color features for each region
+features = []
+for x in range(steps):
+    for y in range(steps):
+        R = mean(im[x * dx:(x + 1) * dx, y * dy:(y + 1) * dy, 0])
+        G = mean(im[x * dx:(x + 1) * dx, y * dy:(y + 1) * dy, 1])
+        B = mean(im[x * dx:(x + 1) * dx, y * dy:(y + 1) * dy, 2])
+        features.append([R, G, B])
+features = array(features, 'f')     # make into array
+# cluster
+centroids, variance = kmeans(features, 3)
+code, distance = vq(features, centroids)
+# create image with cluster labels
+codeim = code.reshape(steps, steps)
+codeim = imresize(codeim, im.shape[:2], 'nearest')
+figure()
+ax1 = subplot(121)
+ax1.set_title('Image')
+axis('off')
+imshow(im)
+ax2 = subplot(122)
+ax2.set_title('Image after clustering')
+axis('off')
+imshow(codeim)
+show()
+```
+运行上面代码，即可得出原书P133页图6-4中的例子。
+![ch06_fig64_kmeans-pixels](assets/images/figures/ch06_fig64_kmeans-pixels.png)
+
 [第五章](chapter5.html)的末尾我们创建了一个临时的用户注册页面（[5.4 节](chapter5.html#sec-5-4)），本教程接下来的四章会逐步丰富这个页面的功能。第一个关键的步骤是为网站的用户创建一个数据模型，以及存储数据的方式。[第七章](chapter7.html)会实现用户注册功能，并创建用户资料页面。用户能注册后，我们就要实现登录和退出功能（[第八章](chapter8.html)）。[第九章](chapter9.html)（[9.2.1 节](chapter9.html#sec-9-2-1)）会介绍如何保护页面避免被无权限的人员访问。第六章到第九章的内容结合在一起，我们就开发出了一个功能完整的 Rails 登录和用户验证系统。或许你知道已经有很多开发好了的 Rails 用户验证方案，[旁注 6.1](#box-6-1)解释了为什么，至少在初学阶段，自己开发一个用户验证系统或许是更好的方法。
 
 这一章很长，内容很多，你也许会觉得有些挑战性，特别是对数据模型新手来说。不过学完本章后，我们会开发出一个可在实际应用程序中使用的系统，包括数据验证、存储和用户信息获取等功能。

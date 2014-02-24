@@ -3,7 +3,7 @@ layout: chapter
 title: 第一章 图像处理基础
 ---
 
-###显示图像轮廓及图像直方图
+<h2 id="sec-1-1">1.1 显示图像轮廓及图像直方图</h2>
 运行下面代码，便可以得到下面的图。
 
 ```python
@@ -32,7 +32,7 @@ show()
 ![ch01-contour-fig1-2-0](assets/images/figures/ch01-contour-fig1-2-0.png)
 ![ch01-contour-fig1-3-1](assets/images/figures/ch01-contour-fig1-3-1.png)
 
-###灰度变化
+<h2 id="sec-1-1">1.2 显示图像轮廓及图像直方图</h2>
 下面代码是显示原书第9页中figure1-5的例子：
 
 '''python
@@ -64,7 +64,7 @@ show()
 运行上面代码，可以得到书中的结果：
 ![ch01_fig1-5_graylevel-transforms](assets/images/figures/ch01/ch01_fig1-5_graylevel-transforms.png)
 
-###对图像进行主成分分析
+<h2 id="sec-1-1">1.2 对图像进行主成分分析</h2>
 下面代码是显示原书P15页对字体图像进行主成分分析的实例代码：
 
 ```python
