@@ -266,8 +266,6 @@ nav ol {
 img {
     border: 0; /* 1 */
     -ms-interpolation-mode: bicubic; /* 2 */
-	max-width: 600px;
-    box-shadow: -1px -1px 40px rgb(92, 162, 190);
 }
 
 /*
