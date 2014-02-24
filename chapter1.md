@@ -3,11 +3,20 @@ layout: chapter
 title: 第一章 图像处理基础
 ---
 
+###显示图像轮廓及图像直方图
+运行下面代码，便可以得到下面的图。
+
 ```python
+# -*- coding: utf-8 -*-
+"""
+Function:  figure 1-3
+    Examples of visualizing image contours and plotting image histograms with Matplotlib
+Date: 2014-02-24
+"""
 from PIL import Image
 from pylab import *
 
-im = array(Image.open('empire.jpg').convert('L'))  # 打开图像，并转成灰度图像
+im = array(Image.open('../data/empire.jpg').convert('L'))  # 打开图像，并转成灰度图像
 
 figure()
 gray()
@@ -19,10 +28,84 @@ figure()
 hist(im.flatten(), 128)
 show()
 ```
-
 运行上面代码，可以得到书中的图1-3所示的结果:
 ![ch01-contour-fig1-2-0](assets/images/figures/ch01-contour-fig1-2-0.png)
 ![ch01-contour-fig1-3-1](assets/images/figures/ch01-contour-fig1-3-1.png)
+
+###灰度变化
+下面代码是显示原书第9页中figure1-5的例子：
+
+'''python
+from PIL import Image
+from numpy import *
+from pylab import *
+
+im = array(Image.open('../data/empire.jpg').convert('L'))
+im2 = 255 - im  # invert image
+im3 = (100.0/255) * im + 100  # clamp to interval 100...200
+im4 = 255.0 * (im/255.0)**2  # squared
+
+figure()
+gray()
+subplot(1, 3, 1)
+imshow(im2)
+axis('off')
+
+subplot(1, 3, 2)
+imshow(im3)
+axis('off')
+
+subplot(1, 3, 3)
+imshow(im4)
+axis('off')
+
+show()
+'''
+运行上面代码，可以得到书中的结果：
+![ch01_fig1-5_graylevel-transforms](assets/images/figures/ch01/ch01_fig1-5_graylevel-transforms.png)
+
+###对图像进行主成分分析
+下面代码是显示原书P15页对字体图像进行主成分分析的实例代码：
+
+```python
+ # -*- coding: utf-8 -*-
+from PIL import Image
+from numpy import *
+from pylab import *
+from PCV.tools import imtools, pca
+
+# Uses sparse pca codepath.
+#imlist = imtools.get_imlist('../data/selectedfontimages/a_selected_thumbs')
+
+# Get list of images and their size
+imlist = imtools.get_imlist('../data/fontimages/a_thumbs')  # fontimages.zip is part of the book data set
+im = array(Image.open(imlist[0]))  # open one image to get the size
+m, n = im.shape[:2]  # get the size of the images
+imnbr = len(imlist)  # get the number of images
+print "The number of images is %d" % imnbr
+
+# Create matrix to store all flattened images
+immatrix = array([array(Image.open(imname)).flatten() for imname in imlist], 'f')
+
+# Perform PCA
+V, S, immean = pca.pca(immatrix)
+
+# Show the images (mean and 7 first modes)
+# This gives figure 1-8 (p15) in the book.
+figure()
+gray()
+subplot(2, 4, 1)
+axis('off')
+imshow(immean.reshape(m, n))
+for i in range(7):
+    subplot(2, 4, i+2)
+    imshow(V[i].reshape(m, n))
+    axis('off')
+show()
+```
+运行上面代码，可得出原书P15 Figure1-8中的结果，即：
+![ch01_fig1-5_graylevel-transforms](assets/images/figures/ch01/ch01_fig1-8_pca_graylevel.png)
+
 
 欢迎学习《Ruby on Rails 教程》。本书的目标是成为对“如果想学习使用 Ruby on Rails 进行 Web 开发，我应该从哪儿开始？”这一问题的最好答案。学习完本书的内容之后，你将具备使用 Rails 进行开发和部署 Web 程序的技能。同时你还能够通过一些进阶的书籍、博客和视频教程等活跃的 Rails 教学体系继续深造。本书基于 Rails 3，这里的知识代表着 Web 开发的发展方向。（《Ruby on Rails 教程》的最新版本可以从[本书的网站](http://railstutorial.org/)上获取。）
 
