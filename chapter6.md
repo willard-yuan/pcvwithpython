@@ -31,7 +31,7 @@ axis('off')
 show()
 ```
 运行上面代码，可得到原书P129页图6-1，即：
-![ch06_fig61_kmeans-2D](assets/images/figures/ch06_fig61_kmeans-2D.png)
+![ch06_fig61_kmeans-2D](assets/images/figures/ch06/ch06_fig61_kmeans-2D.png)
 
 P131 Figure6-3
 
