@@ -36,6 +36,7 @@ show()
 下面代码是显示原书第9页中figure1-5的例子：
 
 '''python
+# -*- coding: utf-8 -*-
 from PIL import Image
 from numpy import *
 from pylab import *

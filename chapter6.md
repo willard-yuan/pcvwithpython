@@ -7,7 +7,7 @@ title: 第六章 用户模型
 P129 Figure6-1
 
 ```python
-# coding=utf-8
+ # -*- coding: utf-8 -*-
 """
 Function:  figure 6.1
     An example of k-means clustering of 2D points
@@ -81,7 +81,7 @@ img.show()
 img.save('../images/ch06/pca_font.png')
 ```
 运行上面代码，可画出原书P131图6-3中的实例结果。
-![ch06_fig63_kmeans_project_images](assets/images/figures/ch06_fig63_kmeans_project_images.png)
+![ch06_fig63_kmeans_project_images](assets/images/figures/ch06/ch06_fig63_kmeans_project_images.png)
 
 P133 Figure6-4
 
@@ -130,7 +130,7 @@ imshow(codeim)
 show()
 ```
 运行上面代码，即可得出原书P133页图6-4中的例子。
-![ch06_fig64_kmeans-pixels](assets/images/figures/ch06_fig64_kmeans-pixels.png)
+![ch06_fig64_kmeans-pixels](assets/images/figures/ch06/ch06_fig64_kmeans-pixels.png)
 
 [第五章](chapter5.html)的末尾我们创建了一个临时的用户注册页面（[5.4 节](chapter5.html#sec-5-4)），本教程接下来的四章会逐步丰富这个页面的功能。第一个关键的步骤是为网站的用户创建一个数据模型，以及存储数据的方式。[第七章](chapter7.html)会实现用户注册功能，并创建用户资料页面。用户能注册后，我们就要实现登录和退出功能（[第八章](chapter8.html)）。[第九章](chapter9.html)（[9.2.1 节](chapter9.html#sec-9-2-1)）会介绍如何保护页面避免被无权限的人员访问。第六章到第九章的内容结合在一起，我们就开发出了一个功能完整的 Rails 登录和用户验证系统。或许你知道已经有很多开发好了的 Rails 用户验证方案，[旁注 6.1](#box-6-1)解释了为什么，至少在初学阶段，自己开发一个用户验证系统或许是更好的方法。
 
