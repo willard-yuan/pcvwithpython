@@ -32,7 +32,7 @@ show()
 ![ch01-contour-fig1-2-0](assets/images/figures/ch01/ch01_fig1-3_contour1.png)
 ![ch01-contour-fig1-3-1](assets/images/figures/ch01/ch01_fig1-3_contour2.png)
 
-<h2 id="sec-1-1">1.2 显示图像轮廓及图像直方图</h2>
+<h2 id="sec-1-1">1.2 灰度变换</h2>
 下面代码是显示原书第9页中figure1-5的例子：
 
 '''python
@@ -62,10 +62,52 @@ axis('off')
 
 show()
 '''
-运行上面代码，可以得到书中的结果：
+运行上面代码，分别可以得到书中的结果：
 ![ch01_fig1-5_graylevel-transforms](assets/images/figures/ch01/ch01_fig1-5_graylevel-transforms.png)
 
-<h2 id="sec-1-1">1.2 对图像进行主成分分析</h2>
+<h2 id="sec-1-1">1.3 直方图均衡化</h2>
+另外一个灰度变换中非常有用的例子是直方图均衡化，下面是对图像直方图进行均衡化处理的例子：
+
+```python
+from PIL import Image
+from pylab import *
+from PCV.tools import imtools
+
+#im = array(Image.open('../data/empire.jpg').convert('L'))
+im = array(Image.open('../data/AquaTermi_lowcontrast.JPG').convert('L'))
+im2, cdf = imtools.histeq(im)
+
+figure()
+subplot(2, 2, 1)
+axis('off')
+gray()
+title('original')
+imshow(im)
+
+subplot(2, 2, 2)
+axis('off')
+title('histogram-equalized')
+imshow(im2)
+
+subplot(2, 2, 3)
+axis('off')
+title('original hist')
+#hist(im.flatten(), 128, cumulative=True, normed=True)
+hist(im.flatten(), 128, normed=True)
+
+subplot(2, 2, 4)
+axis('off')
+title('equalized hist')
+#hist(im2.flatten(), 128, cumulative=True, normed=True)
+hist(im2.flatten(), 128, normed=True)
+
+show()
+```
+运行上面代码，可以得到书中的结果：
+![ch01_fig1-6_histeq](assets/images/figures/ch01/ch01_fig1-6_histeq.png)
+![ch01_fig1-7_histeq](assets/images/figures/ch01/ch01_fig1-7_histeq.png)
+
+<h2 id="sec-1-1">1.4 对图像进行主成分分析</h2>
 下面代码是显示原书P15页对字体图像进行主成分分析的实例代码：
 
 ```python
@@ -107,6 +149,130 @@ show()
 运行上面代码，可得出原书P15 Figure1-8中的结果，即：
 ![ch01_fig1-5_graylevel-transforms](assets/images/figures/ch01/ch01_fig1-8_pca_graylevel.png)
 
+<h2 id="sec-1-1">1.4 SciPy</h2>
+[SciPy](http://scipy.org/)是一个开源的数学工具包，它是建立在NumPy的基础上的。
+<h3 id="sec-1-1">1.4.1 图像模糊</h3>
+下面是对图像进行模糊显示原书P17页的例子。
+
+```python
+ # -*- coding: utf-8 -*-
+from PIL import Image
+from pylab import *
+from scipy.ndimage import filters
+
+#im = array(Image.open('board.jpeg'))
+im = array(Image.open('../data/empire.jpg').convert('L'))
+
+figure()
+gray()
+axis('off')
+subplot(2, 2, 1)
+axis('off')
+imshow(im)
+
+for bi, blur in enumerate([2, 5, 10]):
+  im2 = zeros(im.shape)
+  im2 = filters.gaussian_filter(im, blur)
+  im2 = np.uint8(im2)
+  subplot(2, 2, 2 + bi)
+  axis('off')
+  imshow(im2)
+
+#如果是彩色图像，则分别对三个通道进行模糊
+#for bi, blur in enumerate([2, 5, 10]):
+#  im2 = zeros(im.shape)
+#  for i in range(3):
+#    im2[:, :, i] = filters.gaussian_filter(im[:, :, i], blur)
+#  im2 = np.uint8(im2)
+#  subplot(2, 2, 2 + bi)
+#  axis('off')
+#  imshow(im2)
+
+show()
+```
+运行上面代码，可得下图：
+![ch01_fig1-9_scipy_blur](assets/images/figures/ch01/ch01_fig1-9_scipy_blur.png)
+
+<h3 id="sec-1-1">1.4.2 图像差分</h3>
+图像强度的改变是一个重要的信息，被广泛用以很多应用中，正如它贯穿于本书中。
+下面是对图像进行差分显示原书P19页的例子。
+
+```python
+# -*- coding: utf-8 -*-
+from PIL import Image
+from pylab import *
+from scipy.ndimage import filters
+import numpy
+
+im = array(Image.open('../data/empire.jpg').convert('L'))
+gray()
+
+subplot(1, 4, 1)
+axis('off')
+title('(a)')
+imshow(im)
+
+imx = zeros(im.shape)
+filters.sobel(im, 1, imx)
+subplot(1, 4, 2)
+axis('off')
+title('(b)')
+imshow(imx)
+
+imy = zeros(im.shape)
+filters.sobel(im, 0, imy)
+subplot(1, 4, 3)
+axis('off')
+title('(c)')
+imshow(imy)
+
+mag = numpy.sqrt(imx**2 + imy**2)
+subplot(1, 4, 4)
+title('(d)')
+axis('off')
+imshow(mag)
+
+show()
+```
+运行上面代码，可得下图：
+![ch01_fig1-10_scipy_sobel](assets/images/figures/ch01/ch01_fig1-10_scipy_sobel.png)
+再看一个高斯差分的例子，运行下面代码可得原书P20页对图像进行高斯差分示例：
+
+```python
+from PIL import Image
+from pylab import *
+from scipy.ndimage import filters
+import numpy
+
+im = array(Image.open('../data/empire.jpg').convert('L'))
+gray()
+subplot(1, 4, 1)
+axis('off')
+imshow(im)
+
+sigma = 5
+
+imx = zeros(im.shape)
+filters.gaussian_filter(im, sigma, (0, 1), imx)
+subplot(1, 4, 2)
+axis('off')
+imshow(imx)
+
+imy = zeros(im.shape)
+filters.gaussian_filter(im, sigma, (1, 0), imy)
+subplot(1, 4, 3)
+axis('off')
+imshow(imy)
+
+# there's also gaussian_gradient_magnitude()
+mag = numpy.sqrt(imx**2 + imy**2)
+subplot(1, 4, 4)
+axis('off')
+imshow(mag)
+
+show()
+```
+![ch01_fig1-11_scipy_gauss_deriv](assets/images/figures/ch01/ch01_fig1-11_scipy_gauss_deriv.png)
 
 欢迎学习《Ruby on Rails 教程》。本书的目标是成为对“如果想学习使用 Ruby on Rails 进行 Web 开发，我应该从哪儿开始？”这一问题的最好答案。学习完本书的内容之后，你将具备使用 Rails 进行开发和部署 Web 程序的技能。同时你还能够通过一些进阶的书籍、博客和视频教程等活跃的 Rails 教学体系继续深造。本书基于 Rails 3，这里的知识代表着 Web 开发的发展方向。（《Ruby on Rails 教程》的最新版本可以从[本书的网站](http://railstutorial.org/)上获取。）
 
