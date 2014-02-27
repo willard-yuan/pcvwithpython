@@ -7,7 +7,7 @@ title: 第六章 用户模型
 P129 Figure6-1
 
 ```python
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Function:  figure 6.1
     An example of k-means clustering of 2D points
