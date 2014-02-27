@@ -22,14 +22,13 @@ layout: default
 	</dl>
 
 	<div class="buy">
-		<p><a class="btn" href="https://sellfy.com/p/qwyU/" title="购买电子书">购买 Rails4 版电子书（$9.90）</a><br /><a class="btn info" href="http://vdisk.weibo.com/s/EdBuTXqJ7GRu" title="下载电子书">下载电子书（PDF）</a></p>
+	<h3>购买本书中译本</h3>
+		<p><a class="btn info" href="https://sellfy.com/p/qwyU/" title="购买本书">购买本书</a><br />
 	</div>
 
 	<div class="buy">
-	<h3>购买电子书</h3>
-	<p><a class="btn" href="http://www.ituring.com.cn/book/1333" title="使用支付宝购买电子书">支付宝付款</a>&nbsp;&nbsp;<a class="btn" href="https://sellfy.com/p/qwyU/" title="使用 PayPal 购买电子书">PayPal 付款</a></p>
+	<p><a class="btn" href="http://www.ituring.com.cn/book/1333" title="使用支付宝购买电子书">支付宝付款</a>&nbsp;&nbsp;<a class="btn" href="https://sellfy.com/p/qwyU/" title="在图灵社区购买电子书">PayPal 付款</a></p>
 	<ol class="notes">
-		<li>出售行为已获原作者许可；</li>
 		<li>电子书包含三种格式：PDF、ePub 和 mobi；</li>
         <li>使用支付宝购买只有 PDF 和 mobi 两种格式；</li>
 		<li>购买后，错误修正等更新免费获取，不再收费；</li>
@@ -42,10 +41,10 @@ layout: default
 
 <div class="grid-2">
 	<div class="announcement">
-		<h2>官方公告</h2>
+		<h2>内容简介</h2>
 		<blockquote>
-			<p>I’m pleased to announce the availability of a Chinese translation of the Ruby on Rails Tutorial. I’d like to thank translator Andor Chen for his outstanding work. I deserve none of the credit; Andor reached out to me and asked if it was OK to translate the book, and I happily agreed. (All I did was contribute a short preface.) As with the English version, the Chinese translation is available for free online as HTML; with my blessing, Andor is also offering ebook sales of the translation, the proceeds of which go directly to him. If you are a Chinese speaker, please check it out!</p>
-			<p class="cite">-- <a href="http://news.railstutorial.org/rails-tutorial-chinese-translation/" title="Rails Tutorial Chinese translation" target="_blank">Michael Hartl, Mar 13th, 2013</a></p>
+			<p>本书介绍Python的计算机视觉编程，用清晰的Python示例，细致讲解对象识别、3D重建、立体图像、增强现实及其他计算机视觉应用技巧，给出了分析图像的工具与方法。内容：机器人导航、医学图像分析；图像映射与变换；多图像的3D重建；用聚类方法基于相似性和内容组织图像；基于视觉内容的图像检索技巧；实现图像内容分类和对象识别的算法；通过Python接口访问常用的OpenCV库。</p>
+			<p class="cite">-- <a href="http://www.ituring.com.cn/book/1349?q=python" title="programming computer vision with python Chinese translation" target="_blank">图灵社区Python计算机视觉编程</a></p>
 		</blockquote>
 	</div>
 	<div class="menu">
