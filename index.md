@@ -25,6 +25,17 @@ layout: default
 		<p><a class="btn" href="https://sellfy.com/p/qwyU/" title="购买电子书">购买 Rails4 版电子书（$9.90）</a><br /><a class="btn info" href="http://vdisk.weibo.com/s/EdBuTXqJ7GRu" title="下载电子书">下载电子书（PDF）</a></p>
 	</div>
 
+	<div class="buy">
+	<h3>购买电子书</h3>
+	<p><a class="btn" href="http://www.ituring.com.cn/book/1333" title="使用支付宝购买电子书">支付宝付款</a>&nbsp;&nbsp;<a class="btn" href="https://sellfy.com/p/qwyU/" title="使用 PayPal 购买电子书">PayPal 付款</a></p>
+	<ol class="notes">
+		<li>出售行为已获原作者许可；</li>
+		<li>电子书包含三种格式：PDF、ePub 和 mobi；</li>
+        <li>使用支付宝购买只有 PDF 和 mobi 两种格式；</li>
+		<li>购买后，错误修正等更新免费获取，不再收费；</li>
+	</ol>
+	</div>
+
 </div>
 
 <div class="clearfix"></div>
