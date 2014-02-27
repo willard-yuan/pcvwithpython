@@ -35,7 +35,7 @@ show()
 <h2 id="sec-1-1">1.2 灰度变换</h2>
 下面代码是显示原书第9页中figure1-5的例子：
 
-'''python
+```python
 # -*- coding: utf-8 -*-
 from PIL import Image
 from numpy import *
@@ -61,7 +61,7 @@ imshow(im4)
 axis('off')
 
 show()
-'''
+```
 运行上面代码，分别可以得到书中的结果：
 ![ch01_fig1-5_graylevel-transforms](assets/images/figures/ch01/ch01_fig1-5_graylevel-transforms.png)
 
