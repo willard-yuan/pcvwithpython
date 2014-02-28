@@ -1,7 +1,96 @@
 ---
 layout: chapter
-title: 第二章 演示程序
+title: 第二章 图像局部描述符
 ---
+
+<h2 id="sec-2-1">2.1 Harris角点检测</h2>
+
+下面是harris角点检测实例代码。
+
+```python
+ # -*- coding: utf-8 -*-
+from pylab import *
+from PIL import Image
+
+from PCV.localdescriptors import harris
+
+"""
+Example of detecting Harris corner points (Figure 2-1 in the book).
+"""
+
+# open image
+im = array(Image.open('../data/empire.jpg').convert('L'))
+
+# detect corners and plot
+harrisim = harris.compute_harris_response(im)
+# the Harris response function
+harrisim1 = 255-harrisim
+figure()
+gray()
+imshow(harrisim1)
+axis('off')
+filtered_coords = harris.get_harris_points(harrisim, 6, threshold=0.01)
+#filtered_coords = harris.get_harris_points(harrisim, 6, threshold=0.05)
+#filtered_coords = harris.get_harris_points(harrisim, 6, threshold=0.1)
+harris.plot_harris_points(im, filtered_coords)
+
+# plot only 200 strongest
+# harris.plot_harris_points(im, filtered_coords[:200])
+```
+运行下面代码，可得原书P32页的图:
+![ch01_fig2-1_harris-response](assets/images/figures/ch02/ch01_fig2-1_harris-response.png)
+![ch01_fig2-1_harris-corners0.01](assets/images/figures/ch02/ch01_fig2-1_harris-corners0.01.png)
+![ch01_fig2-1_harris-corners0.05](assets/images/figures/ch02/ch01_fig2-1_harris-corners0.05.png)
+![ch01_fig2-1_harris-corners0.1](assets/images/figures/ch02/ch01_fig2-1_harris-corners0.1.png)
+
+<h3 id="sec-2-1-1">2.1.1 Harris角点检测</h3>
+
+下面代码是再现原书P35页的代码：
+
+```python
+ # -*- coding: utf-8 -*-
+from pylab import *
+from PIL import Image
+
+from PCV.localdescriptors import harris
+from PCV.tools.imtools import imresize
+
+"""
+This is the Harris point matching example in Figure 2-2.
+"""
+
+# Figure 2-2上面的图
+#im1 = array(Image.open("../data/crans_1_small.jpg").convert("L"))
+# = array(Image.open("../data/crans_2_small.jpg").convert("L"))
+
+# Figure 2-2下面的图
+im1 = array(Image.open("../data/sf_view1.jpg").convert("L"))
+im2 = array(Image.open("../data/sf_view2.jpg").convert("L"))
+
+# resize to make matching faster
+im1 = imresize(im1, (im1.shape[1]/2, im1.shape[0]/2))
+im2 = imresize(im2, (im2.shape[1]/2, im2.shape[0]/2))
+
+wid = 5
+harrisim = harris.compute_harris_response(im1, 5)
+filtered_coords1 = harris.get_harris_points(harrisim, wid+1)
+d1 = harris.get_descriptors(im1, filtered_coords1, wid)
+
+harrisim = harris.compute_harris_response(im2, 5)
+filtered_coords2 = harris.get_harris_points(harrisim, wid+1)
+d2 = harris.get_descriptors(im2, filtered_coords2, wid)
+
+print 'starting matching'
+matches = harris.match_twosided(d1, d2)
+
+figure()
+gray() 
+harris.plot_matches(im1, im2, filtered_coords1, filtered_coords2, matches)
+show()
+```
+运行上面代码，可得下图：
+![ch2_harris_matching1](assets/images/figures/ch02/ch2_harris_matching1.png)
+![ch2_harris_matching2](assets/images/figures/ch02/ch2_harris_matching2.png)
 
 本章我们要开发一个简单的演示应用程序来展示一下 Rails 强大的功能。我们会使用脚手架（scaffold）功能快速的生成程序，这样就能以一定的高度概览一下 Ruby on Rails 编程的过程（也能大致的了解一下 Web 开发）。正如在第一章的[旁注 1.1](chapter1.html#box-1-1) 中所说，本书将采用另一种方法，我们会循序渐进的开发程序，遇到新的概念都会详细说明，不过为了概览功能（也为了寻找成就感）也无需对脚手架避而不谈。我们可以通过 URI 和最终的演示程序进行交互，了解一下 Rails 应用程序的结构，也第一次演示 Rails 使用的 REST 架构。
 
