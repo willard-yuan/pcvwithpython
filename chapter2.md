@@ -48,7 +48,7 @@ harris.plot_harris_points(im, filtered_coords)
 下面代码是再现原书P35页的代码：
 
 ```python
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from pylab import *
 from PIL import Image
 
@@ -91,6 +91,89 @@ show()
 运行上面代码，可得下图：
 ![ch2_harris_matching1](assets/images/figures/ch02/ch2_harris_matching1.png)
 ![ch2_harris_matching2](assets/images/figures/ch02/ch2_harris_matching2.png)
+
+<h3 id="sec-2-2">2.2 sift描述子</h3>
+
+下面代码是再现原书P40页的代码：
+
+```python
+# -*- coding: utf-8 -*-
+from PIL import Image
+from pylab import *
+from PCV.localdescriptors import sift
+
+imname = '../data/empire.jpg'
+im1 = array(Image.open(imname).convert('L'))
+sift.process_image(imname, 'empire.sift')
+l1, d1 = sift.read_features_from_file('empire.sift')
+
+figure()
+gray()
+#sift.plot_features(im1, l1, circle=False)
+sift.plot_features(im1, l1, circle=True)
+show()
+```
+运行上面代码，可得下图：
+![ch02_fig2-4_sift_false](assets/images/figures/ch02/ch02_fig2-4_sift_false.png)
+![ch02_fig2-4_sift_true](assets/images/figures/ch02/ch02_fig2-4_sift_true.png)
+
+下面代码是再现原书P43页的代码：
+
+```python
+# -*- coding: utf-8 -*-
+from PIL import Image
+from pylab import *
+import sys
+from PCV.localdescriptors import sift
+
+
+if len(sys.argv) >= 3:
+  im1f, im2f = sys.argv[1], sys.argv[2]
+else:
+  im1f = '../data/sf_view1.jpg'
+  im2f = '../data/sf_view2.jpg'
+#  im1f = '../data/crans_1_small.jpg'
+#  im2f = '../data/crans_2_small.jpg'
+#  im1f = '../data/climbing_1_small.jpg'
+#  im2f = '../data/climbing_2_small.jpg'
+#im1 = array(Image.open(im1f).convert('L'))
+#im2 = array(Image.open(im2f).convert('L'))
+im1 = array(Image.open(im1f))
+im2 = array(Image.open(im2f))
+
+sift.process_image(im1f, 'out_sift_1.txt')
+l1, d1 = sift.read_features_from_file('out_sift_1.txt')
+figure()
+gray()
+#sift.plot_features(im1, l1, circle=True)
+sift.plot_features(im1, l1, circle=False)
+
+sift.process_image(im2f, 'out_sift_2.txt')
+l2, d2 = sift.read_features_from_file('out_sift_2.txt')
+figure()
+gray()
+#sift.plot_features(im2, l2, circle=True)
+sift.plot_features(im2, l2, circle=False)
+
+#matches = sift.match(d1, d2)
+matches = sift.match_twosided(d1, d2)
+print '{} matches'.format(len(matches.nonzero()[0]))
+
+figure()
+gray()
+#sift.plot_matches(im1, im2, l1, l2, matches, show_below=False)
+sift.plot_matches(im1, im2, l1, l2, matches, show_below=True)
+show()
+```
+运行上面代码，可得下图：
+![ch02_sift_detect_crans_1_small](assets/images/figures/ch02/ch02_sift_detect_crans_1_small.png)
+![ch02_sift_detect_crans_2_small](assets/images/figures/ch02/ch02_sift_detect_crans_2_small.png)
+![ch02_sift_match_sf_crans_12_small](assets/images/figures/ch02/ch02_sift_match_sf_crans_12_small.png)
+![ch02_sift_detect_sf_view1](assets/images/figures/ch02/ch02_sift_detect_sf_view1.png)
+![ch02_sift_detect_sf_view2](assets/images/figures/ch02/ch02_sift_detect_sf_view2.png)
+![ch02_sift_match_sf_view12](assets/images/figures/ch02/ch02_sift_match_sf_view12.png)
+![ch02_sift_match_climbing_12_small_without](assets/images/figures/ch02/ch02_sift_match_climbing_12_small_without)
+![ch02_sift_match_climbing_12_small_with](assets/images/figures/ch02/ch02_sift_match_climbing_12_small_with)
 
 本章我们要开发一个简单的演示应用程序来展示一下 Rails 强大的功能。我们会使用脚手架（scaffold）功能快速的生成程序，这样就能以一定的高度概览一下 Ruby on Rails 编程的过程（也能大致的了解一下 Web 开发）。正如在第一章的[旁注 1.1](chapter1.html#box-1-1) 中所说，本书将采用另一种方法，我们会循序渐进的开发程序，遇到新的概念都会详细说明，不过为了概览功能（也为了寻找成就感）也无需对脚手架避而不谈。我们可以通过 URI 和最终的演示程序进行交互，了解一下 Rails 应用程序的结构，也第一次演示 Rails 使用的 REST 架构。
 
