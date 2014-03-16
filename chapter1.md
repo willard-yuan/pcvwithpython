@@ -29,8 +29,7 @@ hist(im.flatten(), 128)
 show()
 ```
 运行上面代码，可以得到书中的图1-3所示的结果:
-![ch01-contour-fig1-2-0](assets/images/figures/ch01/ch01_fig1-3_contour1.png)
-![ch01-contour-fig1-3-1](assets/images/figures/ch01/ch01_fig1-3_contour2.png)
+![ch01-P006-Fig1-3](assets/images/figures/ch01/P006-Fig1-3.png)
 
 <h2 id="sec-1-1">1.2 灰度变换</h2>
 下面代码是显示原书第9页中figure1-5的例子：
