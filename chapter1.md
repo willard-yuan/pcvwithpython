@@ -3,7 +3,62 @@ layout: chapter
 title: 第一章 图像处理基础
 ---
 
-<h2 id="sec-1-1">1.1 显示图像轮廓及图像直方图</h2>
+<h2 id="sec-1-1">1.1 PIL-Python图像库</h2>
+
+PIL (Python Imaging Library)图像库提供了很多常用的图像处理及很多有用的图像基本操作。PIL库下载地址[\[http://www.pythonware.com/products/pil/\]](http://www.pythonware.com/products/pil/)。下面演示原书P001-Fig1-1读入一幅图片的例子：
+
+```python
+# -*- coding: utf-8 -*- #指定文件编码为utf-8，下同
+from PIL import Image #导入PIL库
+from pylab import *
+
+pil_im = Image.open('../data/empire.jpg') #读入图片
+figure()
+gray() 
+subplot(121)
+axis('off')
+imshow(pil_im)
+
+pil_im = Image.open('../data/empire.jpg').convert('L') # 读入图片，转换为灰度图像
+subplot(122)
+axis('off')
+imshow(pil_im)
+
+show()
+```
+运行上面的代码，可以得出原书P002-Fig1-1中的前两幅图片，如下：
+![P002-Fig1-1](assets/images/figures/ch01/P002-Fig1-1.png)
+更多关于PIL的实例，可以参阅PIL在线文档[\[http://www
+.pythonware.com/library/pil/handbook/index.htm./\]](http://www.pythonware.com/library/pil/handbook/index.htm)。
+
+##对图片进行格式转换
+利用`save()`方法，PIL可以将图片保存问很多不同的图像格式。下面演示原书P002中对图片进行转换的例子。
+
+```python
+# -*- coding: utf-8 -*-
+from PCV.tools.imtools import get_imlist #导入原书的PCV模块
+from PIL import Image
+import os
+import pickle
+
+filelist = get_imlist('../data/convert_images_format_test/') #获取convert_images_format_test文件夹下的图片文件名(包括后缀名)
+imlist = file('../data/convert_images_format_test/imlist.txt','w') #将获取的图片文件列表保存到imlist.txt中
+pickle.dump(filelist,imlist) #序列化
+imlist.close()
+
+for infile in filelist:
+    outfile = os.path.splitext(infile)[0] + ".png" #分离文件名与扩展名
+    if infile != outfile:
+        try:
+            Image.open(infile).save(outfile)
+        except IOError:
+            print "cannot convert", infile
+```
+上面convert_images_format_test文件夹是译者放的测试图片，共24幅图像，如下图示，测试图片全部为`.jpg`格式的：
+![2014-03-16 11_24_39-convert_images_format_test](assets/images/figures/ch01/2014-03-16 11_24_39-convert_images_format_test.png)
+译者在源代码中添加了部分代码以便将获取的图像文件名列表保存下来，同时将原来的所有图像转化为`.png`格式的图像。注意，在载入模块时，载入了原书的PCV模块，关于PCV模块的安装，详见[\[PCV模块的安装\]]()运行上面代码，可以得到转化格式后的图像，运行结果为：
+![2014-03-16 10_57_43-convert_images_format_test](assets/images/figures/ch01/2014-03-16 10_57_43-convert_images_format_testt.png)
+
 运行下面代码，便可以得到下面的图。
 
 ```python

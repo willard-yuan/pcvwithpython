@@ -2,8 +2,8 @@ from PIL import Image
 from pylab import *
 from PCV.tools import imtools
 
-#im = array(Image.open('../data/empire.jpg').convert('L'))
-im = array(Image.open('../data/AquaTermi_lowcontrast.JPG').convert('L'))
+im = array(Image.open('../data/empire.jpg').convert('L'))
+#im = array(Image.open('../data/AquaTermi_lowcontrast.JPG').convert('L'))
 im2, cdf = imtools.histeq(im)
 
 figure()
