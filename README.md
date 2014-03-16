@@ -1,4 +1,4 @@
-# 《Programming Computer Vision with Python》中译本代码
+##《Programming Computer Vision with Python》中译本代码
 
 本 repo 是《Programming Computer Vision with Python》一书译者调试完善后的代码，原作者是 Jan Erik Solem。本书作为python实战性很强的计算机视觉方面的编程书籍，结合理论分析提供了大量丰富的编程实例。译者在翻译完本书后，对原书作者的代码进行了调试与完善。
 
