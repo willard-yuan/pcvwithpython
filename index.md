@@ -22,7 +22,7 @@ layout: default
 	</dl>
 
 	<div class="buy">
-	<h3>购买本书中译本</h3>
+	<h3>购买中译本</h3>
 		<p><a class="btn info" href="https://sellfy.com/p/qwyU/" title="购买本书">购买本书</a><br />
 	</div>
 
@@ -41,7 +41,7 @@ layout: default
 
 <div class="grid-2">
 	<div class="announcement">
-		<h2>内容简介</h2>
+		<h2>关于本书</h2>
 		<blockquote>
 			<p>本书介绍Python的计算机视觉编程，用清晰的Python示例，细致讲解对象识别、3D重建、立体图像、增强现实及其他计算机视觉应用技巧，给出了分析图像的工具与方法。内容：机器人导航、医学图像分析；图像映射与变换；多图像的3D重建；用聚类方法基于相似性和内容组织图像；基于视觉内容的图像检索技巧；实现图像内容分类和对象识别的算法；通过Python接口访问常用的OpenCV库。</p>
 			<p class="cite">-- <a href="http://www.ituring.com.cn/book/1349?q=python" title="programming computer vision with python Chinese translation" target="_blank">图灵社区Python计算机视觉编程</a></p>

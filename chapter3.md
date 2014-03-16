@@ -1,7 +1,31 @@
 ---
 layout: chapter
-title: 第三章 基本静态的页面
+title: 第三章 图像映射
 ---
+
+下面是显示原书图58页的例子：
+
+```python
+# -*- coding: utf-8 -*-
+from scipy import ndimage
+from PIL import Image
+from pylab import *
+
+im = array(Image.open('../data/empire.jpg').convert('L'))
+H = array([[1.4,0.05,-100],[0.05,1.5,-100],[0,0,1]])
+im2 = ndimage.affine_transform(im,H[:2,:2],(H[0,2],H[1,2]))
+
+figure()
+gray()
+subplot(121)
+axis('off')
+imshow(im)
+subplot(122)
+axis('off')
+imshow(im2)
+show()
+```
+![ch01-contour-fig1-2-0](assets/images/figures/ch03/ch03_fig3-1_warping.png)
 
 从本章开始我们要开发一个大型的示例程序，本书后续内容都会基于这个示例程序。最终完成的程序会包含用户、微博功能，以及完整的登录和用户身份验证系统，不过我们会从一个看似功能有限的话题出发——创建静态页面。这看似简单的一件事却是一个很好的锻炼，极具意义，对这个初建的程序而言也是个很好的开端。
 
