@@ -7,6 +7,8 @@
 
 英文原书的内容可以在 [Programming Computer Vision with Python](http://programmingcomputervision.com/) 获取。
 
+本书运行出来的结果保存的图片命名方式为：ch章节序号-p页数-fig序号。
+
 ## 翻译状态
 
 **全书译完！**
