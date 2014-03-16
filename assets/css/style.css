@@ -845,6 +845,7 @@ a.btn.info:hover, a.btn.info:active {
 }
 
 .main .highlight pre code {
+    font-family:Consolas,"Liberation Mono",Courier,monospace;
     background: #eee;
     border: none;
 }
