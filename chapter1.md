@@ -59,6 +59,85 @@ for infile in filelist:
 译者在源代码中添加了部分代码以便将获取的图像文件名列表保存下来，同时将原来的所有图像转化为`.png`格式的图像。注意，在载入模块时，载入了原书的PCV模块，关于PCV模块的安装，详见[\[PCV模块的安装\]]()运行上面代码，可以得到转化格式后的图像，运行结果为：
 ![2014-03-16 10_57_43-convert_images_format_test](assets/images/figures/ch01/2014-03-16 10_57_43-convert_images_format_test.png)
 
+##创建缩略图
+利用PIL可以很容易的创建缩略图，设置缩略图的大小，并用元组保存起来，调用thumnail()方法即可生成缩略图。创建缩略图的代码见下面。
+##拷贝并粘贴区域
+调用crop()方法即可从一幅图像中进行区域拷贝，拷贝出区域后，可以对区域进行旋转等变换。关于拷贝、旋转粘贴的代码见下面。
+##调整尺寸及旋转
+要对一幅图像的尺寸进行调整，可以调用resize()方法，元组中放置的便是你要调整尺寸的大小。如果要对图像进行旋转变换的话，可以调用rotate()方法。
+
+下面代码显示上面提到的所有的图像处理操作，即原图显示、RGB图像转为灰度图像、拷贝粘贴区域、生成缩略图、调整图像尺寸、图像旋转变换的实例代码：
+
+```python
+# -*- coding: utf-8 -*-
+from PIL import Image
+from pylab import *
+
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
+figure()
+
+# 显示原图
+pil_im = Image.open('../data/empire.jpg')
+print pil_im.mode, pil_im.size, pil_im.format
+subplot(231)
+title(u'原图', fontproperties=font)
+axis('off')
+imshow(pil_im)
+
+# 显示灰度图
+pil_im = Image.open('../data/empire.jpg').convert('L')
+gray()
+subplot(232)
+title(u'灰度图', fontproperties=font)
+axis('off')
+imshow(pil_im)
+
+#拷贝粘贴区域
+pil_im = Image.open('../data/empire.jpg')
+box = (100,100,400,400)
+region = pil_im.crop(box)
+region = region.transpose(Image.ROTATE_180)
+pil_im.paste(region,box)
+subplot(233)
+title(u'拷贝粘贴区域', fontproperties=font)
+axis('off')
+imshow(pil_im)
+
+# 缩略图
+pil_im = Image.open('../data/empire.jpg')
+size = 128, 128
+pil_im.thumbnail(size)
+print pil_im.size
+subplot(234)
+title(u'缩略图', fontproperties=font)
+axis('off')
+imshow(pil_im)
+pil_im.save('../images/ch01/thumbnail.jpg') #保存缩略图
+
+# 调整图像尺寸
+pil_im = Image.open('../data/empire.jpg')
+pil_im = pil_im.resize(size)
+print pil_im.size
+subplot(235)
+title(u'调整尺寸后的图像', fontproperties=font)
+axis('off')
+imshow(pil_im)
+
+# 旋转图像45°
+pil_im = Image.open('../data/empire.jpg')
+pil_im = pil_im.rotate(45)
+subplot(236)
+title(u'旋转45°后的图像', fontproperties=font)
+axis('off')
+imshow(pil_im)
+
+show()
+```
+运行上面代码，可得P002-003中出现的所有实例图,结果如下：
+![ch01_P002-003_PIL](assets/images/figures/ch01/ch01_P002-003_PIL.png)
+
 运行下面代码，便可以得到下面的图。
 
 ```python
