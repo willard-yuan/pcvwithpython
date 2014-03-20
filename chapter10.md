@@ -1,7 +1,47 @@
 ---
 layout: chapter
-title: 第十章 用户的微博
+title: 第十章 OpenCV
 ---
+这一章主要讲述通过Python接口使用目前流行的计算机视觉编程库OpenCV。OpenCV是一个C++库，用于实时处理计算机视觉方面的问题。
+
+<h2 id="sec-10-1">10.1 OpenCV Python接口</h2>
+
+OpenCV是一个C++库，它涵盖了很多计算机视觉领域的模块。可以通过访问[\[http://opencv.willowgarage.com/
+documentation/python/index.html\]](http://opencv.willowgarage.com/documentation/python/index.html)。
+
+OpenCV目前最新的版本是2.4.8。实际上，OpenCV有两个Python接口，老版本的cv模块使用OpenCV内置的数据类型，新版本的cv2模块使用**NumPy**数组。对于新版本的模块，可以通过下面方式导入：
+
+```python
+import cv2
+```
+而老版本的模块则通过下面方式导入：
+
+```python
+import cv2.cv
+```
+在本章中，我们使用cv2模块，译者使用的OpenCV版本是2.4.6。
+
+<h2 id="sec-10-2">10.2 OpenCV基础</h2>
+
+OpenCV提供了读取图像和写入图像，矩阵操作以及数学库函数。我们先来看看这些基本组件并学习怎样使用它们。
+
+<h3 id="sec-10-2-1">10.2.1 读取、写入图像</h3>
+
+下面是一个简短的载入图像、打印尺寸、转换格式及保存图像为`.png`格斯的例子：
+
+```python
+import cv2
+
+# read image
+im = cv2.imread('../data/empire.jpg')
+h, w = im.shape[:2]
+print h, w
+# save image
+cv2.imwrite('../images/ch10/ch10_P210_Reading-and-Writing-Images.png',im)
+```
+运行上面代码后，在ch10文件下保存有empire.jpg转换成`.png`格式的图片，即ch10_P210_Reading-and-Writing-Images.png，下面是转换格式后保存的`.png`的图像：
+
+![ch10_P210_Reading-and-Writing-Images](assets/images/figures/ch10/ch10_P210_Reading-and-Writing-Images.png)
 
 我们在[第九章](chapter9.html)中已经实现了一个完整且符合 REST 架构的资源：用户，本章我们要再实现一个资源：用户微博（micropost）。<sup>[1](#fn-1)</sup>微博是由用户发布的一种简短消息，我们在[第二章](chapter2.html)中实现了微博的雏形。 本章我们会在 [2.3 节](chapter2.html#sec-2-3)的基础上，实现一个功能完善的 Microposts 资源。首先，我们要创建微博所需的数据模型，通过  `has_many` 和 `belongs_to` 方法把微博和用户关联起来，再建立处理和显示微博所需的表单及局部视图。在 [第十一章](chapter11.html)，还要加入关注其他用户的功能，其时，我们这个山寨版 Twitter 才算完成。
 
