@@ -47,7 +47,7 @@ cv2.imwrite('../images/ch10/ch10_P210_Reading-and-Writing-Images.png',im)
 
 ![ch10_P210_Reading-and-Writing-Images](assets/images/figures/ch10/ch10_P210_Reading-and-Writing-Images.png)
 
-`imread()`函数将图像返回为一个标准的**NumPy**数组，如果你喜欢的话，你可以将该函数用于PIL图像读取的备选函数。函数`imwrite()`能够根据文件后缀自动的进行格式转换。
+函数`imread()`将图像返回为一个标准的**NumPy**数组，如果你喜欢的话，你可以将该函数用于PIL图像读取的备选函数。函数`imwrite()`能够根据文件后缀自动的进行格式转换。
 
 <h3 id="sec-10-2-2">10.2.2 颜色空间</h3>
 
