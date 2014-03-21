@@ -201,7 +201,7 @@ cv2.imwrite('../images/ch10/ch10_P261_Fig10-3.jpg',vis)
 ```
 上面代码先读入一幅图像，用`pyrDown`下采样，得到的一幅尺寸是原图像尺寸一半的降采样图像，即im_lowres，然后将图像转换为灰度图像，并将它传递给SURF关键点检测对象。运行上面代码，可得下面SURF特征点检测结果：
 
-![ch10_P261_Fig10-3](assets/images/figures/ch10/ch10_P261_Fig10-3.png)
+![ch10_P261_Fig10-3](assets/images/figures/ch10/ch10_P261_Fig10-3.jpg)
 
 <h2 id="sec-10-3">10.3 视频处理</h2>
 
