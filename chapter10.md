@@ -27,7 +27,7 @@ OpenCV提供了读取图像和写入图像，矩阵操作以及数学库函数�
 
 <h3 id="sec-10-2-1">10.2.1 读取、写入图像</h3>
 
-下面是一个简短的载入图像、打印尺寸、转换格式及保存图像为`.png`格斯的例子：
+下面是一个简短的载入图像、打印尺寸、转换格式及保存图像为.png格斯的例子：
 
 ```python
 # -*- coding: utf-8 -*-
@@ -43,15 +43,15 @@ print h, w
 # 保存原jpg格式的图像为png格式图像
 cv2.imwrite('../images/ch10/ch10_P210_Reading-and-Writing-Images.png',im)
 ```
-运行上面代码后，在ch10文件下保存有empire.jpg转换成`.png`格式的图片，即ch10_P210_Reading-and-Writing-Images.png，下面是转换格式后保存的`.png`的图像：
+运行上面代码后，在ch10文件下保存有empire.jpg转换成.png格式的图片，即ch10_P210_Reading-and-Writing-Images.png，下面是转换格式后保存的.png的图像：
 
 ![ch10_P210_Reading-and-Writing-Images](assets/images/figures/ch10/ch10_P210_Reading-and-Writing-Images.png)
 
-函数`imread()`将图像返回为一个标准的**NumPy**数组，如果你喜欢的话，你可以将该函数用于PIL图像读取的备选函数。函数`imwrite()`能够根据文件后缀自动的进行格式转换。
+函数imread()将图像返回为一个标准的**NumPy**数组，如果你喜欢的话，你可以将该函数用于PIL图像读取的备选函数。函数imwrite()能够根据文件后缀自动的进行格式转换。
 
 <h3 id="sec-10-2-2">10.2.2 颜色空间</h3>
 
-在OpenCV中，图像不是用常规的RGB颜色通道来存储的，它们用的是BGR顺序。当读取一幅图像后，默认的是BGR，不过有很多转换方式是可以利用的。颜色空间转换可以用函数`cvtColor()`函数。比如，下面是一个转换为灰度图像的例子：
+在OpenCV中，图像不是用常规的RGB颜色通道来存储的，它们用的是BGR顺序。当读取一幅图像后，默认的是BGR，不过有很多转换方式是可以利用的。颜色空间转换可以用函数cvtColor()函数。比如，下面是一个转换为灰度图像的例子：
 
 ```python
 import cv2
@@ -116,6 +116,98 @@ fig.savefig("../images/ch10/ch10_P211_Displaying-Images-and-Results.png")
 运行上面代码，显示如下结果，并在/images/ch10/目录下生成一幅保存有灰度图像和积分图像的图片：
 
 ![ch10_P211_Displaying-Images-and-Results](assets/images/figures/ch10/ch10_P211_Displaying-Images-and-Results.png)
+
+第二个例子从种子像素开始应用泛洪(漫水)填充：
+
+```python
+# -*- coding: utf-8 -*-
+import cv2
+import numpy
+from pylab import *
+
+
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
+
+# 读入图像
+filename = '../data/fisherman.jpg'
+im = cv2.imread(filename)
+# 转换颜色空间
+rgbIm = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
+
+# 显示原图
+fig = plt.figure()
+subplot(121)
+plt.gray()
+imshow(rgbIm)
+title(u'原图', fontproperties=font)
+axis('off')
+
+# 获取图像尺寸
+h, w = im.shape[:2]
+# 泛洪填充
+diff = (6, 6, 6)
+mask = zeros((h+2, w+2), numpy.uint8)
+cv2.floodFill(im, mask, (10, 10), (255, 255, 0), diff, diff)
+
+# 显示泛洪填充后的结果
+subplot(122)
+imshow(im)
+title(u'泛洪填充', fontproperties=font)
+axis('off')
+
+show()
+#fig.savefig("../images/ch10/floodFill.png")
+
+# 在OpenCV窗口中显示泛洪填充后的结果
+# cv2.imshow('flood fill', im)
+# cv2.waitKey()
+# 保存结果
+# cv2.imwrite('../images/ch10/floodFill.jpg',im)
+```
+译者使用的是matplotlib显示泛洪填充后的结果，上面代码底下的注释部分是用OpenCV显示泛洪填充的结果。如果你用OpenCV窗口显示上面运行的结果，可以反注释。下面是上面泛洪填充后的结果：
+
+![floodFill](assets/images/figures/ch10/floodFill.png)
+
+作为最后一个例子，我们看一下提取图像的SURF[(加速稳健特征)](http://zh.wikipedia.org/wiki/%E5%8A%A0%E9%80%9F%E7%A8%B3%E5%81%A5%E7%89%B9%E5%BE%81)特征。SURF是SIFT特征的一个快速版本。这里我们也会展示一些OpenCV绘制命令。
+
+```python
+# -*- coding: utf-8 -*-
+import cv2
+import numpy
+from pylab import *
+
+
+# 读入图像
+im = cv2.imread('../data/empire.jpg')
+# 下采样
+im_lowres = cv2.pyrDown(im)
+# 转化为灰度图像
+gray = cv2.cvtColor(im_lowres, cv2.COLOR_RGB2GRAY)
+# 检测特征点
+s = cv2.SURF()
+mask = numpy.uint8(ones(gray.shape))
+keypoints = s.detect(gray, mask)
+# 显示图像及特征点
+vis = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+for k in keypoints[::10]:
+    cv2.circle(vis, (int(k.pt[0]), int(k.pt[1])), 2, (0, 255, 0), -1)
+    cv2.circle(vis, (int(k.pt[0]), int(k.pt[1])), int(k.size), (0, 255, 0), 2)
+cv2.imshow('local descriptors', vis)
+cv2.waitKey()
+
+cv2.imwrite('../images/ch10/ch10_P261_Fig10-3.jpg',vis)
+```
+上面代码先读入一幅图像，用`pyrDown`下采样，得到的一幅尺寸是原图像尺寸一半的降采样图像，即im_lowres，然后将图像转换为灰度图像，并将它传递给SURF关键点检测对象。运行上面代码，可得下面SURF特征点检测结果：
+
+![ch10_P261_Fig10-3](assets/images/figures/ch10/ch10_P261_Fig10-3.png)
+
+<h2 id="sec-10-3">10.3 视频处理</h2>
+
+单纯利用Python处理视频是比较困难的，因为要考虑到速度、编解码器、摄像机、操作系统已经文件格式等问题。目前Python还没有视频处理库。Python处理视频的接口仅有的较好的就是OpenCV。在这一节，我们会展示一些对视频进行处理的基本例子。
+
+<h3 id="sec-10-3-1">10.3.1 视频输入</h3>
 
 我们在[第九章](chapter9.html)中已经实现了一个完整且符合 REST 架构的资源：用户，本章我们要再实现一个资源：用户微博（micropost）。<sup>[1](#fn-1)</sup>微博是由用户发布的一种简短消息，我们在[第二章](chapter2.html)中实现了微博的雏形。 本章我们会在 [2.3 节](chapter2.html#sec-2-3)的基础上，实现一个功能完善的 Microposts 资源。首先，我们要创建微博所需的数据模型，通过  `has_many` 和 `belongs_to` 方法把微博和用户关联起来，再建立处理和显示微博所需的表单及局部视图。在 [第十一章](chapter11.html)，还要加入关注其他用户的功能，其时，我们这个山寨版 Twitter 才算完成。
 
