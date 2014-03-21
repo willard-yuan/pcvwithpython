@@ -30,18 +30,92 @@ OpenCV提供了读取图像和写入图像，矩阵操作以及数学库函数�
 下面是一个简短的载入图像、打印尺寸、转换格式及保存图像为`.png`格斯的例子：
 
 ```python
+# -*- coding: utf-8 -*-
 import cv2
 
-# read image
+# 读入图像
 im = cv2.imread('../data/empire.jpg')
+
+# 打印图像尺寸
 h, w = im.shape[:2]
 print h, w
-# save image
+
+# 保存原jpg格式的图像为png格式图像
 cv2.imwrite('../images/ch10/ch10_P210_Reading-and-Writing-Images.png',im)
 ```
 运行上面代码后，在ch10文件下保存有empire.jpg转换成`.png`格式的图片，即ch10_P210_Reading-and-Writing-Images.png，下面是转换格式后保存的`.png`的图像：
 
 ![ch10_P210_Reading-and-Writing-Images](assets/images/figures/ch10/ch10_P210_Reading-and-Writing-Images.png)
+
+`imread()`函数将图像返回为一个标准的**NumPy**数组，如果你喜欢的话，你可以将该函数用于PIL图像读取的备选函数。函数`imwrite()`能够根据文件后缀自动的进行格式转换。
+
+<h3 id="sec-10-2-2">10.2.2 颜色空间</h3>
+
+在OpenCV中，图像不是用常规的RGB颜色通道来存储的，它们用的是BGR顺序。当读取一幅图像后，默认的是BGR，不过有很多转换方式是可以利用的。颜色空间转换可以用函数`cvtColor()`函数。比如，下面是一个转换为灰度图像的例子：
+
+```python
+import cv2
+
+im = cv2.imread('../data/empire.jpg')
+# create a grayscale version
+gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+```
+
+<h3 id="sec-10-2-3">10.2.3 显示图像和结果</h3>
+
+下面我们看一些用OpenCV进行图像处理并用OpenCV绘图及窗口管理功能显示图像后的结果的示例。
+
+第一个例子是从文件中读取一幅图像，并创建积分图像表示：
+
+```python
+# -*- coding: utf-8 -*-
+import cv2
+from pylab import *
+
+
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
+
+# 读入图像
+im = cv2.imread('../data/fisherman.jpg')
+# 转换颜色空间
+gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+
+# 显示积分图像
+fig = plt.figure()
+subplot(121)
+plt.gray()
+imshow(gray)
+title(u'灰度图', fontproperties=font)
+axis('off')
+
+# 计算积分图像
+intim = cv2.integral(gray)
+# 归一化
+intim = (255.0*intim) / intim.max()
+
+#显示积分图像
+subplot(122)
+plt.gray()
+imshow(intim)
+title(u'积分图', fontproperties=font)
+axis('off')
+show()
+
+# 用OpenCV显示图像
+#cv2.imshow("Image", intim)
+#cv2.waitKey()
+
+# 用OpenCV保存积分图像
+#cv2.imwrite('../images/ch10/ch10_P211_Displaying-Images-and-Results-cv2.jpg',intim)
+
+# 保存figure中的灰度图像和积分图像
+fig.savefig("../images/ch10/ch10_P211_Displaying-Images-and-Results.png")
+```
+运行上面代码，显示如下结果，并在/images/ch10/目录下生成一幅保存有灰度图像和积分图像的图片：
+
+![ch10_P211_Displaying-Images-and-Results](assets/images/figures/ch10/ch10_P211_Displaying-Images-and-Results.png)
 
 我们在[第九章](chapter9.html)中已经实现了一个完整且符合 REST 架构的资源：用户，本章我们要再实现一个资源：用户微博（micropost）。<sup>[1](#fn-1)</sup>微博是由用户发布的一种简短消息，我们在[第二章](chapter2.html)中实现了微博的雏形。 本章我们会在 [2.3 节](chapter2.html#sec-2-3)的基础上，实现一个功能完善的 Microposts 资源。首先，我们要创建微博所需的数据模型，通过  `has_many` 和 `belongs_to` 方法把微博和用户关联起来，再建立处理和显示微博所需的表单及局部视图。在 [第十一章](chapter11.html)，还要加入关注其他用户的功能，其时，我们这个山寨版 Twitter 才算完成。
 

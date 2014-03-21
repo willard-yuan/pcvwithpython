@@ -63,7 +63,7 @@ layout: default
 			<li><a href="{{ site.url }}chapter8.html" title="第八章 图像内容分类">第八章 图像内容分类</a></li>
 			<li><a href="{{ site.url }}chapter9.html" title="第九章 图像分割">第九章 图像分割</a></li>
 			<li><a href="{{ site.url }}chapter10.html" title="第十章 OpenCV">第十章 OpenCV</a></li>
-			<li><a href="{{ site.url }}chapter11.html" title="附录 用户间互相关注">第十一章 关注用户</a></li>
+<!--	 <li><a href="{{ site.url }}chapter11.html" title="附录 用户间互相关注">第十一章 关注用户</a></li> 注释掉原内容-->
 		</ol>
 	</div>
 	<div class="clearfix"></div>
