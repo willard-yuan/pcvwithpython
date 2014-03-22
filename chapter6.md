@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: 第六章 用户模型
+title: 第六章 图像聚类
 ---
 
 <h2 id="sec-6-1">6.1 K-Means聚类</h2>
@@ -13,8 +13,17 @@ Function:  figure 6.1
     An example of k-means clustering of 2D points
 Date: 2013-10-27
 """
+# coding=utf-8
+"""
+Function:  figure 6.1
+    An example of k-means clustering of 2D points
+"""
 from pylab import *
 from scipy.cluster.vq import *
+
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
 
 class1 = 1.5 * randn(100, 2)
 class2 = randn(100, 2) + array([5, 5])
@@ -27,8 +36,10 @@ plot(features[ndx, 0], features[ndx, 1], '*')
 ndx = where(code == 1)[0]
 plot(features[ndx, 0], features[ndx, 1], 'r.')
 plot(centroids[:, 0], centroids[:, 1], 'go')
+
+title(u'2维数据点聚类', fontproperties=font)
 axis('off')
-show()
+show(
 ```
 运行上面代码，可得到原书P129页图6-1，即：
 ![ch06_fig61_kmeans-2D](assets/images/figures/ch06/ch06_fig61_kmeans-2D.png)
@@ -86,17 +97,19 @@ img.save('../images/ch06/pca_font.png')
 P133 Figure6-4
 
 ```python
- # -*- coding: utf-8 -*-
+# coding=utf-8
 """
 Function: figure 6.4
     Clustering of pixels based on their color value using k-means.
-Date: 2013-10-27
 """
-# coding=utf-8
 from scipy.cluster.vq import *
 from scipy.misc import imresize
 from pylab import *
 import Image
+
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
 
 steps = 100  # image is divided in steps*steps region
 infile = '../data/empire.jpg'
@@ -118,16 +131,21 @@ code, distance = vq(features, centroids)
 # create image with cluster labels
 codeim = code.reshape(steps, steps)
 codeim = imresize(codeim, im.shape[:2], 'nearest')
+
 figure()
 ax1 = subplot(121)
-ax1.set_title('Image')
+title(u'原图', fontproperties=font)
+#ax1.set_title('Image')
 axis('off')
 imshow(im)
+
 ax2 = subplot(122)
-ax2.set_title('Image after clustering')
+title(u'聚类后的图像', fontproperties=font)
+#ax2.set_title('Image after clustering')
 axis('off')
 imshow(codeim)
-show()
+
+show(
 ```
 运行上面代码，即可得出原书P133页图6-4中的例子。
 ![ch06_fig64_kmeans-pixels](assets/images/figures/ch06/ch06_fig64_kmeans-pixels.png)
