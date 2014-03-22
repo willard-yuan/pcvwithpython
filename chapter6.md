@@ -3,16 +3,19 @@ layout: chapter
 title: 第六章 图像聚类
 ---
 
+这一章介绍几种聚类方法，并展示怎样利用这样它们对图像进行聚类，以找到相似的图像组，其中每组图像具有相似性。聚类可以用于识别、划分图像数据集以及组织和导航。同时，我们还会对聚类后的相似图像进行可视化。
+
 <h2 id="sec-6-1">6.1 K-Means聚类</h2>
-P129 Figure6-1
+
+K-means是一种非常简单的聚类算法，它能够将输入数据划分成k个簇。关于K-means聚类算法的介绍可以参阅中译本。
+
+<h3 id="sec-6-1-1">6.1.1 SciPy聚类包</h3>
+
+尽管K-means聚类算法很容易实现，但我们没必要自己去实现。SciPy矢量量化包sci.cluter.vq中有k-means的实现。这里我们演示怎样使用它。
+
+我们以2维示例样本数据进行说明：
 
 ```python
-# -*- coding: utf-8 -*-
-"""
-Function:  figure 6.1
-    An example of k-means clustering of 2D points
-Date: 2013-10-27
-"""
 # coding=utf-8
 """
 Function:  figure 6.1
@@ -39,12 +42,12 @@ plot(centroids[:, 0], centroids[:, 1], 'go')
 
 title(u'2维数据点聚类', fontproperties=font)
 axis('off')
-show(
+show()
 ```
-运行上面代码，可得到原书P129页图6-1，即：
+上面代码中where()函数给出每类的索引。运行上面代码，可得到原书P129页图6-1，即：
 ![ch06_fig61_kmeans-2D](assets/images/figures/ch06/ch06_fig61_kmeans-2D.png)
 
-P131 Figure6-3
+<h3 id="sec-6-1-2">6.1.3 图像聚类</h3>
 
 ```python
  # -*- coding: utf-8 -*-
@@ -97,7 +100,7 @@ img.save('../images/ch06/pca_font.png')
 P133 Figure6-4
 
 ```python
-# coding=utf-8
+ # -*- coding: utf-8 -*-
 """
 Function: figure 6.4
     Clustering of pixels based on their color value using k-means.
@@ -111,41 +114,80 @@ import Image
 from matplotlib.font_manager import FontProperties
 font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
 
-steps = 100  # image is divided in steps*steps region
-infile = '../data/empire.jpg'
-im = array(Image.open(infile))
-dx = im.shape[0] / steps
-dy = im.shape[1] / steps
-# compute color features for each region
-features = []
-for x in range(steps):
-    for y in range(steps):
-        R = mean(im[x * dx:(x + 1) * dx, y * dy:(y + 1) * dy, 0])
-        G = mean(im[x * dx:(x + 1) * dx, y * dy:(y + 1) * dy, 1])
-        B = mean(im[x * dx:(x + 1) * dx, y * dy:(y + 1) * dy, 2])
-        features.append([R, G, B])
-features = array(features, 'f')     # make into array
-# cluster
-centroids, variance = kmeans(features, 3)
-code, distance = vq(features, centroids)
-# create image with cluster labels
-codeim = code.reshape(steps, steps)
-codeim = imresize(codeim, im.shape[:2], 'nearest')
+def clusterpixels(infile, k, steps):
+	im = array(Image.open(infile))
+	dx = im.shape[0] / steps
+	dy = im.shape[1] / steps
+	# compute color features for each region
+	features = []
+	for x in range(steps):
+		for y in range(steps):
+			R = mean(im[x * dx:(x + 1) * dx, y * dy:(y + 1) * dy, 0])
+			G = mean(im[x * dx:(x + 1) * dx, y * dy:(y + 1) * dy, 1])
+			B = mean(im[x * dx:(x + 1) * dx, y * dy:(y + 1) * dy, 2])
+			features.append([R, G, B])
+	features = array(features, 'f')     # make into array
+	# 聚类， k是聚类数目
+	centroids, variance = kmeans(features, k)
+	code, distance = vq(features, centroids)
+	# create image with cluster labels
+	codeim = code.reshape(steps, steps)
+	codeim = imresize(codeim, im.shape[:2], 'nearest')
+	return codeim
 
+k=3
+infile_empire = '../data/empire.jpg'
+im_empire = array(Image.open(infile_empire))
+infile_boy_on_hill = '../data/boy_on_hill.jpg'
+im_boy_on_hill = array(Image.open(infile_boy_on_hill))
+steps = (50, 100)  # image is divided in steps*steps region
+print steps[0], steps[-1]
+
+#显示原图empire.jpg
 figure()
-ax1 = subplot(121)
+subplot(231)
 title(u'原图', fontproperties=font)
-#ax1.set_title('Image')
 axis('off')
-imshow(im)
+imshow(im_empire)
 
-ax2 = subplot(122)
-title(u'聚类后的图像', fontproperties=font)
-#ax2.set_title('Image after clustering')
+# 用50*50的块对empire.jpg的像素进行聚类
+codeim= clusterpixels(infile_empire, k, steps[0])
+subplot(232)
+title(u'k=3,steps=50', fontproperties=font)
+#ax1.set_title('Image')
 axis('off')
 imshow(codeim)
 
-show(
+# 用100*100的块对empire.jpg的像素进行聚类
+codeim= clusterpixels(infile_empire, k, steps[-1])
+ax1 = subplot(233)
+title(u'k=3,steps=100', fontproperties=font)
+#ax1.set_title('Image')
+axis('off')
+imshow(codeim)
+
+#显示原图empire.jpg
+subplot(234)
+title(u'原图', fontproperties=font)
+axis('off')
+imshow(im_boy_on_hill)
+
+# 用50*50的块对empire.jpg的像素进行聚类
+codeim= clusterpixels(infile_boy_on_hill, k, steps[0])
+subplot(235)
+title(u'k=3,steps=50', fontproperties=font)
+#ax1.set_title('Image')
+axis('off')
+imshow(codeim)
+
+# 用100*100的块对empire.jpg的像素进行聚类
+codeim= clusterpixels(infile_boy_on_hill, k, steps[-1])
+subplot(236)
+title(u'k=3，steps=100', fontproperties=font)
+axis('off')
+imshow(codeim)
+
+show()
 ```
 运行上面代码，即可得出原书P133页图6-4中的例子。
 ![ch06_fig64_kmeans-pixels](assets/images/figures/ch06/ch06_fig64_kmeans-pixels.png)
