@@ -47,6 +47,8 @@ show()
 
 <h3 id="sec-6-1-2">6.1.3 图像聚类</h3>
 
+<h3 id="sec-6-1-3">6.1.3 在主成分上可视化图像</h3>
+
 ```python
  # -*- coding: utf-8 -*-
 from PCV.tools import imtools, pca
@@ -95,7 +97,9 @@ img.save('../images/ch06/pca_font.png')
 运行上面代码，可画出原书P131图6-3中的实例结果。
 ![ch06_fig63_kmeans_project_images](assets/images/figures/ch06/ch06_fig63_kmeans_project_images.png)
 
-P133 Figure6-4
+<h3 id="sec-6-1-4">6.1.4 像素聚类</h3>
+
+在结束这节前，我们看一个对像素进行聚类而不是对所有的图像进行聚类的例子。将图像区域归并成“有意义的”组件称为图像分割。在第九章会将其单独列为一个主题。在像素级水平进行聚类除了可以用在一些很简单的图像，在其他图像上进行聚类是没有意义的。这里，我们将k-means应用到RGB颜色值上，关于分割问题会在第九章第二节会给出分割的方法。下面是对两幅图像进行像素聚类的例子(注：译者对原书中的代码做了调整)：
 
 ```python
  # -*- coding: utf-8 -*-
@@ -187,8 +191,57 @@ imshow(codeim)
 
 show()
 ```
-运行上面代码，即可得出原书P133页图6-4中的例子。
+上面代码中，先载入一幅图像，然后用一个steps*steps的方块在原图中滑动，对窗口中的图像值求和取平均，将它下采样到一个较低的分辨率，然后对这些区域用k-means进行聚类。运行上面代码，即可得出原书P133页图6-4中的图。
 ![ch06_fig64_kmeans-pixels](assets/images/figures/ch06/ch06_fig64_kmeans-pixels.png)
+
+<h2 id="sec-6-2">6.2 层次聚类</h2>
+
+层次聚类(或称凝聚聚类)是另一种简单但有效的聚类算法。
+
+<h2 id="sec-6-2-1">6.2.1 图像聚类</h2>
+
+```python
+ # -*- coding: utf-8 -*-
+import os
+import Image
+from PCV.clustering import hcluster
+from matplotlib.pyplot import *
+from numpy import *
+
+# create a list of images
+path = '../data/sunsets/flickr-sunsets-small/'
+imlist = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.jpg')]
+# extract feature vector (8 bins per color channel)
+features = zeros([len(imlist), 512])
+for i, f in enumerate(imlist):
+    im = array(Image.open(f))
+    # multi-dimensional histogram
+    h, edges = histogramdd(im.reshape(-1, 3), 8, normed=True, range=[(0, 255), (0, 255), (0, 255)])
+    features[i] = h.flatten()
+tree = hcluster.hcluster(features)
+
+# visualize clusters with some (arbitrary) threshold
+clusters = tree.extract_clusters(0.23 * tree.distance)
+# plot images for clusters with more than 3 elements
+for c in clusters:
+    elements = c.get_cluster_elements()
+    nbr_elements = len(elements)
+    if nbr_elements > 3:
+        figure()
+        for p in range(minimum(nbr_elements,20)):
+            subplot(4, 5, p + 1)
+            im = array(Image.open(imlist[elements[p]]))
+            imshow(im)
+            axis('off')
+show()
+```
+运行上面代码，可得原书P140图6-6。
+![ch06_P140-Fig6.6_02](assets/images/figures/ch06/ch06_P140-Fig6.6_02.png)
+![ch06_P140-Fig6.6_01](assets/images/figures/ch06/ch06_P140-Fig6.6_01.png)
+
+<h2 id="sec-6-3">6.3 谱聚类</h2>
+
+谱聚类是另一种不同于k-means和层次聚类的聚类算法。
 
 [第五章](chapter5.html)的末尾我们创建了一个临时的用户注册页面（[5.4 节](chapter5.html#sec-5-4)），本教程接下来的四章会逐步丰富这个页面的功能。第一个关键的步骤是为网站的用户创建一个数据模型，以及存储数据的方式。[第七章](chapter7.html)会实现用户注册功能，并创建用户资料页面。用户能注册后，我们就要实现登录和退出功能（[第八章](chapter8.html)）。[第九章](chapter9.html)（[9.2.1 节](chapter9.html#sec-9-2-1)）会介绍如何保护页面避免被无权限的人员访问。第六章到第九章的内容结合在一起，我们就开发出了一个功能完整的 Rails 登录和用户验证系统。或许你知道已经有很多开发好了的 Rails 用户验证方案，[旁注 6.1](#box-6-1)解释了为什么，至少在初学阶段，自己开发一个用户验证系统或许是更好的方法。
 
