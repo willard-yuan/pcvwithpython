@@ -23,7 +23,7 @@ layout: default
 
 	<div class="buy">
 	<h3>购买中译本</h3>
-		<p><a class="btn info" href="https://sellfy.com/p/qwyU/" title="购买本书">购买本书</a><br />
+		<p><a class="btn info" href="https://sellfy.com/p/qwyU/" title="在图灵社区购买本书">购买本书</a><br />
 	</div>
 
 	<div class="buy">
