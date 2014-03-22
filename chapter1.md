@@ -8,19 +8,25 @@ title: 第一章 图像处理基础
 PIL (Python Imaging Library)图像库提供了很多常用的图像处理及很多有用的图像基本操作。PIL库下载地址[\[http://www.pythonware.com/products/pil/\]](http://www.pythonware.com/products/pil/)。下面演示原书P001-Fig1-1读入一幅图片的例子：
 
 ```python
-# -*- coding: utf-8 -*- #指定文件编码为utf-8，下同
-from PIL import Image #导入PIL库
+# -*- coding: utf-8 -*-
+from PIL import Image
 from pylab import *
 
-pil_im = Image.open('../data/empire.jpg') #读入图片
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
 figure()
-gray() 
+
+pil_im = Image.open('../data/empire.jpg')
+gray()
 subplot(121)
+title(u'原图',fontproperties=font)
 axis('off')
 imshow(pil_im)
 
-pil_im = Image.open('../data/empire.jpg').convert('L') # 读入图片，转换为灰度图像
+pil_im = Image.open('../data/empire.jpg').convert('L')
 subplot(122)
+title(u'灰度图',fontproperties=font)
 axis('off')
 imshow(pil_im)
 
@@ -141,8 +147,44 @@ imshow(pil_im)
 
 show()
 ```
-运行上面代码，可得P002-003中出现的所有实例图,结果如下：
+运行上面代码，可得P002 Figure 1-1中出现的所有实例图,结果如下：
 ![ch01_P002-003_PIL](assets/images/figures/ch01/ch01_P002-003_PIL.png)
+
+<h2 id="sec-1-2">1.2 Matplotlib库</h2>
+
+当在处理数学及绘图或在图像上描点、画直线、曲线时，Matplotlib是一个很好的绘图库，它比PIL库提供了更有力的特性。Matplotlib是开源的，可以在[\[matplotlib.sourceforge.net\]](http://matplotlib.sourceforge.net/)上下载，并且它还提供了详细的文档及教程。这里，会展示一些我们在本书后面会用到的函数的一些实例。
+
+<h3 id="sec-1-2-1">1.2.1 画图、描点和线</h3>
+
+虽然Matplotlib可以创建漂亮的条状图、饼图、散点图等，但是在很多计算机视觉应用场合，其实只用到了一些常用的命令。下面展示在一幅图像上描一些点和画一条直线的例子。
+
+```python
+# -*- coding: utf-8 -*-
+from PIL import Image
+from pylab import *
+
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
+
+im = array(Image.open('../data/empire.jpg'))
+
+imshow(im)
+
+x = [100, 100, 400, 400]
+y = [200, 500, 200, 500]
+plot(x, y, 'r*')
+
+plot(x[:2], y[:2])
+
+#axis('off')  #显示坐标轴
+
+title(u'绘图: "empire.jpg"', fontproperties=font)
+show()
+```
+运行上面代码，即可得原书P005中 Figure 1-2中左边的结果。去掉上面代码中坐标轴的注释，即可得 Figure 1-2中右边的结果。运行结果如下：
+
+![ch01_P005_fig1-2_matplot](assets/images/figures/ch01/ch01_P005_fig1-2_matplot.png)
 
 运行下面代码，便可以得到下面的图。
 
