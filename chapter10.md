@@ -44,9 +44,7 @@ print h, w
 cv2.imwrite('../images/ch10/ch10_P210_Reading-and-Writing-Images.png',im)
 ```
 运行上面代码后，在ch10文件下保存有empire.jpg转换成.png格式的图片，即ch10_P210_Reading-and-Writing-Images.png，下面是转换格式后保存的.png的图像：
-
 ![ch10_P210_Reading-and-Writing-Images](assets/images/figures/ch10/ch10_P210_Reading-and-Writing-Images.png)
-
 函数imread()将图像返回为一个标准的**NumPy**数组，如果你喜欢的话，你可以将该函数用于PIL图像读取的备选函数。函数imwrite()能够根据文件后缀自动的进行格式转换。
 
 <h3 id="sec-10-2-2">10.2.2 颜色空间</h3>
@@ -114,9 +112,7 @@ show()
 fig.savefig("../images/ch10/ch10_P211_Displaying-Images-and-Results.png")
 ```
 运行上面代码，显示如下结果，并在/images/ch10/目录下生成一幅保存有灰度图像和积分图像的图片：
-
 ![ch10_P211_Displaying-Images-and-Results](assets/images/figures/ch10/ch10_P211_Displaying-Images-and-Results.png)
-
 第二个例子从种子像素开始应用泛洪(漫水)填充：
 
 ```python
@@ -167,9 +163,7 @@ show()
 # cv2.imwrite('../images/ch10/floodFill.jpg',im)
 ```
 译者使用的是matplotlib显示泛洪填充后的结果，上面代码底下的注释部分是用OpenCV显示泛洪填充的结果。如果你用OpenCV窗口显示上面运行的结果，可以反注释。下面是上面泛洪填充后的结果：
-
 ![floodFill](assets/images/figures/ch10/floodFill.png)
-
 作为最后一个例子，我们看一下提取图像的SURF[(加速稳健特征)](http://zh.wikipedia.org/wiki/%E5%8A%A0%E9%80%9F%E7%A8%B3%E5%81%A5%E7%89%B9%E5%BE%81)特征。SURF是SIFT特征的一个快速版本。这里我们也会展示一些OpenCV绘制命令。
 
 ```python
@@ -200,7 +194,6 @@ cv2.waitKey()
 cv2.imwrite('../images/ch10/ch10_P261_Fig10-3.jpg',vis)
 ```
 上面代码先读入一幅图像，用`pyrDown`下采样，得到的一幅尺寸是原图像尺寸一半的降采样图像，即im_lowres，然后将图像转换为灰度图像，并将它传递给SURF关键点检测对象。运行上面代码，可得下面SURF特征点检测结果：
-
 ![ch10_P261_Fig10-3](assets/images/figures/ch10/ch10_P261_Fig10-3.jpg)
 
 <h2 id="sec-10-3">10.3 视频处理</h2>
