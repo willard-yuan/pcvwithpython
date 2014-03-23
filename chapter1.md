@@ -324,7 +324,6 @@ show()
 ```
 上面左边灰度变换函数采用的是f(x)=255-x,中间采用的是f(x)=(100/255)x+100,右边采用的是变换函数是f(x)=255(x/255)^2。运行上面代码，可以得到P009 Fig1-5中的结果：
 ![ch01_fig1-5_graylevel-transforms](assets/images/figures/ch01/ch01_fig1-5_graylevel-transforms.png)
-
 正如上面代码所示，你可以用通过下面命令检查每幅图像的最小值和最大值：
 
 ```text
@@ -559,7 +558,6 @@ show()
 ```
 运行上面代码，可得P017 Fig1-9中的结果：
 ![ch01_fig1-9_scipy_blur](assets/images/figures/ch01/ch01_fig1-9_scipy_blur.png)
-
 上面第一幅图为待模糊图像，第二幅用高斯标准差为2进行模糊，第三幅用高斯标准差为5进行模糊，最后一幅用高斯标准差为10进行模糊。关于该模块的使用以及参数选择的更多细节，可以参阅SciPy scipy.ndimage文档[\[docs.scipy.org/doc/scipy/reference/ndimage.html\]](http://docs.scipy.org/doc/scipy/reference/ndimage.html)。
 
 
@@ -611,9 +609,7 @@ imshow(mag)
 show()
 ```
 运行上面代码，可得P019 Fig1-10中的运行结果：
-
 ![ch01_fig1-10_scipy_sobel](assets/images/figures/ch01/ch01_fig1-10_scipy_sobel.png)
-
 再看一个高斯差分的例子，运行下面代码可得原书P020 Fig1-11页对图像进行高斯差分示例：
 
 ```python
