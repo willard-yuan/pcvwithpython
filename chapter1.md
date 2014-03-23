@@ -284,71 +284,113 @@ im[-2,:] (or im[-2]) # second to last row
 
 <h3 id="sec-1-3-2">1.3.2 灰度变换</h3>
 
-下面代码是显示原书第9页中figure1-5的例子：
+在读入图像到NumPy数组后，就可以对它进行任何我们想要的操作了。对图像进行灰度变换便是一个简单的例子。这里给出一些进行灰度变换的例子：
 
 ```python
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 from PIL import Image
 from numpy import *
 from pylab import *
 
 im = array(Image.open('../data/empire.jpg').convert('L'))
+print int(im.min()), int(im.max())
+
 im2 = 255 - im  # invert image
+print int(im2.min()), int(im2.max())
+
 im3 = (100.0/255) * im + 100  # clamp to interval 100...200
+print int(im3.min()), int(im3.max())
+
 im4 = 255.0 * (im/255.0)**2  # squared
+print int(im4.min()), int(im4.max())
 
 figure()
 gray()
 subplot(1, 3, 1)
 imshow(im2)
 axis('off')
+title(r'$f(x)=255-x$')
 
 subplot(1, 3, 2)
 imshow(im3)
 axis('off')
+title(r'$f(x)=\frac{100}{255}x+100$')
 
 subplot(1, 3, 3)
 imshow(im4)
 axis('off')
-
+title(r'$f(x)=255(\frac{x}{255})^2$')
 show()
 ```
-运行上面代码，分别可以得到书中的结果：
+上面左边灰度变换函数采用的是f(x)=255-x,中间采用的是f(x)=(100/255)x+100,右边采用的是变换函数是f(x)=255(x/255)^2。运行上面代码，可以得到P009 Fig1-5中的结果：
 ![ch01_fig1-5_graylevel-transforms](assets/images/figures/ch01/ch01_fig1-5_graylevel-transforms.png)
 
-<h2 id="sec-1-1">1.3 直方图均衡化</h2>
-另外一个灰度变换中非常有用的例子是直方图均衡化，下面是对图像直方图进行均衡化处理的例子：
+正如上面代码所示，你可以用通过下面命令检查每幅图像的最小值和最大值：
+
+```text
+print int(im.min()), int(im.max())
+```
+如果你对每幅图像用到了打印最小像素值和最大像素值，你会得到下面的输出结果：
+
+```text
+2 255
+0 253
+100 200
+0 255
+```
+
+<h3 id="sec-1-3-3">1.3-3 调整图像尺寸</h3>
+
+NumPy数组将成为我们对图像及数据进行处理的最主要工具，但是调整矩阵大小并没有一种简单的方法。我们可以用PIL图像对象转换写一个简单的图像尺寸调整函数：
 
 ```python
+def imresize(im,sz):
+    """    Resize an image array using PIL. """
+    pil_im = Image.fromarray(uint8(im))
+    
+    return array(pil_im.resize(sz))
+```
+上面定义的调整函数，在imtools.py中你可以找到它。
+
+<h2 id="sec-1-3-3">1.3.3 直方图均衡化</h2>
+
+一个极其有用的例子是灰度变换后进行直方图均衡化。图像均衡化作为预处理操作，在归一化图像强度时是一个很好的方式，并且通过直方图均衡化可以增加图像对比度。下面是对图像直方图进行均衡化处理的例子：
+
+```python
+ # -*- coding: utf-8 -*-
 from PIL import Image
 from pylab import *
 from PCV.tools import imtools
 
-#im = array(Image.open('../data/empire.jpg').convert('L'))
-im = array(Image.open('../data/AquaTermi_lowcontrast.JPG').convert('L'))
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
+
+im = array(Image.open('../data/empire.jpg').convert('L'))  # 打开图像，并转成灰度图像
+#im = array(Image.open('../data/AquaTermi_lowcontrast.JPG').convert('L'))
 im2, cdf = imtools.histeq(im)
 
 figure()
 subplot(2, 2, 1)
 axis('off')
 gray()
-title('original')
+title(u'原始图像', fontproperties=font)
 imshow(im)
 
 subplot(2, 2, 2)
 axis('off')
-title('histogram-equalized')
+title(u'直方图均衡化后的图像', fontproperties=font)
 imshow(im2)
 
 subplot(2, 2, 3)
 axis('off')
-title('original hist')
+title(u'原始直方图', fontproperties=font)
 #hist(im.flatten(), 128, cumulative=True, normed=True)
 hist(im.flatten(), 128, normed=True)
 
 subplot(2, 2, 4)
 axis('off')
-title('equalized hist')
+title(u'均衡化后的直方图', fontproperties=font)
 #hist(im2.flatten(), 128, cumulative=True, normed=True)
 hist(im2.flatten(), 128, normed=True)
 
@@ -358,7 +400,43 @@ show()
 ![ch01_fig1-6_histeq](assets/images/figures/ch01/ch01_fig1-6_histeq.png)
 ![ch01_fig1-7_histeq](assets/images/figures/ch01/ch01_fig1-7_histeq.png)
 
-<h2 id="sec-1-1">1.4 对图像进行主成分分析</h2>
+<h3 id="sec-1-3-4">1.3.4 图像平均</h3>
+
+对图像取平均是一种图像降噪的简单方法，经常用于产生艺术效果。假设所有的图像具有相同的尺寸，我们可以对图像相同位置的像素相加取平均，下面是一个演示对图像取平均的例子：
+
+```python
+# -*- coding: utf-8 -*-
+from PCV.tools.imtools import get_imlist
+from PIL import Image
+from pylab import *
+from PCV.tools import imtools
+
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
+
+filelist = get_imlist('../data/avg/') #获取convert_images_format_test文件夹下的图片文件名(包括后缀名)
+avg = imtools.compute_average(filelist)
+
+for impath in filelist:
+        im1 = array(Image.open(impath))
+        subplot(2, 2, filelist.index(impath)+1)
+        imshow(im1)
+        imNum=str(filelist.index(impath)+1)
+        title(u'待平均图像'+imNum, fontproperties=font)
+        axis('off')
+subplot(2, 2, 4)
+imshow(avg)
+title(u'平均后的图像', fontproperties=font)
+axis('off')
+
+show()
+```
+运行上面代码，可得对3幅图像平均后的效果，如下图：
+![ch10_P011_avg](assets/images/figures/ch01/ch10_P011_avg)
+
+<h2 id="sec-1-3-4">1.3.4 对图像进行主成分分析</h2>
+
 下面代码是显示原书P15页对字体图像进行主成分分析的实例代码：
 
 ```python
