@@ -441,6 +441,7 @@ show()
 
 ```python
  # -*- coding: utf-8 -*-
+import pickle
 from PIL import Image
 from numpy import *
 from pylab import *
@@ -449,7 +450,7 @@ from PCV.tools import imtools, pca
 # Uses sparse pca codepath.
 #imlist = imtools.get_imlist('../data/selectedfontimages/a_selected_thumbs')
 
-# Get list of images and their size
+# 获取图像列表和他们的尺寸
 imlist = imtools.get_imlist('../data/fontimages/a_thumbs')  # fontimages.zip is part of the book data set
 im = array(Image.open(imlist[0]))  # open one image to get the size
 m, n = im.shape[:2]  # get the size of the images
@@ -459,8 +460,14 @@ print "The number of images is %d" % imnbr
 # Create matrix to store all flattened images
 immatrix = array([array(Image.open(imname)).flatten() for imname in imlist], 'f')
 
-# Perform PCA
+# PCA降维
 V, S, immean = pca.pca(immatrix)
+
+# 保存均值和主成分
+#f = open('../ch01/font_pca_modes.pkl', 'wb')
+#pickle.dump(immean,f)
+#pickle.dump(V,f)
+#f.close()
 
 # Show the images (mean and 7 first modes)
 # This gives figure 1-8 (p15) in the book.
@@ -480,12 +487,31 @@ show()
 
 <h3 id="sec-1-3-6">1.3.6 Pickle模块</h3>
 
-如果你想将结果保存下来，或者将数据保存下来以便后面使用，那么pickle模块是非常有用的。
+如果你想将结果保存下来，或者将数据保存下来以便后面使用，那么pickle模块是非常有用的。Pickle模块能够获取几乎所有的Python对象，并将它转换成字符串表示，该过程称为封装；从字符串表示重构对象的过程为拆封。下面用一个例子对其进行说明。正如你在上面注释部分看到的一样，假设我们想将前一节字体图像的平均值和主成分保存起来，可以通过下面操作：
 
-<h3 id="sec-1-3-6">1.3.7 SciPy</h3>
+```python
+f = open('../data/fontimages/font_pca_modes.pkl', 'wb')
+pickle.dump(immean,f)
+pickle.dump(V,f)
+f.close()
+```
+上面在使用封装操作前，需要导入pickle模块。如果要载入保存的.pkl数据，可以通过load()方法，如下：
 
-[SciPy](http://scipy.org/)是一个开源的数学工具包，它是建立在NumPy的基础上的。
-<h3 id="sec-1-1">1.4.1 图像模糊</h3>
+```
+# load mean and principal components
+f = open('../data/fontimages/font_pca_modes.pkl', 'rb')
+immean = pickle.load(f)
+V = pickle.load(f)
+f.close()
+```
+使用with()方法在这里不介绍，具体的可以翻阅原书。关于pickle模块的更多细节可以查阅在线文档[\[docs.python.org/library/pickle.html\]](http://docs.python.org/library/pickle.html\)
+
+<h2 id="sec-1-4">1.4 SciPy模块</h2>
+
+[SciPy](http://scipy.org/)是一个开源的数学工具包，它是建立在NumPy的基础上的。它提供了很多有效的常规操作，包括数值综合、最优化、统计、信号处理以及图像处理。正如接下来所展示的，SciPy库包含了很多有用的模块。SciPy库可以再[\[http://scipy.org/Download\]](scipy.org/Download)下载。
+
+<h3 id="sec-1-4-1">1.4.1 图像模糊</h3>
+
 下面是对图像进行模糊显示原书P17页的例子。
 
 ```python
