@@ -504,11 +504,11 @@ immean = pickle.load(f)
 V = pickle.load(f)
 f.close()
 ```
-使用with()方法在这里不介绍，具体的可以翻阅原书。关于pickle模块的更多细节可以查阅在线文档[\[docs.python.org/library/pickle.html\]](http://docs.python.org/library/pickle.html\)
+使用with()方法在这里不介绍，具体的可以翻阅原书。关于pickle模块的更多细节可以查阅在线文档[\[docs.python.org/library/pickle.html\\]](http://docs.python.org/library/pickle.html\)
 
 <h2 id="sec-1-4">1.4 SciPy模块</h2>
 
-[SciPy](http://scipy.org/)是一个开源的数学工具包，它是建立在NumPy的基础上的。它提供了很多有效的常规操作，包括数值综合、最优化、统计、信号处理以及图像处理。正如接下来所展示的，SciPy库包含了很多有用的模块。SciPy库可以再[\[http://scipy.org/Download\]](scipy.org/Download)下载。
+[SciPy](http://scipy.org/)是一个开源的数学工具包，它是建立在NumPy的基础上的。它提供了很多有效的常规操作，包括数值综合、最优化、统计、信号处理以及图像处理。正如接下来所展示的，SciPy库包含了很多有用的模块。SciPy库可以再[\[scipy.org/Download\]](scipy.org/Download)下载。
 
 <h3 id="sec-1-4-1">1.4.1 图像模糊</h3>
 
@@ -565,8 +565,7 @@ show()
 
 <h3 id="sec-1-4-2">1.4.2 图像差分</h3>
 
-图像强度的改变是一个重要的信息，被广泛用以很多应用中，正如它贯穿于本书中。
-下面是对图像进行差分显示原书P19页的例子。
+图像强度的改变是一个重要的信息，被广泛用以很多应用中，正如它贯穿于本书中。下面是对图像进行差分显示原书P019 Fig1-10的例子。
 
 ```python
 # -*- coding: utf-8 -*-
@@ -575,38 +574,46 @@ from pylab import *
 from scipy.ndimage import filters
 import numpy
 
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
+
 im = array(Image.open('../data/empire.jpg').convert('L'))
 gray()
 
 subplot(1, 4, 1)
 axis('off')
-title('(a)')
+title(u'(a)原图', fontproperties=font)
 imshow(im)
 
+# Sobel derivative filters
 imx = zeros(im.shape)
 filters.sobel(im, 1, imx)
 subplot(1, 4, 2)
 axis('off')
-title('(b)')
+title(u'(b)x方向差分', fontproperties=font)
 imshow(imx)
 
 imy = zeros(im.shape)
 filters.sobel(im, 0, imy)
 subplot(1, 4, 3)
 axis('off')
-title('(c)')
+title(u'(c)y方向差分', fontproperties=font)
 imshow(imy)
 
-mag = numpy.sqrt(imx**2 + imy**2)
+#mag = numpy.sqrt(imx**2 + imy**2)
+mag = 255-numpy.sqrt(imx**2 + imy**2)
 subplot(1, 4, 4)
-title('(d)')
+title(u'(d)梯度幅度', fontproperties=font)
 axis('off')
 imshow(mag)
 
 show()
 ```
-运行上面代码，可得下图：
+运行上面代码，可得P019 Fig1-10中的运行结果：
+
 ![ch01_fig1-10_scipy_sobel](assets/images/figures/ch01/ch01_fig1-10_scipy_sobel.png)
+
 再看一个高斯差分的例子，运行下面代码可得原书P20页对图像进行高斯差分示例：
 
 ```python
