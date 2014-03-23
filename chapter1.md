@@ -507,7 +507,7 @@ f.close()
 
 <h2 id="sec-1-4">1.4 SciPy模块</h2>
 
-[SciPy](http://scipy.org/)是一个开源的数学工具包，它是建立在NumPy的基础上的。它提供了很多有效的常规操作，包括数值综合、最优化、统计、信号处理以及图像处理。正如接下来所展示的，SciPy库包含了很多有用的模块。SciPy库可以再[\[scipy.org/Download\]](scipy.org/Download)下载。
+[SciPy](http://scipy.org/)是一个开源的数学工具包，它是建立在NumPy的基础上的。它提供了很多有效的常规操作，包括数值综合、最优化、统计、信号处理以及图像处理。正如接下来所展示的，SciPy库包含了很多有用的模块。SciPy库可以再[\[http://scipy.org/Download\]](scipy.org/Download)下载。
 
 <h3 id="sec-1-4-1">1.4.1 图像模糊</h3>
 
