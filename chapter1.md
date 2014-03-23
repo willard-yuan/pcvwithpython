@@ -168,52 +168,87 @@ from matplotlib.font_manager import FontProperties
 font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
 
 im = array(Image.open('../data/empire.jpg'))
+figure()
 
+# 画有坐标轴的
+subplot(121)
 imshow(im)
-
 x = [100, 100, 400, 400]
 y = [200, 500, 200, 500]
 plot(x, y, 'r*')
-
 plot(x[:2], y[:2])
-
-#axis('off')  #显示坐标轴
-
 title(u'绘图: "empire.jpg"', fontproperties=font)
+
+# 不显示坐标轴
+subplot(122)
+imshow(im)
+x = [100, 100, 400, 400]
+y = [200, 500, 200, 500]
+plot(x, y, 'r*')
+plot(x[:2], y[:2])
+axis('off')  #显示坐标轴
+title(u'绘图: "empire.jpg"', fontproperties=font)
+
 show()
 ```
 运行上面代码，即可得原书P005中 Figure 1-2中左边的结果。去掉上面代码中坐标轴的注释，即可得 Figure 1-2中右边的结果。运行结果如下：
 
 ![ch01_P005_fig1-2_matplot](assets/images/figures/ch01/ch01_P005_fig1-2_matplot.png)
 
-运行下面代码，便可以得到下面的图。
+<h3 id="sec-1-2-2">1.2.2 图像轮廓和直方图</h3>
+
+下面我们看两个特别的例子：图像轮廓线和图线等高线。在画图像轮廓前需要转换为灰度图像，因为轮廓需要获取每个坐标[x,y]位置的像素值。下面是画图像轮廓和直方图的代码：
 
 ```python
-# -*- coding: utf-8 -*-
-"""
-Function:  figure 1-3
-    Examples of visualizing image contours and plotting image histograms with Matplotlib
-Date: 2014-02-24
-"""
+ # -*- coding: utf-8 -*-
 from PIL import Image
 from pylab import *
 
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
 im = array(Image.open('../data/empire.jpg').convert('L'))  # 打开图像，并转成灰度图像
 
 figure()
+subplot(121)
 gray()
 contour(im, origin='image')
 axis('equal')
 axis('off')
+title(u'图像轮廓', fontproperties=font)
 
-figure()
+subplot(122)
 hist(im.flatten(), 128)
+title(u'图像直方图', fontproperties=font)
+plt.xlim([0,260])
+plt.ylim([0,11000])
+
 show()
 ```
 运行上面代码，可以得到书中的图1-3所示的结果:
 ![P006-Fig1-3](assets/images/figures/ch01/P006-Fig1-3.png)
 
-<h2 id="sec-1-1">1.2 灰度变换</h2>
+<h3 id="sec-1-2-4">1.2.4 交互注释</h3>
+
+有时，用户需要和应用进行交互，比如在图像中用点做标识，或者在一些训练数据中进行注释。PyLab提供了一个很简洁好用的函数ginput(),它可以完成该任务，下面是一个演示交互注释的简短示例：
+
+```python
+from PIL import Image
+from pylab import *
+
+im = array(Image.open('../data/empire.jpg'))
+imshow(im)
+print 'Please click 3 points'
+imshow(im)
+x = ginput(3)
+print 'You clicked:', x
+
+show()
+```
+上面代码先读取empire.jpg图像，显示读取的图像，然后用ginput()交互注释，这里设置的交互注释数据点设置为3个，用户在注释后，会将注释点的坐标打印出来。
+
+<h2 id="sec-1-3">1.3 NumPy库</h2>
+
 下面代码是显示原书第9页中figure1-5的例子：
 
 ```python
