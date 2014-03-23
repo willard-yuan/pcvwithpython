@@ -433,7 +433,7 @@ axis('off')
 show()
 ```
 运行上面代码，可得对3幅图像平均后的效果，如下图：
-![ch10_P011_avg](assets/images/figures/ch01/ch10_P011_avg)
+![ch10_P011_avg](assets/images/figures/ch01/ch10_P011_avg.png)
 
 <h2 id="sec-1-3-4">1.3.4 对图像进行主成分分析</h2>
 
