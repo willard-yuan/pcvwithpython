@@ -5,7 +5,7 @@ title: 第一章 图像处理基础
 
 <h2 id="sec-1-1">1.1 PIL-Python图像库</h2>
 
-PIL (Python Imaging Library)图像库提供了很多常用的图像处理及很多有用的图像基本操作。PIL库下载地址[\[http://www.pythonware.com/products/pil/\]](www.pythonware.com/products/pil/)。下面演示原书P001-Fig1-1读入一幅图片的例子：
+PIL (Python Imaging Library)图像库提供了很多常用的图像处理及很多有用的图像基本操作。PIL库下载地址[\[www.pythonware.com/products/pil/\]](http://www.pythonware.com/products/pil/)。下面演示原书P001-Fig1-1读入一幅图片的例子：
 
 ```python
 # -*- coding: utf-8 -*-
@@ -34,8 +34,8 @@ show()
 ```
 运行上面的代码，可以得出原书P002-Fig1-1中的前两幅图片，如下：
 ![P002-Fig1-1](assets/images/figures/ch01/P002-Fig1-1.png)
-更多关于PIL的实例，可以参阅PIL在线文档[\[http://www
-.pythonware.com/library/pil/handbook/index.htm./\]](www.pythonware.com/library/pil/handbook/index.htm)。
+更多关于PIL的实例，可以参阅PIL在线文档[\[www
+.pythonware.com/library/pil/handbook/index.htm./\]](http://www.pythonware.com/library/pil/handbook/index.htm)。
 
 <h3 id="sec-1-1-1">1.1.1 对图片进行格式转换</h3>
 
