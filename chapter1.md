@@ -614,43 +614,67 @@ show()
 
 ![ch01_fig1-10_scipy_sobel](assets/images/figures/ch01/ch01_fig1-10_scipy_sobel.png)
 
-再看一个高斯差分的例子，运行下面代码可得原书P20页对图像进行高斯差分示例：
+再看一个高斯差分的例子，运行下面代码可得原书P020 Fig1-11页对图像进行高斯差分示例：
 
 ```python
+ # -*- coding: utf-8 -*-
 from PIL import Image
 from pylab import *
 from scipy.ndimage import filters
 import numpy
 
+# 添加中文字体支持
+#from matplotlib.font_manager import FontProperties
+#font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
+
+def imx(im, sigma):
+    imgx = zeros(im.shape)
+    filters.gaussian_filter(im, sigma, (0, 1), imgx)
+    return imgx
+
+
+def imy(im, sigma):
+    imgy = zeros(im.shape)
+    filters.gaussian_filter(im, sigma, (1, 0), imgy)
+    return imgy
+
+
+def mag(im, sigma):
+    # there's also gaussian_gradient_magnitude()
+    #mag = numpy.sqrt(imgx**2 + imgy**2)
+    imgmag = 255 - numpy.sqrt(imgx ** 2 + imgy ** 2)
+    return imgmag
+
+
 im = array(Image.open('../data/empire.jpg').convert('L'))
+figure()
 gray()
-subplot(1, 4, 1)
-axis('off')
-imshow(im)
 
-sigma = 5
+sigma = [2, 5, 10]
 
-imx = zeros(im.shape)
-filters.gaussian_filter(im, sigma, (0, 1), imx)
-subplot(1, 4, 2)
-axis('off')
-imshow(imx)
-
-imy = zeros(im.shape)
-filters.gaussian_filter(im, sigma, (1, 0), imy)
-subplot(1, 4, 3)
-axis('off')
-imshow(imy)
-
-# there's also gaussian_gradient_magnitude()
-mag = numpy.sqrt(imx**2 + imy**2)
-subplot(1, 4, 4)
-axis('off')
-imshow(mag)
+for i in  sigma:
+    subplot(3, 4, 4*(sigma.index(i))+1)
+    axis('off')
+    imshow(im)
+    imgx=imx(im, i)
+    subplot(3, 4, 4*(sigma.index(i))+2)
+    axis('off')
+    imshow(imgx)
+    imgy=imy(im, i)
+    subplot(3, 4, 4*(sigma.index(i))+3)
+    axis('off')
+    imshow(imgy)
+    imgmag=mag(im, i)
+    subplot(3, 4, 4*(sigma.index(i))+4)
+    axis('off')
+    imshow(imgmag)
 
 show()
 ```
 ![ch01_fig1-11_scipy_gauss_deriv](assets/images/figures/ch01/ch01_fig1-11_scipy_gauss_deriv.png)
+注意运行的结果在摆放位置时与原书P020 Fig1-11结果稍微不同。上面代码中，第一行标准差为2，列分别表示的是x、y和mag,第二行和第三行依次类推。
+
+<h3 id="sec-1-4-3">1.4.3 形态学-物体计数</h3>
 
 欢迎学习《Ruby on Rails 教程》。本书的目标是成为对“如果想学习使用 Ruby on Rails 进行 Web 开发，我应该从哪儿开始？”这一问题的最好答案。学习完本书的内容之后，你将具备使用 Rails 进行开发和部署 Web 程序的技能。同时你还能够通过一些进阶的书籍、博客和视频教程等活跃的 Rails 教学体系继续深造。本书基于 Rails 3，这里的知识代表着 Web 开发的发展方向。（《Ruby on Rails 教程》的最新版本可以从[本书的网站](http://railstutorial.org/)上获取。）
 
