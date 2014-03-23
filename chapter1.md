@@ -512,7 +512,7 @@ f.close()
 
 <h3 id="sec-1-4-1">1.4.1 图像模糊</h3>
 
-下面是对图像进行模糊显示原书P17页的例子。
+一个经典的并且十分有用的图像卷积例子是对图像进行高斯模糊。高斯模糊可以用于定义图像尺度、计算兴趣点以及很多其他的应用场合。下面是对图像进行模糊显示原书P017 Fig1-9的例子。
 
 ```python
  # -*- coding: utf-8 -*-
@@ -520,22 +520,29 @@ from PIL import Image
 from pylab import *
 from scipy.ndimage import filters
 
+# 添加中文字体支持
+from matplotlib.font_manager import FontProperties
+font = FontProperties(fname=r"c:\windows\fonts\SimSun.ttc", size=14)
+
 #im = array(Image.open('board.jpeg'))
 im = array(Image.open('../data/empire.jpg').convert('L'))
 
 figure()
 gray()
 axis('off')
-subplot(2, 2, 1)
+subplot(1, 4, 1)
 axis('off')
+title(u'原图', fontproperties=font)
 imshow(im)
 
 for bi, blur in enumerate([2, 5, 10]):
   im2 = zeros(im.shape)
   im2 = filters.gaussian_filter(im, blur)
   im2 = np.uint8(im2)
-  subplot(2, 2, 2 + bi)
+  imNum=str(blur)
+  subplot(1, 4, 2 + bi)
   axis('off')
+  title(u'标准差为'+imNum, fontproperties=font)
   imshow(im2)
 
 #如果是彩色图像，则分别对三个通道进行模糊
@@ -544,16 +551,20 @@ for bi, blur in enumerate([2, 5, 10]):
 #  for i in range(3):
 #    im2[:, :, i] = filters.gaussian_filter(im[:, :, i], blur)
 #  im2 = np.uint8(im2)
-#  subplot(2, 2, 2 + bi)
+#  subplot(1, 4,  2 + bi)
 #  axis('off')
 #  imshow(im2)
 
 show()
 ```
-运行上面代码，可得下图：
+运行上面代码，可得P017 Fig1-9中的结果：
 ![ch01_fig1-9_scipy_blur](assets/images/figures/ch01/ch01_fig1-9_scipy_blur.png)
 
-<h3 id="sec-1-1">1.4.2 图像差分</h3>
+上面第一幅图为待模糊图像，第二幅用高斯标准差为2进行模糊，第三幅用高斯标准差为5进行模糊，最后一幅用高斯标准差为10进行模糊。关于该模块的使用以及参数选择的更多细节，可以参阅SciPy scipy.ndimage文档[\[docs.scipy.org/doc/scipy/reference/ndimage.html\]](http://docs.scipy.org/doc/scipy/reference/ndimage.html)。
+
+
+<h3 id="sec-1-4-2">1.4.2 图像差分</h3>
+
 图像强度的改变是一个重要的信息，被广泛用以很多应用中，正如它贯穿于本书中。
 下面是对图像进行差分显示原书P19页的例子。
 
