@@ -435,9 +435,9 @@ show()
 运行上面代码，可得对3幅图像平均后的效果，如下图：
 ![ch10_P011_avg](assets/images/figures/ch01/ch10_P011_avg.png)
 
-<h2 id="sec-1-3-4">1.3.4 对图像进行主成分分析</h2>
+<h3 id="sec-1-3-5">1.3.5 对图像进行主成分分析</h3>
 
-下面代码是显示原书P15页对字体图像进行主成分分析的实例代码：
+主成分分析是一项有用的降维技术。对于主成分分析的原理，这里不做具体介绍。下面我们在字体图像上进行降维处理。文件fontimages.zip包含有字母"a"的缩略图，共有2359个字体图像，可以在[\[Images courtesy of Martin Solli\]](http://webstaff.itn.liu.se/~marso/)下载。下面代码是显示原书P14页对字体图像进行主成分分析的实例代码：
 
 ```python
  # -*- coding: utf-8 -*-
@@ -475,10 +475,15 @@ for i in range(7):
     axis('off')
 show()
 ```
-运行上面代码，可得出原书P15 Figure1-8中的结果，即：
+注意，这些图像在拉成一维表示后，必须用reshape()函数将它重新转换回来。运行上面代码，可得原书P15 Figure1-8中的结果，即：
 ![ch01_fig1-5_graylevel-transforms](assets/images/figures/ch01/ch01_fig1-8_pca_graylevel.png)
 
-<h2 id="sec-1-1">1.4 SciPy</h2>
+<h3 id="sec-1-3-6">1.3.6 Pickle模块</h3>
+
+如果你想将结果保存下来，或者将数据保存下来以便后面使用，那么pickle模块是非常有用的。
+
+<h3 id="sec-1-3-6">1.3.7 SciPy</h3>
+
 [SciPy](http://scipy.org/)是一个开源的数学工具包，它是建立在NumPy的基础上的。
 <h3 id="sec-1-1">1.4.1 图像模糊</h3>
 下面是对图像进行模糊显示原书P17页的例子。
