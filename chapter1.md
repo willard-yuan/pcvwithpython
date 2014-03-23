@@ -247,6 +247,43 @@ show()
 
 <h2 id="sec-1-3">1.3 NumPy库</h2>
 
+[NumPy](http://www.scipy.org/NumPy/)是Python一个流行的用于科学计算包。它包含了很多诸如矢量、矩阵、图像等其他非常有用的对象和线性代数函数。在本书中几乎所有的例子都用到了NumPy数组对象。NumPy可以在[scipy.org/Download\]](http://www.scipy.org/Download)下载，[在线文档](http://docs.scipy.org/doc/numpy/)包含了很多常见问题的答案。
+
+<h3 id="sec-1-3-1">1.3.1 图像数组表示</h3>
+
+在前面载入图像的示例中，我们将图像用array()函数转为NumPy数组对象，但是并没有提到它表示的含义。数组就像列表一样，只不过它规定了数组中的所有元素必须是相同的类型。下面的例子用于说明图像数组表示：
+
+```python
+ # -*- coding: utf-8 -*-
+from PIL import Image
+from pylab import *
+
+im = array(Image.open('../data/empire.jpg'))
+print im.shape, im.dtype
+im = array(Image.open('../data/empire.jpg').convert('L'),'f')
+print im.shape, im.dtype
+```
+运行上面代码，会给出下面结果：
+
+```text
+(800, 569, 3) uint8
+(800, 569) float32
+```
+数组可以通过索引访问和操作其中的元素。比如：value=im[i,j,k]。i,j是坐标，k是颜色通道。对于多个元素，可以用切片操作，如：
+
+```text
+im[i,:] = im[j,:] # set the values of row i with values from row j
+im[:,i] = 100 # set all values in column i to 100
+im[:100,:50].sum() # the sum of the values of the first 100 rows and 50 columns
+im[50:100,50:100] # rows 50-100, columns 50-100 (100th not included)
+im[i].mean() # average of row i
+im[:,-1] # last column
+im[-2,:] (or im[-2]) # second to last row
+```
+在使用数组时有很多操作和方式，我们会在后面介绍贯穿于本书所需要的操作。
+
+<h3 id="sec-1-3-2">1.3.2 灰度变换</h3>
+
 下面代码是显示原书第9页中figure1-5的例子：
 
 ```python
