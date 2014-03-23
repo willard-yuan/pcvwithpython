@@ -61,9 +61,7 @@ for infile in filelist:
         except IOError:
             print "cannot convert", infile
 ```
-上面convert_images_format_test文件夹是译者放的测试图片，共24幅图像，如下图示，测试图片全部为`.jpg`格式的：
-![2014-03-16 11_24_39-convert_images_format_test](assets/images/figures/ch01/2014-03-16 11_24_39-convert_images_format_test.png)
-译者在源代码中添加了部分代码以便将获取的图像文件名列表保存下来，同时将原来的所有图像转化为`.png`格式的图像。注意，在载入模块时，载入了原书的PCV模块，关于PCV模块的安装，详见[\[PCV模块的安装\]]()运行上面代码，可以得到转化格式后的图像，运行结果为：
+上面convert_images_format_test文件夹是译者放的测试图片，共24幅图像，如下图示，测试图片全部为`.jpg`格式的。译者在源代码中添加了部分代码以便将获取的图像文件名列表保存下来，同时将原来的所有图像转化为`.png`格式的图像。注意，在载入模块时，载入了原书的PCV模块，关于PCV模块的安装，详见[\[PCV模块的安装\]]()运行上面代码，可以得到转化格式后的图像，运行结果为：
 ![2014-03-16 10_57_43-convert_images_format_test](assets/images/figures/ch01/2014-03-16 10_57_43-convert_images_format_test.png)
 
 <h3 id="sec-1-1-2">1.1.2 创建缩略图</h3>
