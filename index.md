@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="bookinfo">
-	<img src="{{ site.url }}/assets/images/cover.jpg" title="Python计算机视觉编程" alt="Python计算机视觉编程" width="300" height="422" />
+	<img src="{{ site.url }}/assets/images/cover.png" title="Python计算机视觉编程" alt="Python计算机视觉编程" width="300" height="422" />
 	<dl>
 		<dt>原书名：</dt>
 		<dd>Programming Computer Vision with Python</dd>
