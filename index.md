@@ -26,12 +26,22 @@ layout: default
 		<p><a class="btn info" href="https://sellfy.com/p/qwyU/" title="在图灵购买本书">在图灵购买本</a><br />
 	</div>
 
-	<div class="buy">
+<!--	<div class="buy">
 	<p><a class="btn" href="http://www.ituring.com.cn/book/1333" title="使用支付宝购买电子书">支付宝付款</a>&nbsp;&nbsp;<a class="btn" href="https://sellfy.com/p/qwyU/" title="在图灵社区购买电子书">PayPal 付款</a></p>
 	<ol class="notes">
 		<li>电子书包含三种格式：PDF、ePub 和 mobi；</li>
         <li>使用支付宝购买只有 PDF 和 mobi 两种格式；</li>
 		<li>购买后，错误修正等更新免费获取，不再收费；</li>
+	</ol>
+	</div> -->
+
+	<div class="buy">
+	<p><a class="btn" href="http://programmingcomputervision.com/" title="使用支付宝购买电子书">原书源码下载</a>&nbsp;&nbsp;<a class="btn" href="https://github.com/willard-yuan/pcvwithpython" title="中译本源码下载">中译本源码下载(推荐)</a></p>
+	<ol class="notes">
+		<li>中译本源码部分调试完毕，后续源码敬请期待；</li>
+        <li>原英文书源码和数据库不全，推荐中译本源码；</li>
+		<li>中译版源码在保持原英文源码的基础上进行了本土化；</li>
+        <li>完善了书中的实例；</li>
 	</ol>
 	</div>
 
@@ -53,7 +63,7 @@ layout: default
 			<li><a href="{{ site.url }}author.html" title="作者译者">作者译者</a></li>
 			<li><a href="{{ site.url }}preface.html" title="致中国读者">致中国读者</a></li>
 			<li><a href="{{ site.url }}foreword.html" title="序">序</a></li>
-			<li><a href="{{ site.url }}chapter1.html" title="第一章 图像处理基础">第一章 图像处理基础</a></li>
+			<li><a href="{{ site.url }}chapter1.html" title="第一章 图像处理基础">第一章 图像处理基础(完成)</a></li>
 			<li><a href="{{ site.url }}chapter2.html" title="第二章 图像局部描述符">第二章 图像局部描述符</a></li>
 			<li><a href="{{ site.url }}chapter3.html" title="第三章 基本静态的页面">第三章 基本静态的页面</a></li>
 			<li><a href="{{ site.url }}chapter4.html" title="第四章 Rails 背后的 Ruby">第四章 Rails 背后的 Ruby</a></li>
