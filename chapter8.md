@@ -1,7 +1,197 @@
 ---
 layout: chapter
-title: 第八章 登录和退出
+title: 第八章 图像类容分类
 ---
+
+<h2 id="sec-8-1">8.1 K最近邻</h2>
+
+K最近邻是分类中最简单且常用的方法之一。
+
+<h3 id="sec-8-1-1">8.1.1 一个简单的二维例子</h3>
+
+```python
+# -*- coding: utf-8 -*-
+from numpy.random import randn
+import pickle
+from pylab import *
+
+# create sample data of 2D points
+n = 200
+# two normal distributions
+class_1 = 0.6 * randn(n,2)
+class_2 = 1.2 * randn(n,2) + array([5,1])
+labels = hstack((ones(n),-ones(n)))
+# save with Pickle
+#with open('points_normal.pkl', 'w') as f:
+with open('points_normal_test.pkl', 'w') as f:
+    pickle.dump(class_1,f)
+    pickle.dump(class_2,f)
+    pickle.dump(labels,f)
+# normal distribution and ring around it
+class_1 = 0.6 * randn(n,2)
+r = 0.8 * randn(n,1) + 5
+angle = 2*pi * randn(n,1)
+class_2 = hstack((r*cos(angle),r*sin(angle)))
+labels = hstack((ones(n),-ones(n)))
+# save with Pickle
+#with open('points_ring.pkl', 'w') as f:
+with open('points_ring_test.pkl', 'w') as f:
+    pickle.dump(class_1,f)
+    pickle.dump(class_2,f)
+    pickle.dump(labels,f)
+```
+
+```python
+# -*- coding: utf-8 -*-
+import pickle
+from pylab import *
+from PCV.classifiers import knn
+from PCV.tools import imtools
+
+pklist=['points_normal.pkl','points_ring.pkl']
+
+figure()
+
+# load 2D points using Pickle
+for i, pklfile in enumerate(pklist):
+    with open(pklfile, 'r') as f:
+        class_1 = pickle.load(f)
+        class_2 = pickle.load(f)
+        labels = pickle.load(f)
+    # load test data using Pickle
+    with open(pklfile[:-4]+'_test.pkl', 'r') as f:
+        class_1 = pickle.load(f)
+        class_2 = pickle.load(f)
+        labels = pickle.load(f)
+
+    model = knn.KnnClassifier(labels,vstack((class_1,class_2)))
+    # test on the first point
+    print model.classify(class_1[0])
+
+    #define function for plotting
+    def classify(x,y,model=model):
+        return array([model.classify([xx,yy]) for (xx,yy) in zip(x,y)])
+
+    # lot the classification boundary
+    subplot(1,2,i+1)
+    imtools.plot_2D_boundary([-6,6,-6,6],[class_1,class_2],classify,[1,-1])
+    titlename=pklfile[:-4]
+    title(titlename)
+show()
+```
+![ch08_P169_knn](assets/images/figures/ch08/ch08_P169_knn.png)
+
+<h3 id="sec-8-1-1">8.1.2 图像稠密(dense)sift特征)</h3>
+
+```python
+# -*- coding: utf-8 -*-
+from PCV.localdescriptors import sift, dsift
+from pylab import  *
+from PIL import Image
+
+dsift.process_image_dsift('../data/empire.jpg','empire.dsift',90,40,True)
+l,d = sift.read_features_from_file('empire.dsift')
+im = array(Image.open('../data/empire.jpg'))
+sift.plot_features(im,l,True)
+title('dense SIFT')
+show()
+```
+![ch08_P172_dsift](assets/images/figures/ch08/ch08_P172_dsift.png)
+
+<h3 id="sec-8-1-3">8.1.3 图像分类——手势识别</h3>
+
+```python
+# -*- coding: utf-8 -*-
+import os
+from PCV.localdescriptors import sift, dsift
+from pylab import  *
+from PIL import Image
+
+imlist=['../data/gesture/train/A-uniform01.ppm','../data/gesture/train/B-uniform01.ppm',
+        '../data/gesture/train/C-uniform01.ppm','../data/gesture/train/Five-uniform01.ppm',
+        '../data/gesture/train/Point-uniform01.ppm','../data/gesture/train/V-uniform01.ppm']
+
+figure()
+for i, im in enumerate(imlist):
+    dsift.process_image_dsift(im,im[:-3]+'.dsift',90,40,True)
+    l,d = sift.read_features_from_file(im[:-3]+'dsift')
+    dirpath, filename=os.path.split(im)
+    im = array(Image.open(im))
+    #显示手势含义title
+    titlename=filename[:-14]
+    subplot(2,3,i+1)
+    sift.plot_features(im,l,True)
+    title(titlename)
+show()
+```
+![ch08_P173_Fig8-3](assets/images/figures/ch08/ch08_P173_Fig8-3.png)
+
+```python
+# -*- coding: utf-8 -*-
+from PCV.localdescriptors import dsift
+import os
+from PCV.localdescriptors import sift
+from pylab import *
+from PCV.classifiers import knn
+
+def get_imagelist(path):
+    """    Returns a list of filenames for
+        all jpg images in a directory. """
+
+    return [os.path.join(path,f) for f in os.listdir(path) if f.endswith('.ppm')]
+
+def read_gesture_features_labels(path):
+    # create list of all files ending in .dsift
+    featlist = [os.path.join(path,f) for f in os.listdir(path) if f.endswith('.dsift')]
+    # read the features
+    features = []
+    for featfile in featlist:
+        l,d = sift.read_features_from_file(featfile)
+        features.append(d.flatten())
+    features = array(features)
+    # create labels
+    labels = [featfile.split('/')[-1][0] for featfile in featlist]
+    return features,array(labels)
+
+def print_confusion(res,labels,classnames):
+    n = len(classnames)
+    # confusion matrix
+    class_ind = dict([(classnames[i],i) for i in range(n)])
+    confuse = zeros((n,n))
+    for i in range(len(test_labels)):
+        confuse[class_ind[res[i]],class_ind[test_labels[i]]] += 1
+    print 'Confusion matrix for'
+    print classnames
+    print confuse
+
+filelist_train = get_imagelist('../data/gesture/train')
+filelist_test = get_imagelist('../data/gesture/test')
+imlist=filelist_train+filelist_test
+
+# process images at fixed size (50,50)
+for filename in imlist:
+    featfile = filename[:-3]+'dsift'
+    dsift.process_image_dsift(filename,featfile,10,5,resize=(50,50))
+
+features,labels = read_gesture_features_labels('../data/gesture/train/')
+test_features,test_labels = read_gesture_features_labels('../data/gesture/test/')
+classnames = unique(labels)
+
+# test kNN
+k = 1
+knn_classifier = knn.KnnClassifier(labels,features)
+res = array([knn_classifier.classify(test_features[i],k) for i in
+range(len(test_labels))])
+# accuracy
+acc = sum(1.0*(res==test_labels)) / len(test_labels)
+print 'Accuracy:', acc
+
+print_confusion(res,test_labels,classnames)
+```
+
+```text
+
+```
 
 [第七章](chapter7.html)已经实现了注册新用户的功能，本章我们要为已注册的用户提供登录和退出功能。实现登录功能之后，就可以根据登录状态和当前用户的身份定制网站的内容了。例如，本章我们会更新网站的头部，显示“登录”或“退出”链接，以及到个人资料页面的链接；在第十章中，会根据当前登录用户的 id 创建关联到这个用户的微博；在第十一章，我们会实现当前登录用户关注其他用户的功能，实现之后，在首页就可以显示被关注用户发表的微博了。
 
