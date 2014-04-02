@@ -105,8 +105,8 @@ harris.plot_matches(im1, im2, filtered_coords1, filtered_coords2, matches)
 show()
 ```
 运行上面代码，可得下图：
-![ch2_harris_matching1](assets/images/figures/ch02/ch2_harris_matching1.png)
-![ch2_harris_matching2](assets/images/figures/ch02/ch2_harris_matching2.png)
+![ch02_harris_matching1](assets/images/figures/ch02/ch02_harris_matching1.png)
+![ch02_harris_matching1](assets/images/figures/ch02/ch02_harris_matching1.png)
 正如你从上图所看到的，这里有很多错配的。近年来，提高特征描述点检测与描述有了很大的发展，在下一节我们会看这其中最好的算法之一——SIFT。
 
 <h2 id="sec-2-2">2.2 sift描述子</h2>
