@@ -54,6 +54,7 @@ show()
 from PCV.tools import imtools, pca
 from PIL import Image, ImageDraw
 from pylab import *
+from PCV.clustering import  hcluster
 
 imlist = imtools.get_imlist('../data/selectedfontimages/a_selected_thumbs')
 imnbr = len(imlist)
@@ -91,8 +92,15 @@ for i in range(imnbr):
          scaled[i][0] + ns[0] // 2 + 1, scaled[i][1] + ns[1] // 2 + 1)
   img.paste(nodeim, box)
 
-img.show()
+tree = hcluster.hcluster(projected)
+hcluster.draw_dendrogram(tree,imlist,filename='fonts.png')
+
+figure()
+imshow(img)
+axis('off')
 img.save('../images/ch06/pca_font.png')
+show()
+
 ```
 运行上面代码，可画出原书P131图6-3中的实例结果。
 ![ch06_fig63_kmeans_project_images](assets/images/figures/ch06/ch06_fig63_kmeans_project_images.png)
@@ -196,7 +204,30 @@ show()
 
 <h2 id="sec-6-2">6.2 层次聚类</h2>
 
-层次聚类(或称凝聚聚类)是另一种简单但有效的聚类算法。
+层次聚类(或称凝聚聚类)是另一种简单但有效的聚类算法。下面我们我们通过一个简单的实例看看层次聚类是怎样进行的。
+
+```python
+from pylab import  *
+from PCV.clustering import hcluster
+
+class1 = 1.5 * randn(100,2)
+class2 = randn(100,2) + array([5,5])
+features = vstack((class1,class2))
+
+tree = hcluster.hcluster(features)
+clusters = tree.extract_clusters(5)
+print 'number of clusters', len(clusters)
+for c in clusters:
+    print c.get_cluster_elements()
+```
+上面代码首先创建一些2维数据点，然后对这些数据点聚类，用一些阈值提取列表中的聚类后的簇群，并将它们打印出来，译者在自己的笔记本上打印出的结果为：
+
+```text
+number of clusters 2
+[197, 107, 176, 123, 173, 189, 154, 136, 183, 113, 109, 199, 178, 129, 163, 100, 148, 111, 143, 118, 162, 169, 138, 182, 193, 116, 134, 198, 184, 181, 131, 166, 127, 185, 161, 171, 152, 157, 112, 186, 128, 156, 108, 158, 120, 174, 102, 137, 117, 194, 159, 105, 155, 132, 188, 125, 180, 151, 192, 164, 195, 126, 103, 196, 179, 146, 147, 135, 139, 110, 140, 106, 104, 115, 149, 190, 170, 172, 121, 145, 114, 150, 119, 142, 122, 144, 160, 187, 153, 167, 130, 133, 165, 191, 175, 177, 101, 141, 124, 168]
+[0, 39, 32, 87, 40, 48, 28, 8, 26, 12, 94, 5, 1, 61, 24, 59, 83, 10, 99, 50, 23, 58, 51, 16, 71, 25, 11, 37, 22, 46, 60, 86, 65, 2, 21, 4, 41, 72, 80, 84, 33, 56, 75, 77, 29, 85, 93, 7, 73, 6, 82, 36, 49, 98, 79, 43, 91, 14, 47, 63, 3, 97, 35, 18, 44, 30, 13, 67, 62, 20, 57, 89, 88, 9, 54, 19, 15, 92, 38, 64, 45, 70, 52, 95, 69, 96, 42, 53, 27, 66, 90, 81, 31, 34, 74, 76, 17, 78, 55, 68]
+```
+
 
 <h2 id="sec-6-2-1">6.2.1 图像聚类</h2>
 
@@ -234,14 +265,85 @@ for c in clusters:
             imshow(im)
             axis('off')
 show()
+
+hcluster.draw_dendrogram(tree,imlist,filename='sunset.pdf')
 ```
 运行上面代码，可得原书P140图6-6。
 ![ch06_P140-Fig6.6_02](assets/images/figures/ch06/ch06_P140-Fig6.6_02.png)
 ![ch06_P140-Fig6.6_01](assets/images/figures/ch06/ch06_P140-Fig6.6_01.png)
+同时会在上面脚本文件所在的文件夹下生成层次聚类后的簇群树：
+![sunset](assets/images/figures/ch06/sunset.png)
+我们对前面字体图像同样创建一个树，正如前面在主成分可视化图像中，我们添加了下面代码：
+
+```
+tree = hcluster.hcluster(projected)
+hcluster.draw_dendrogram(tree,imlist,filename='fonts.png')
+```
+运行添加上面两行代码后前面的例子，可得对字体进行层次聚类后的簇群树：
+![fonts](assets/images/figures/ch06/fonts.png)
 
 <h2 id="sec-6-3">6.3 谱聚类</h2>
 
-谱聚类是另一种不同于k-means和层次聚类的聚类算法。
+谱聚类是另一种不同于k-means和层次聚类的聚类算法。关于谱聚类的原理，可以参阅中译本。这里，我们用原来k-means实例中用到的字体图像。
+
+```python
+ # -*- coding: utf-8 -*-
+from PCV.tools import imtools, pca
+from PIL import Image, ImageDraw
+from pylab import *
+from scipy.cluster.vq import *
+
+imlist = imtools.get_imlist('../data/selectedfontimages/a_selected_thumbs')
+imnbr = len(imlist)
+
+# Load images, run PCA.
+immatrix = array([array(Image.open(im)).flatten() for im in imlist], 'f')
+V, S, immean = pca.pca(immatrix)
+
+# Project on 2 PCs.
+projected = array([dot(V[[0, 1]], immatrix[i] - immean) for i in range(imnbr)])  # P131 Fig6-3左图
+#projected = array([dot(V[[1, 2]], immatrix[i] - immean) for i in range(imnbr)])  # P131 Fig6-3右图
+
+n = len(projected)
+# compute distance matrix
+S = array([[ sqrt(sum((projected[i]-projected[j])**2))
+for i in range(n) ] for j in range(n)], 'f')
+# create Laplacian matrix
+rowsum = sum(S,axis=0)
+D = diag(1 / sqrt(rowsum))
+I = identity(n)
+L = I - dot(D,dot(S,D))
+# compute eigenvectors of L
+U,sigma,V = linalg.svd(L)
+k = 5
+# create feature vector from k first eigenvectors
+# by stacking eigenvectors as columns
+features = array(V[:k]).T
+# k-means
+features = whiten(features)
+centroids,distortion = kmeans(features,k)
+code,distance = vq(features,centroids)
+# plot clusters
+for c in range(k):
+    ind = where(code==c)[0]
+    figure()
+    gray()
+    for i in range(minimum(len(ind),39)):
+        im = Image.open(imlist[ind[i]])
+        subplot(4,10,i+1)
+        imshow(array(im))
+        axis('equal')
+        axis('off')
+show()
+```
+上面我们在前个特征向量上计算标准的k-means。下面是运行上面代码的结果：
+![ch06_fig6-8_01](assets/images/figures/ch06/ch06_fig6-8_01.png)
+![ch06_fig6-8_02](assets/images/figures/ch06/ch06_fig6-8_02.png)
+![ch06_fig6-8_03](assets/images/figures/ch06/ch06_fig6-8_03.png)
+![ch06_fig6-8_04](assets/images/figures/ch06/ch06_fig6-8_04.png)
+![ch06_fig6-8_05](assets/images/figures/ch06/ch06_fig6-8_05.png)
+注意，由于在k-means阶段会给出不同的聚类结果，所以你运行上面代码出来的结果可能跟译者的是不一样的。
+
 
 [第五章](chapter5.html)的末尾我们创建了一个临时的用户注册页面（[5.4 节](chapter5.html#sec-5-4)），本教程接下来的四章会逐步丰富这个页面的功能。第一个关键的步骤是为网站的用户创建一个数据模型，以及存储数据的方式。[第七章](chapter7.html)会实现用户注册功能，并创建用户资料页面。用户能注册后，我们就要实现登录和退出功能（[第八章](chapter8.html)）。[第九章](chapter9.html)（[9.2.1 节](chapter9.html#sec-9-2-1)）会介绍如何保护页面避免被无权限的人员访问。第六章到第九章的内容结合在一起，我们就开发出了一个功能完整的 Rails 登录和用户验证系统。或许你知道已经有很多开发好了的 Rails 用户验证方案，[旁注 6.1](#box-6-1)解释了为什么，至少在初学阶段，自己开发一个用户验证系统或许是更好的方法。
 
