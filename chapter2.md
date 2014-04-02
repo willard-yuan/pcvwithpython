@@ -10,48 +10,61 @@ title: 第二章 图像局部描述符
 Harris角点检测算法是最简单的角点检测方法之一。关于harris算法的原理，可以参阅本书中译本。下面是harris角点检测实例代码。
 
 ```python
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from pylab import *
 from PIL import Image
-
 from PCV.localdescriptors import harris
 
 """
 Example of detecting Harris corner points (Figure 2-1 in the book).
 """
 
-# open image
+# 读入图像
 im = array(Image.open('../data/empire.jpg').convert('L'))
 
-# detect corners and plot
+# 检测harris角点
 harrisim = harris.compute_harris_response(im)
-# the Harris response function
-harrisim1 = 255-harrisim
+
+# Harris响应函数
+harrisim1 = 255 - harrisim
+
 figure()
 gray()
+
+#画出Harris响应图
+subplot(141)
 imshow(harrisim1)
+print harrisim1.shape
 axis('off')
-filtered_coords = harris.get_harris_points(harrisim, 6, threshold=0.01)
-#filtered_coords = harris.get_harris_points(harrisim, 6, threshold=0.05)
-#filtered_coords = harris.get_harris_points(harrisim, 6, threshold=0.1)
-harris.plot_harris_points(im, filtered_coords)
+axis('equal')
+
+threshold = [0.01, 0.05, 0.1]
+for i, thres in enumerate(threshold):
+    filtered_coords = harris.get_harris_points(harrisim, 6, thres)
+    subplot(1, 4, i+2)
+    imshow(im)
+    print im.shape
+    plot([p[1] for p in filtered_coords], [p[0] for p in filtered_coords], '*')
+    axis('off')
+
+#原书采用的PCV中PCV harris模块
+#harris.plot_harris_points(im, filtered_coords)
 
 # plot only 200 strongest
 # harris.plot_harris_points(im, filtered_coords[:200])
+
+show()
 ```
 运行上面代码，可得原书P32页的图:
-![ch01_fig2-1_harris-response](assets/images/figures/ch02/ch01_fig2-1_harris-response.png)
-![ch01_fig2-1_harris-corners0.01](assets/images/figures/ch02/ch01_fig2-1_harris-corners0.01.png)
-![ch01_fig2-1_harris-corners0.05](assets/images/figures/ch02/ch01_fig2-1_harris-corners0.05.png)
-![ch01_fig2-1_harris-corners0.1](assets/images/figures/ch02/ch01_fig2-1_harris-corners0.1.png)
+![ch02_fig2-1_harris](assets/images/figures/ch02/ch02_fig2-1_harris.png)
 在上面代码中，先代开一幅图像，将其转换成灰度图像，然后计算相响应函数，通过响应值选择角点。最后，将这些检测的角点在原图上显示出来。如果你想对角点检测方法做一个概览，包括想对Harris检测器做些提高或改进，可以参阅WIKI中的例子[WIKI](http://en.wikipedia.org/wiki/Corner_detection).
 
 <h3 id="sec-2-1-2">2.1.2 在图像间寻找对应点</h3>
 
-Harris角点检测器可以给出图像中检测到兴趣点，但它并没有提供在图像间对兴趣点进行比较的方法，我们需要在每个角点添加描述子，以及对这些描述子进行比较。关于兴趣点描述子，见本书中译本。下面代码是再现原书P35页的代码：
+Harris角点检测器可以给出图像中检测到兴趣点，但它并没有提供在图像间对兴趣点进行比较的方法，我们需要在每个角点添加描述子，以及对这些描述子进行比较。关于兴趣点描述子，见本书中译本。下面再现原书P35页中的结果：
 
 ```python
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 from pylab import *
 from PIL import Image
 
@@ -64,13 +77,13 @@ This is the Harris point matching example in Figure 2-2.
 
 # Figure 2-2上面的图
 #im1 = array(Image.open("../data/crans_1_small.jpg").convert("L"))
-# = array(Image.open("../data/crans_2_small.jpg").convert("L"))
+#im2= array(Image.open("../data/crans_2_small.jpg").convert("L"))
 
 # Figure 2-2下面的图
 im1 = array(Image.open("../data/sf_view1.jpg").convert("L"))
 im2 = array(Image.open("../data/sf_view2.jpg").convert("L"))
 
-# resize to make matching faster
+# resize加快匹配速度
 im1 = imresize(im1, (im1.shape[1]/2, im1.shape[0]/2))
 im2 = imresize(im2, (im2.shape[1]/2, im2.shape[0]/2))
 
@@ -113,13 +126,17 @@ l1, d1 = sift.read_features_from_file('empire.sift')
 
 figure()
 gray()
-#sift.plot_features(im1, l1, circle=False)
+subplot(121)
+sift.plot_features(im1, l1, circle=False)
+subplot(122)
 sift.plot_features(im1, l1, circle=True)
 show()
 ```
 运行上面代码，可得下图：
-![ch02_fig2-4_sift_false](assets/images/figures/ch02/ch02_fig2-4_sift_false.png)
-![ch02_fig2-4_sift_true](assets/images/figures/ch02/ch02_fig2-4_sift_true.png)
+![ch02_fig2-4_sift_false](assets/images/figures/ch02/ch02_fig2-4_sift.png)
+为了将sift和Harris角点进行比较，将Harris角点检测的显示在了图像的最后侧。正如你所看到的，这两种算法选择了不同的坐标。
+
+<h2 id="sec-2-2-1">2.2.1 描述子匹配</h2>
 
 下面代码是再现原书P43页的代码：
 
