@@ -3,6 +3,8 @@ layout: chapter
 title: 第三章 图像映射
 ---
 
+<h2 id="sec-3-1">3.1 图像局部描述子</h2>
+
 下面是显示原书图58页的例子：
 
 ```python

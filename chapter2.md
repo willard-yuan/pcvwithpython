@@ -3,9 +3,11 @@ layout: chapter
 title: 第二章 图像局部描述符
 ---
 
+这一章主要介绍两种非常典型的、不同的图像描述子，这两种图像描述子的使用将贯穿于本书，并且作为重要的局部特征，它们应用到了很多应用领域，比如创建全景图、增强现实、3维重建等。
+
 <h2 id="sec-2-1">2.1 Harris角点检测</h2>
 
-下面是harris角点检测实例代码。
+Harris角点检测算法是最简单的角点检测方法之一。关于harris算法的原理，可以参阅本书中译本。下面是harris角点检测实例代码。
 
 ```python
  # -*- coding: utf-8 -*-
@@ -37,15 +39,16 @@ harris.plot_harris_points(im, filtered_coords)
 # plot only 200 strongest
 # harris.plot_harris_points(im, filtered_coords[:200])
 ```
-运行下面代码，可得原书P32页的图:
+运行上面代码，可得原书P32页的图:
 ![ch01_fig2-1_harris-response](assets/images/figures/ch02/ch01_fig2-1_harris-response.png)
 ![ch01_fig2-1_harris-corners0.01](assets/images/figures/ch02/ch01_fig2-1_harris-corners0.01.png)
 ![ch01_fig2-1_harris-corners0.05](assets/images/figures/ch02/ch01_fig2-1_harris-corners0.05.png)
 ![ch01_fig2-1_harris-corners0.1](assets/images/figures/ch02/ch01_fig2-1_harris-corners0.1.png)
+在上面代码中，先代开一幅图像，将其转换成灰度图像，然后计算相响应函数，通过响应值选择角点。最后，将这些检测的角点在原图上显示出来。如果你想对角点检测方法做一个概览，包括想对Harris检测器做些提高或改进，可以参阅WIKI中的例子[WIKI](http://en.wikipedia.org/wiki/Corner_detection).
 
-<h3 id="sec-2-1-1">2.1.1 Harris角点检测</h3>
+<h3 id="sec-2-1-2">2.1.2 在图像间寻找对应点</h3>
 
-下面代码是再现原书P35页的代码：
+Harris角点检测器可以给出图像中检测到兴趣点，但它并没有提供在图像间对兴趣点进行比较的方法，我们需要在每个角点添加描述子，以及对这些描述子进行比较。关于兴趣点描述子，见本书中译本。下面代码是再现原书P35页的代码：
 
 ```python
 # -*- coding: utf-8 -*-
@@ -91,10 +94,11 @@ show()
 运行上面代码，可得下图：
 ![ch2_harris_matching1](assets/images/figures/ch02/ch2_harris_matching1.png)
 ![ch2_harris_matching2](assets/images/figures/ch02/ch2_harris_matching2.png)
+正如你从上图所看到的，这里有很多错配的。近年来，提高特征描述点检测与描述有了很大的发展，在下一节我们会看这其中最好的算法之一——SIFT。
 
-<h3 id="sec-2-2">2.2 sift描述子</h3>
+<h2 id="sec-2-2">2.2 sift描述子</h2>
 
-下面代码是再现原书P40页的代码：
+在过去的十年间，最成功的图像局部描述子之一是尺度不变特征变换(SIFT),它是由David Lowe发明的。SIFT在2004年由Lowe完善并经受住了时间的考验。关于SIFT原理的详细介绍，可以参阅中译本，在[WIKI](http://en.wikipedia.org/wiki/Scale-invariant_feature_transform)上你可以看一个简要的概览。下面代码是再现原书P40页的代码：
 
 ```python
 # -*- coding: utf-8 -*-
