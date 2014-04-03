@@ -111,7 +111,15 @@ show()
 
 <h2 id="sec-2-2">2.2 sift描述子</h2>
 
-在过去的十年间，最成功的图像局部描述子之一是尺度不变特征变换(SIFT),它是由David Lowe发明的。SIFT在2004年由Lowe完善并经受住了时间的考验。关于SIFT原理的详细介绍，可以参阅中译本，在[WIKI](http://en.wikipedia.org/wiki/Scale-invariant_feature_transform)上你可以看一个简要的概览。下面代码是再现原书P40页的代码：
+在过去的十年间，最成功的图像局部描述子之一是尺度不变特征变换(SIFT),它是由David Lowe发明的。SIFT在2004年由Lowe完善并经受住了时间的考验。关于SIFT原理的详细介绍，可以参阅中译本，在[WIKI](http://en.wikipedia.org/wiki/Scale-invariant_feature_transform)上你可以看一个简要的概览。
+
+<h3 id="sec-2-2-1">2.2.1 兴趣点</h3>
+
+<h3 id="sec-2-2-2">2.2.2 描述子</h3>
+
+<h3 id="sec-2-2-3">2.2.3 检测感兴趣点</h3>
+
+为了计算图像的SIFT特征，我们用开源工具包VLFeat。用Python重新实现SIFT特征提取的全过程不会很高效，而且也超出了本书的范围。VLFeat可以在[www.vlfeat.org](http://www.vlfeat.org/)上下载，它的二进制文件可以用于一些主要的平台。这个库是用C写的，不过我们可以利用它的命令行接口。此外，它还有Matlab接口。下面代码是再现原书P40页的代码：
 
 ```python
 # -*- coding: utf-8 -*-
@@ -154,12 +162,9 @@ show()
 ![ch02_fig2-4_sift_false](assets/images/figures/ch02/ch02_fig2-4_sift.png)
 为了将sift和Harris角点进行比较，将Harris角点检测的显示在了图像的最后侧。正如你所看到的，这两种算法选择了不同的坐标。
 
-<h2 id="sec-2-2-1">2.2.1 描述子匹配</h2>
-
-下面代码是再现原书P43页的代码：
+<h3 id="sec-2-2-4">2.2.4 描述子匹配</h3>
 
 ```python
-# -*- coding: utf-8 -*-
 from PIL import Image
 from pylab import *
 import sys
@@ -169,14 +174,12 @@ from PCV.localdescriptors import sift
 if len(sys.argv) >= 3:
   im1f, im2f = sys.argv[1], sys.argv[2]
 else:
-  im1f = '../data/sf_view1.jpg'
-  im2f = '../data/sf_view2.jpg'
-#  im1f = '../data/crans_1_small.jpg'
-#  im2f = '../data/crans_2_small.jpg'
+#  im1f = '../data/sf_view1.jpg'
+#  im2f = '../data/sf_view2.jpg'
+  im1f = '../data/crans_1_small.jpg'
+  im2f = '../data/crans_2_small.jpg'
 #  im1f = '../data/climbing_1_small.jpg'
 #  im2f = '../data/climbing_2_small.jpg'
-#im1 = array(Image.open(im1f).convert('L'))
-#im2 = array(Image.open(im2f).convert('L'))
 im1 = array(Image.open(im1f))
 im2 = array(Image.open(im2f))
 
@@ -184,14 +187,12 @@ sift.process_image(im1f, 'out_sift_1.txt')
 l1, d1 = sift.read_features_from_file('out_sift_1.txt')
 figure()
 gray()
-#sift.plot_features(im1, l1, circle=True)
+subplot(121)
 sift.plot_features(im1, l1, circle=False)
 
 sift.process_image(im2f, 'out_sift_2.txt')
 l2, d2 = sift.read_features_from_file('out_sift_2.txt')
-figure()
-gray()
-#sift.plot_features(im2, l2, circle=True)
+subplot(122)
 sift.plot_features(im2, l2, circle=False)
 
 #matches = sift.match(d1, d2)
@@ -200,20 +201,14 @@ print '{} matches'.format(len(matches.nonzero()[0]))
 
 figure()
 gray()
-#sift.plot_matches(im1, im2, l1, l2, matches, show_below=False)
 sift.plot_matches(im1, im2, l1, l2, matches, show_below=True)
 show()
 ```
 运行上面代码，可得下图：
-![ch02_sift_detect_crans_1_small](assets/images/figures/ch02/ch02_sift_detect_crans_1_small.png)
-![ch02_sift_detect_crans_2_small](assets/images/figures/ch02/ch02_sift_detect_crans_2_small.png)
-![ch02_sift_match_sf_crans_12_small](assets/images/figures/ch02/ch02_sift_match_sf_crans_12_small.png)
-![ch02_sift_detect_sf_view1](assets/images/figures/ch02/ch02_sift_detect_sf_view1.png)
-![ch02_sift_detect_sf_view2](assets/images/figures/ch02/ch02_sift_detect_sf_view2.png)
+![ch02_sift_detect_sf_view12](assets/images/figures/ch02/ch02_sift_detect_sf_view12.png)
 ![ch02_sift_match_sf_view12](assets/images/figures/ch02/ch02_sift_match_sf_view12.png)
-![ch02_sift_match_climbing_12_small_without](assets/images/figures/ch02/ch02_sift_match_climbing_12_small_without)
-![ch02_sift_match_climbing_12_small_with](assets/images/figures/ch02/ch02_sift_match_climbing_12_small_with)
-
+![ch02_sift_detect_crans_1_small](assets/images/figures/ch02/ch02_sift_detect_crans_1_small.png)
+![ch02_sift_match_sf_crans_12_small](assets/images/figures/ch02/ch02_sift_match_sf_crans_12_small.png)
 本章我们要开发一个简单的演示应用程序来展示一下 Rails 强大的功能。我们会使用脚手架（scaffold）功能快速的生成程序，这样就能以一定的高度概览一下 Ruby on Rails 编程的过程（也能大致的了解一下 Web 开发）。正如在第一章的[旁注 1.1](chapter1.html#box-1-1) 中所说，本书将采用另一种方法，我们会循序渐进的开发程序，遇到新的概念都会详细说明，不过为了概览功能（也为了寻找成就感）也无需对脚手架避而不谈。我们可以通过 URI 和最终的演示程序进行交互，了解一下 Rails 应用程序的结构，也第一次演示 Rails 使用的 REST 架构。
 
 和后面的大型示例程序类似，这个演示程序将包含用户（users）和微博（microposts）两个模型（因此实现了一个小型的 Twitter 类程序）。程序的功能还需要后续的开发，而且开发过程中的很多步骤看起来也很神秘，不过暂时不用担心：从第三章起将从零开始再开发一个类似的程序，我还会提供大量的资料供后续参考。你要有些耐心，不要怕多犯错误，本章的主要目的就是让你不要被脚手架的神奇迷惑住了，而要更深入的了解 Rails。

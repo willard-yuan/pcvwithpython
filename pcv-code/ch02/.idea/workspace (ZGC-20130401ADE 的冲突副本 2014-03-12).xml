@@ -5,16 +5,14 @@
     <ignored path="ch02.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/ch2_download_panoramio.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1393252282753" ignored="false" />
-    <file path="/ch2_matching_graph.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1396240965345" ignored="false" />
-    <file path="/ch02_sift_match.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1396457354005" ignored="false" />
-    <file path="/ch02_sift.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1395242440837" ignored="false" />
-    <file path="/ch2_harris_corners.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1395629449136" ignored="false" />
+    <file path="/ch2_matching_graph.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1393253327205" ignored="false" />
+    <file path="/ch02_sift_match.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1394542554769" ignored="false" />
+    <file path="/ch02_sift.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1394508666979" ignored="false" />
+    <file path="/ch2_harris_corners.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1393554132969" ignored="false" />
     <file path="/ch2_match_features_test.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1394542791337" ignored="false" />
     <file path="/ch02_pano_sift.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1394543385697" ignored="false" />
     <file path="/ch02_pano_match.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1394545005683" ignored="false" />
     <file path="/ch02_pydot.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1394545999070" ignored="false" />
-    <file path="/ch4_ar_cube.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1394673429950" ignored="false" />
-    <file path="/ch2_harris_matching.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1396454238021" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +31,59 @@
     <favorites_list name="ch02" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="ch02_pydot.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ch02_pydot.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="42" selection-start="397" selection-end="397" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ch02_pano_match.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ch02_pano_match.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="14" selection-start="1375" selection-end="1375" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ch2_matching_graph.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ch2_matching_graph.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="29" selection-start="2663" selection-end="2663" vertical-scroll-proportion="0.81146026">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ch02_pano_sift.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ch02_pano_sift.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="33" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ch02_pano.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ch02_pano.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="13" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -43,30 +93,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+        <option value="$PROJECT_DIR$/ch2_download_panoramio.py" />
+        <option value="$PROJECT_DIR$/ch2_matching_graph.py" />
+        <option value="$PROJECT_DIR$/ch02_pano.py" />
         <option value="C:/Python27/Lib/site-packages/PCV/localdescriptors/harris.py" />
         <option value="$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py" />
+        <option value="$PROJECT_DIR$/ch2_harris_corners.py" />
+        <option value="$PROJECT_DIR$/ch2_harris_matching.py" />
         <option value="C:/Python27/Lib/site-packages/PCV/localdescriptors/sift.py" />
+        <option value="$PROJECT_DIR$/ch02_sift.py" />
+        <option value="$PROJECT_DIR$/ch02_sift_match.py" />
         <option value="$PROJECT_DIR$/ch2_match_features_test.py" />
         <option value="$PROJECT_DIR$/ch2_matching_graph有问题.py" />
         <option value="$PROJECT_DIR$/ch02_pano_sift.py" />
         <option value="$PROJECT_DIR$/ch02_pydot.py" />
         <option value="$PROJECT_DIR$/ch02_pano_match.py" />
-        <option value="$PROJECT_DIR$/../ch03/ch03_fig3-1_warping.py" />
-        <option value="$PROJECT_DIR$/../ch04/ch4_ar_cube.py" />
-        <option value="$PROJECT_DIR$/ch02_sift.py" />
-        <option value="$PROJECT_DIR$/ch2_matching_graph.py" />
-        <option value="$PROJECT_DIR$/ch2_harris_corners.py" />
-        <option value="$PROJECT_DIR$/ch2_harris_matching.py" />
-        <option value="$PROJECT_DIR$/ch02_sift_match.py" />
-        <option value="F:/dropbox/Dropbox/translation/pcv-notebook/ch02/ch02_sift_match.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="width" value="1456" />
+    <option name="height" value="886" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -101,6 +150,80 @@
               <option name="myItemId" value="ch02" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 2.7.2 (C:/Python27/python.exe) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ch02" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 2.7.2 (C:/Python27/python.exe) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site-packages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ch02" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 2.7.2 (C:/Python27/python.exe) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site-packages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PCV" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ch02" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 2.7.2 (C:/Python27/python.exe) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site-packages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PCV" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="localdescriptors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -120,12 +243,11 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ch04" />
+    <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -135,7 +257,7 @@
       <PyConsoleSettings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.ch02_sift_match">
+  <component name="RunManager" selected="Python.ch2_matching_graph">
     <configuration default="false" name="ch2_download_panoramio" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -188,25 +310,6 @@
       <module name="ch02" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="C:/Python27/Lib/site-packages/PCV/localdescriptors/sift.py" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ch2_harris_matching" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ch02" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ch2_harris_matching.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -421,45 +524,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="ch03_fig3-1_warping" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:/Python27/python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../ch03" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ch02" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../ch03/ch03_fig3-1_warping.py" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ch4_ar_cube" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:/Python27/python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../ch04" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ch02" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../ch04/ch4_ar_cube.py" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <list size="16">
+    <list size="13">
       <item index="0" class="java.lang.String" itemvalue="Python.ch2_matching_graph有问题" />
       <item index="1" class="java.lang.String" itemvalue="Python.ch02_pano_sift" />
       <item index="2" class="java.lang.String" itemvalue="Python.ch2_match_features_test" />
@@ -469,20 +534,16 @@
       <item index="6" class="java.lang.String" itemvalue="Python.ch02_pydot" />
       <item index="7" class="java.lang.String" itemvalue="Python.ch02_pano_match" />
       <item index="8" class="java.lang.String" itemvalue="Python.ch02_pano" />
-      <item index="9" class="java.lang.String" itemvalue="Python.ch2_matching_graph" />
-      <item index="10" class="java.lang.String" itemvalue="Python.ch03_fig3-1_warping" />
-      <item index="11" class="java.lang.String" itemvalue="Python.ch4_ar_cube" />
-      <item index="12" class="java.lang.String" itemvalue="Python.ch2_download_panoramio" />
-      <item index="13" class="java.lang.String" itemvalue="Python.ch2_match_features" />
-      <item index="14" class="java.lang.String" itemvalue="Python.sift" />
-      <item index="15" class="java.lang.String" itemvalue="Python.ch2_harris_matching" />
+      <item index="9" class="java.lang.String" itemvalue="Python.ch2_download_panoramio" />
+      <item index="10" class="java.lang.String" itemvalue="Python.ch2_match_features" />
+      <item index="11" class="java.lang.String" itemvalue="Python.sift" />
+      <item index="12" class="java.lang.String" itemvalue="Python.ch2_matching_graph" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.ch2_harris_matching" />
-        <item index="1" class="java.lang.String" itemvalue="Python.ch2_download_panoramio" />
-        <item index="2" class="java.lang.String" itemvalue="Python.ch2_match_features" />
-        <item index="3" class="java.lang.String" itemvalue="Python.sift" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.ch2_download_panoramio" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ch2_match_features" />
+        <item index="2" class="java.lang.String" itemvalue="Python.sift" />
       </list>
     </recent_temporary>
   </component>
@@ -513,18 +574,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16666667" sideWeight="0.7922948" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3457676" sideWeight="0.79343367" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39917696" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2077052" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20656635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -597,95 +658,111 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="3" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ch02_pano_match.py">
+    <entry file="file://$PROJECT_DIR$/ch2_harris_matching.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="14" selection-start="1375" selection-end="1375" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ch02_pano.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="9" selection-start="365" selection-end="365" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ch03/ch03_fig3-1_warping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="11" selection-start="295" selection-end="295" vertical-scroll-proportion="0.33876812" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ch04/ch4_ar_cube.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="0" selection-start="2875" selection-end="2875" vertical-scroll-proportion="0.30921987" />
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/PCV/localdescriptors/dsift.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/PCV/localdescriptors/sift.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="73" selection-end="73" vertical-scroll-proportion="-0.123188406" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/Python Slide/code/testoop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="1154" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/PCV/localdescriptors/harris.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="4" selection-start="2053" selection-end="2053" vertical-scroll-proportion="0.615942" />
+        <state line="19" column="4" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ch02_pydot.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="65" selection-start="420" selection-end="420" vertical-scroll-proportion="0.33876812" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ch2_matching_graph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="39" selection-start="1507" selection-end="1507" vertical-scroll-proportion="0.49769586" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ch02_sift.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="12" selection-start="566" selection-end="566" vertical-scroll-proportion="0.4295302" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ch2_harris_corners.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="10" selection-start="501" selection-end="501" vertical-scroll-proportion="0.53691274" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ch2_match_features.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="1480" column="30" selection-start="59089" selection-end="59089" vertical-scroll-proportion="0.7076167" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ch2_harris_matching.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="444" selection-end="444" vertical-scroll-proportion="0.6979866" />
+        <state line="17" column="24" selection-start="465" selection-end="465" vertical-scroll-proportion="0.87931037" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch2_harris_corners.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="21" selection-start="66" selection-end="66" vertical-scroll-proportion="0.10344828" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../the-original-book-materials/jesolem-PCV-81e82ee/examples/ch2_match_features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="19" selection-start="39" selection-end="39" vertical-scroll-proportion="-0.10738255" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch02_sift.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="6" selection-start="358" selection-end="358" vertical-scroll-proportion="0.4003623" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch2_download_panoramio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="39" selection-start="510" selection-end="510" vertical-scroll-proportion="0.56771797" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch02_pydot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="42" selection-start="397" selection-end="397" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch02_pano_sift.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="33" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch02_pano.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ch02_sift_match.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="12" selection-start="0" selection-end="979" vertical-scroll-proportion="0.0">
+        <state line="20" column="42" selection-start="575" selection-end="575" vertical-scroll-proportion="0.34115523">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch2_match_features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch02_pano_match.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="14" selection-start="1375" selection-end="1375" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://F:/dropbox/Dropbox/translation/pcv-notebook/ch02/ch02_sift_match.py">
+    <entry file="file://C:/Python27/Lib/site-packages/PCV/localdescriptors/sift.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="6" selection-start="979" selection-end="979" vertical-scroll-proportion="1.181208">
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
+        <state line="115" column="0" selection-start="3315" selection-end="3315" vertical-scroll-proportion="3.4368231">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch2_matching_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="29" selection-start="2663" selection-end="2663" vertical-scroll-proportion="0.81146026">
+          <folding />
         </state>
       </provider>
     </entry>

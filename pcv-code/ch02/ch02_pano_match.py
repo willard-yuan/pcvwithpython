@@ -3,7 +3,7 @@ import glob
 import numpy
 import os
 import pydot
-import sift
+from PCV.localdescriptors import sift
 
 imlist = glob.glob('out/*.jpg')
 siftlist = glob.glob('out/*.sift')

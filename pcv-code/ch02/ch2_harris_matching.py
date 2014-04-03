@@ -11,7 +11,7 @@ This is the Harris point matching example in Figure 2-2.
 
 # Figure 2-2上面的图
 #im1 = array(Image.open("../data/crans_1_small.jpg").convert("L"))
-# = array(Image.open("../data/crans_2_small.jpg").convert("L"))
+#im2 = array(Image.open("../data/crans_2_small.jpg").convert("L"))
 
 # Figure 2-2下面的图
 im1 = array(Image.open("../data/sf_view1.jpg").convert("L"))
