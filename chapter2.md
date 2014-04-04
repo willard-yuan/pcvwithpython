@@ -209,6 +209,58 @@ show()
 ![ch02_sift_match_sf_view12](assets/images/figures/ch02/ch02_sift_match_sf_view12.png)
 ![ch02_sift_detect_crans_1_small](assets/images/figures/ch02/ch02_sift_detect_crans_1_small.png)
 ![ch02_sift_match_sf_crans_12_small](assets/images/figures/ch02/ch02_sift_match_sf_crans_12_small.png)
+![ch02_sift_match_climbing_12_small_with](assets/images/figures/ch02/ch02_sift_match_climbing_12_small_with.png)
+
+<h2 id="sec-2-3">2.3 地理标记图像匹配</h2>
+
+在结束本章前，我们看一个用局部描述子对地理标记图像进行匹配的例子。
+
+<h3 id="sec-2-3-1">2.3.1 从Panoramio下载地理标记图像</h3>
+
+利用谷歌的图片分享服务[Panoramio](http://www.panoramio.com/)，可以下载地理标记图像。像很多其他的web服务一样，Panoramio提供了API接口，通过提交HTTP GET请求url：
+
+```text
+http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&
+from=0&to=20&minx=-180&miny=-90&maxx=180&maxy=90&size=medium
+```
+上面minx、miny、maxx、maxy定义了获取照片的地理区域。下面代码是获取白宫地理区域的照片实例：
+
+```
+# -*- coding: utf-8 -*-
+import json
+import os
+import urllib
+import urlparse
+
+#change the longitude and latitude here
+#here is the longitude and latitude for Oriental Pearl
+minx = '-77.037564'
+maxx = '-77.035564'
+miny = '38.896662'
+maxy = '38.898662'
+
+#number of photos
+numfrom = '0'
+numto = '20'
+url = 'http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=' + numfrom + '&to=' + numto + '&minx=' + minx + '&miny=' + miny + '&maxx=' + maxx + '&maxy=' + maxy + '&size=medium'
+
+#this is the url configured for downloading whitehouse photos. Uncomment this, run and see.
+#url = 'http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=20&minx=-77.037564&miny=38.896662&maxx=-77.035564&maxy=38.898662&size=medium'
+
+c = urllib.urlopen(url)
+
+j = json.loads(c.read())
+imurls = []
+for im in j['photos']:
+    imurls.append(im['photo_file_url'])
+
+for url in imurls:
+    image = urllib.URLopener()
+    image.retrieve(url, os.path.basename(urlparse.urlparse(url).path))
+    print 'downloading:', url
+```
+译者稍微修改了原书的代码，上面`numto`是设置下载照片的数目。下图显示了运行上面代码后下载到的20张图片。现在我们便可以用这些图片利用局部特征对其进行匹配了。
+
 本章我们要开发一个简单的演示应用程序来展示一下 Rails 强大的功能。我们会使用脚手架（scaffold）功能快速的生成程序，这样就能以一定的高度概览一下 Ruby on Rails 编程的过程（也能大致的了解一下 Web 开发）。正如在第一章的[旁注 1.1](chapter1.html#box-1-1) 中所说，本书将采用另一种方法，我们会循序渐进的开发程序，遇到新的概念都会详细说明，不过为了概览功能（也为了寻找成就感）也无需对脚手架避而不谈。我们可以通过 URI 和最终的演示程序进行交互，了解一下 Rails 应用程序的结构，也第一次演示 Rails 使用的 REST 架构。
 
 和后面的大型示例程序类似，这个演示程序将包含用户（users）和微博（microposts）两个模型（因此实现了一个小型的 Twitter 类程序）。程序的功能还需要后续的开发，而且开发过程中的很多步骤看起来也很神秘，不过暂时不用担心：从第三章起将从零开始再开发一个类似的程序，我还会提供大量的资料供后续参考。你要有些耐心，不要怕多犯错误，本章的主要目的就是让你不要被脚手架的神奇迷惑住了，而要更深入的了解 Rails。
