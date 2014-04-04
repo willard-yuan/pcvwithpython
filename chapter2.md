@@ -225,7 +225,7 @@ from=0&to=20&minx=-180&miny=-90&maxx=180&maxy=90&size=medium
 ```
 上面minx、miny、maxx、maxy定义了获取照片的地理区域。下面代码是获取白宫地理区域的照片实例：
 
-```
+```python
 # -*- coding: utf-8 -*-
 import json
 import os
