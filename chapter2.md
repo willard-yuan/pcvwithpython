@@ -231,6 +231,9 @@ import json
 import os
 import urllib
 import urlparse
+from PCV.tools.imtools import get_imlist
+from pylab import *
+from PIL import  Image
 
 #change the longitude and latitude here
 #here is the longitude and latitude for Oriental Pearl
@@ -245,7 +248,9 @@ numto = '20'
 url = 'http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=' + numfrom + '&to=' + numto + '&minx=' + minx + '&miny=' + miny + '&maxx=' + maxx + '&maxy=' + maxy + '&size=medium'
 
 #this is the url configured for downloading whitehouse photos. Uncomment this, run and see.
-#url = 'http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=20&minx=-77.037564&miny=38.896662&maxx=-77.035564&maxy=38.898662&size=medium'
+#url = 'http://www.panoramio.com/map/get_panoramas.php?order=popularity&\
+#set=public&from=0&to=20&minx=-77.037564&miny=38.896662&\
+#maxx=-77.035564&maxy=38.898662&size=medium'
 
 c = urllib.urlopen(url)
 
@@ -258,8 +263,21 @@ for url in imurls:
     image = urllib.URLopener()
     image.retrieve(url, os.path.basename(urlparse.urlparse(url).path))
     print 'downloading:', url
+
+#显示下载到的20幅图像
+figure()
+gray()
+filelist = get_imlist('./')
+for i, imlist in enumerate(filelist):
+    im=Image.open(imlist)
+    subplot(4,5,i+1)
+    imshow(im)
+    axis('off')
+show()
 ```
-译者稍微修改了原书的代码，上面`numto`是设置下载照片的数目。下图显示了运行上面代码后下载到的20张图片。现在我们便可以用这些图片利用局部特征对其进行匹配了。
+译者稍微修改了原书的代码，上面`numto`是设置下载照片的数目。运行上面代码可在脚本所在的目录下得到下载到的20张图片，代码后面部分为译者所加，用于显示下载到的20幅图像：
+![panoramio](assets/images/figures/ch02/panoramio.png)
+现在我们便可以用这些图片利用局部特征对其进行匹配了。
 
 本章我们要开发一个简单的演示应用程序来展示一下 Rails 强大的功能。我们会使用脚手架（scaffold）功能快速的生成程序，这样就能以一定的高度概览一下 Ruby on Rails 编程的过程（也能大致的了解一下 Web 开发）。正如在第一章的[旁注 1.1](chapter1.html#box-1-1) 中所说，本书将采用另一种方法，我们会循序渐进的开发程序，遇到新的概念都会详细说明，不过为了概览功能（也为了寻找成就感）也无需对脚手架避而不谈。我们可以通过 URI 和最终的演示程序进行交互，了解一下 Rails 应用程序的结构，也第一次演示 Rails 使用的 REST 架构。
 
