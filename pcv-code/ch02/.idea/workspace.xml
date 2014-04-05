@@ -120,12 +120,12 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ch04" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -460,22 +460,22 @@
       <method />
     </configuration>
     <list size="16">
-      <item index="0" class="java.lang.String" itemvalue="Python.ch2_matching_graph有问题" />
-      <item index="1" class="java.lang.String" itemvalue="Python.ch02_pano_sift" />
-      <item index="2" class="java.lang.String" itemvalue="Python.ch2_match_features_test" />
-      <item index="3" class="java.lang.String" itemvalue="Python.ch2_harris_corners" />
-      <item index="4" class="java.lang.String" itemvalue="Python.ch02_sift" />
-      <item index="5" class="java.lang.String" itemvalue="Python.ch02_sift_match" />
-      <item index="6" class="java.lang.String" itemvalue="Python.ch02_pydot" />
-      <item index="7" class="java.lang.String" itemvalue="Python.ch02_pano_match" />
-      <item index="8" class="java.lang.String" itemvalue="Python.ch02_pano" />
-      <item index="9" class="java.lang.String" itemvalue="Python.ch2_matching_graph" />
-      <item index="10" class="java.lang.String" itemvalue="Python.ch03_fig3-1_warping" />
-      <item index="11" class="java.lang.String" itemvalue="Python.ch4_ar_cube" />
-      <item index="12" class="java.lang.String" itemvalue="Python.ch2_download_panoramio" />
-      <item index="13" class="java.lang.String" itemvalue="Python.ch2_match_features" />
-      <item index="14" class="java.lang.String" itemvalue="Python.sift" />
-      <item index="15" class="java.lang.String" itemvalue="Python.ch2_harris_matching" />
+      <item index="0" class="java.lang.String" itemvalue="Python.ch2_download_panoramio" />
+      <item index="1" class="java.lang.String" itemvalue="Python.ch2_match_features" />
+      <item index="2" class="java.lang.String" itemvalue="Python.sift" />
+      <item index="3" class="java.lang.String" itemvalue="Python.ch2_harris_matching" />
+      <item index="4" class="java.lang.String" itemvalue="Python.ch2_matching_graph有问题" />
+      <item index="5" class="java.lang.String" itemvalue="Python.ch02_pano_sift" />
+      <item index="6" class="java.lang.String" itemvalue="Python.ch2_match_features_test" />
+      <item index="7" class="java.lang.String" itemvalue="Python.ch2_harris_corners" />
+      <item index="8" class="java.lang.String" itemvalue="Python.ch02_sift" />
+      <item index="9" class="java.lang.String" itemvalue="Python.ch02_sift_match" />
+      <item index="10" class="java.lang.String" itemvalue="Python.ch02_pydot" />
+      <item index="11" class="java.lang.String" itemvalue="Python.ch02_pano_match" />
+      <item index="12" class="java.lang.String" itemvalue="Python.ch02_pano" />
+      <item index="13" class="java.lang.String" itemvalue="Python.ch2_matching_graph" />
+      <item index="14" class="java.lang.String" itemvalue="Python.ch03_fig3-1_warping" />
+      <item index="15" class="java.lang.String" itemvalue="Python.ch4_ar_cube" />
     </list>
     <recent_temporary>
       <list size="4">
@@ -673,20 +673,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ch02_sift_match.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="12" selection-start="0" selection-end="979" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="27" column="12" selection-start="0" selection-end="979" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://F:/dropbox/Dropbox/translation/pcv-notebook/ch02/ch02_sift_match.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="6" selection-start="979" selection-end="979" vertical-scroll-proportion="1.181208">
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="37" column="6" selection-start="979" selection-end="979" vertical-scroll-proportion="1.181208" />
       </provider>
     </entry>
   </component>
