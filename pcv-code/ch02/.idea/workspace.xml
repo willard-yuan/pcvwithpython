@@ -15,6 +15,7 @@
     <file path="/ch02_pydot.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1394545999070" ignored="false" />
     <file path="/ch4_ar_cube.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1394673429950" ignored="false" />
     <file path="/ch2_harris_matching.py" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1396454238021" ignored="false" />
+    <file path="/Dummy.txt" changelist="a1c0e818-2ae0-4869-8387-0151ec536826" time="1396665361168" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,17 +34,35 @@
     <favorites_list name="ch02" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="ch2_download_panoramio.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ch2_download_panoramio.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="18" selection-start="249" selection-end="249" vertical-scroll-proportion="0.34408602">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="SYNC_SETTING" value="DONT" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="C:/Python27/Lib/site-packages/PCV/localdescriptors/harris.py" />
         <option value="$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py" />
         <option value="C:/Python27/Lib/site-packages/PCV/localdescriptors/sift.py" />
         <option value="$PROJECT_DIR$/ch2_match_features_test.py" />
@@ -59,6 +78,7 @@
         <option value="$PROJECT_DIR$/ch2_harris_matching.py" />
         <option value="$PROJECT_DIR$/ch02_sift_match.py" />
         <option value="F:/dropbox/Dropbox/translation/pcv-notebook/ch02/ch02_sift_match.py" />
+        <option value="$PROJECT_DIR$/ch2_download_panoramio.py" />
       </list>
     </option>
   </component>
@@ -68,7 +88,7 @@
     <option name="width" value="1382" />
     <option name="height" value="754" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -120,9 +140,9 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="options.lastSelected" value="settings.github" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ch04" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/GitHub.appref-ms" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -514,13 +534,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16666667" sideWeight="0.7922948" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1689394" sideWeight="0.7922948" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39917696" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -601,11 +621,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ch02_pano_match.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="14" selection-start="1375" selection-end="1375" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ch02_pano.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="9" selection-start="365" selection-end="365" vertical-scroll-proportion="0.0" />
@@ -679,6 +694,13 @@
     <entry file="file://F:/dropbox/Dropbox/translation/pcv-notebook/ch02/ch02_sift_match.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="6" selection-start="979" selection-end="979" vertical-scroll-proportion="1.181208" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ch2_download_panoramio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="18" selection-start="249" selection-end="249" vertical-scroll-proportion="0.34408602">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
