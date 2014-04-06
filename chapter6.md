@@ -3,6 +3,8 @@ layout: chapter
 title: 第六章 图像聚类
 ---
 
+这一章会介绍几种聚类方法，并就怎么使用它们对图像进行聚类找出相似的图像组进行说明。聚类可以用于识别，划分图像数据集、组织导航等。同时，我们也会用聚类相似的图像进行可视化。
+
 <h2 id="sec-6-1">6.1 K-Means聚类</h2>
 
 K-means是一种非常简单的聚类算法，它能够将输入数据划分成k个簇。关于K-means聚类算法的介绍可以参阅中译本。
@@ -45,7 +47,77 @@ show()
 上面代码中where()函数给出每类的索引。运行上面代码，可得到原书P129页图6-1，即：
 ![ch06_fig61_kmeans-2D](assets/images/figures/ch06/ch06_fig61_kmeans-2D.png)
 
-<h3 id="sec-6-1-2">6.1.3 图像聚类</h3>
+<h3 id="sec-6-1-2">6.1.2 图像聚类</h3>
+
+现在我们用k-means对原书14页的图像进行聚类，文件selectedfontimages.zip包含了66张字体图像。对于每一张图像，我们用在前40个主成分上投影后的系数作为特征向量。下面为对其进行聚类的代码：
+
+```python
+ # -*- coding: utf-8 -*-
+from PCV.tools import imtools
+import pickle
+from scipy import *
+from pylab import *
+from PIL import Image
+from scipy.cluster.vq import *
+from PCV.tools import pca
+
+# Uses sparse pca codepath.
+imlist = imtools.get_imlist('../data/selectedfontimages/a_selected_thumbs/')
+
+# 获取图像列表和他们的尺寸
+im = array(Image.open(imlist[0]))  # open one image to get the size
+m, n = im.shape[:2]  # get the size of the images
+imnbr = len(imlist)  # get the number of images
+print "The number of images is %d" % imnbr
+
+# Create matrix to store all flattened images
+immatrix = array([array(Image.open(imname)).flatten() for imname in imlist], 'f')
+
+# PCA降维
+V, S, immean = pca.pca(immatrix)
+
+# 保存均值和主成分
+#f = open('./a_pca_modes.pkl', 'wb')
+f = open('./a_pca_modes.pkl', 'wb')
+pickle.dump(immean,f)
+pickle.dump(V,f)
+f.close()
+
+
+# get list of images
+imlist = imtools.get_imlist('../data/selectedfontimages/a_selected_thumbs/')
+imnbr = len(imlist)
+
+# load model file
+with open('../data/selectedfontimages/a_pca_modes.pkl','rb') as f:
+    immean = pickle.load(f)
+    V = pickle.load(f)
+# create matrix to store all flattened images
+immatrix = array([array(Image.open(im)).flatten() for im in imlist],'f')
+
+# project on the 40 first PCs
+immean = immean.flatten()
+projected = array([dot(V[:40],immatrix[i]-immean) for i in range(imnbr)])
+
+# k-means
+projected = whiten(projected)
+centroids,distortion = kmeans(projected,4)
+code,distance = vq(projected,centroids)
+
+# plot clusters
+for k in range(4):
+    ind = where(code==k)[0]
+    figure()
+    gray()
+    for i in range(minimum(len(ind),40)):
+        subplot(4,10,i+1)
+        imshow(immatrix[ind[i]].reshape((25,25)))
+        axis('off')
+show()
+```
+运行上面代码，可得到下面的聚类结果：
+![2014-04-06 12_47_22-Programming.Computer.Vision.with.Python1.pdf - Adobe Acrobat Pro](assets/images/figures/ch06/2014-04-06 12_47_22-Programming.Computer.Vision.with.Python1.pdf - Adobe Acrobat Pro.png)
+注：这里的结果译者截的是原书上的结果，上面代码实际运行出来的结果可能跟上面有出入。
 
 <h3 id="sec-6-1-3">6.1.3 在主成分上可视化图像</h3>
 
@@ -272,7 +344,7 @@ hcluster.draw_dendrogram(tree,imlist,filename='sunset.pdf')
 ![ch06_P140-Fig6.6_02](assets/images/figures/ch06/ch06_P140-Fig6.6_02.png)
 ![ch06_P140-Fig6.6_01](assets/images/figures/ch06/ch06_P140-Fig6.6_01.png)
 同时会在上面脚本文件所在的文件夹下生成层次聚类后的簇群树：
-![sunset](assets/images/figures/ch06/sunset.png)
+![sunset_meitu](assets/images/figures/ch06/sunset_meitu.png)
 我们对前面字体图像同样创建一个树，正如前面在主成分可视化图像中，我们添加了下面代码：
 
 ```
@@ -280,7 +352,7 @@ tree = hcluster.hcluster(projected)
 hcluster.draw_dendrogram(tree,imlist,filename='fonts.png')
 ```
 运行添加上面两行代码后前面的例子，可得对字体进行层次聚类后的簇群树：
-![fonts](assets/images/figures/ch06/fonts.png)
+![fonts_meitu](assets/images/figures/ch06/fonts_meitu.png)
 
 <h2 id="sec-6-3">6.3 谱聚类</h2>
 
@@ -337,11 +409,7 @@ for c in range(k):
 show()
 ```
 上面我们在前个特征向量上计算标准的k-means。下面是运行上面代码的结果：
-![ch06_fig6-8_01](assets/images/figures/ch06/ch06_fig6-8_01.png)
-![ch06_fig6-8_02](assets/images/figures/ch06/ch06_fig6-8_02.png)
-![ch06_fig6-8_03](assets/images/figures/ch06/ch06_fig6-8_03.png)
-![ch06_fig6-8_04](assets/images/figures/ch06/ch06_fig6-8_04.png)
-![ch06_fig6-8_05](assets/images/figures/ch06/ch06_fig6-8_05.png)
+![ch06_fig6-8](assets/images/figures/ch06/ch06_fig6-8.png)
 注意，由于在k-means阶段会给出不同的聚类结果，所以你运行上面代码出来的结果可能跟译者的是不一样的。
 
 
