@@ -64,7 +64,7 @@ layout: default
 			<li><a href="{{ site.url }}preface.html" title="致中国读者">致中国读者</a></li>
 			<li><a href="{{ site.url }}foreword.html" title="序">序</a></li>
 			<li><a href="{{ site.url }}chapter1.html" title="第一章 图像处理基础">第一章 图像处理基础(完成)</a></li>
-			<li><a href="{{ site.url }}chapter2.html" title="第二章 图像局部描述符">第二章 图像局部描述符</a></li>
+			<li><a href="{{ site.url }}chapter2.html" title="第二章 图像局部描述符">第二章 图像局部描述符(完成)</a></li>
 			<li><a href="{{ site.url }}chapter3.html" title="第三章 基本静态的页面">第三章 基本静态的页面</a></li>
 			<li><a href="{{ site.url }}chapter4.html" title="第四章 Rails 背后的 Ruby">第四章 Rails 背后的 Ruby</a></li>
 			<li><a href="{{ site.url }}chapter5.html" title="第五章 完善布局">第五章 完善布局</a></li>
