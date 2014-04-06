@@ -301,7 +301,7 @@ number of clusters 2
 ```
 
 
-<h2 id="sec-6-2-1">6.2.1 图像聚类</h2>
+<h3 id="sec-6-2-1">6.2.1 图像聚类</h3>
 
 ```python
  # -*- coding: utf-8 -*-
