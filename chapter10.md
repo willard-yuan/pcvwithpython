@@ -270,7 +270,48 @@ print frames.shape
 
 跟踪是对视频帧序列中的物体进行跟踪。
 
-<h3 id="sec-10-3-2">10.4.1 光流法</h3>
+<h3 id="sec-10-4-1">10.4.1 光流法</h3>
+
+<h3 id="sec-10-4-2">10.4.2 Lucas-Kanade算法</h3>
+
+Lucas-Kanade算法原理这里略，具体可以参阅中译本。
+
+```python
+import lktrack
+
+imnames = ['../data/bt/bt.003.pgm', '../data/bt/bt.002.pgm', '../data/bt/bt.001.pgm', '../data/bt/bt.000.pgm']
+# create tracker object
+lkt = lktrack.LKTracker(imnames)
+# detect in first frame, track in the remaining
+lkt.detect_points()
+lkt.draw()
+for i in range(len(imnames)-1):
+    lkt.track_points()
+    lkt.draw()
+```
+![LKtrack-bt](assets/images/figures/ch10/LKtrack-bt.png)
+
+```python
+import lktrack
+from pylab import *
+imnames = ['../data/viff/viff.000.ppm', '../data/viff/viff.001.ppm',
+           '../data/viff/viff.002.ppm', '../data/viff/viff.003.ppm', '../data/viff/viff.004.ppm']
+# track using the LKTracker generator
+lkt = lktrack.LKTracker(imnames)
+for im,ft in lkt.track():
+    print 'tracking %d features' % len(ft)
+
+# plot the tracks
+figure()
+imshow(im)
+for p in ft:
+    plot(p[0],p[1],'bo')
+for t in lkt.tracks:
+    plot([p[0] for p in t],[p[1] for p in t])
+axis('off')
+show()
+```
+![ch10_fig10-6_generator](assets/images/figures/ch10/ch10_fig10-6_generator.png)
 
 我们在[第九章](chapter9.html)中已经实现了一个完整且符合 REST 架构的资源：用户，本章我们要再实现一个资源：用户微博（micropost）。<sup>[1](#fn-1)</sup>微博是由用户发布的一种简短消息，我们在[第二章](chapter2.html)中实现了微博的雏形。 本章我们会在 [2.3 节](chapter2.html#sec-2-3)的基础上，实现一个功能完善的 Microposts 资源。首先，我们要创建微博所需的数据模型，通过  `has_many` 和 `belongs_to` 方法把微博和用户关联起来，再建立处理和显示微博所需的表单及局部视图。在 [第十一章](chapter11.html)，还要加入关注其他用户的功能，其时，我们这个山寨版 Twitter 才算完成。
 
