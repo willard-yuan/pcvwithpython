@@ -202,6 +202,76 @@ cv2.imwrite('../images/ch10/ch10_P261_Fig10-3.jpg',vis)
 
 <h3 id="sec-10-3-1">10.3.1 视频输入</h3>
 
+OpenCV能够很好地支持视频的读入。下面的例子展示了捕获视频帧，并在OpenCV窗口中显示它们：
+
+```python
+import cv2
+# setup video capture
+cap = cv2.VideoCapture(0)
+while True:
+    ret,im = cap.read()
+    cv2.imshow('video test',im)
+    key = cv2.waitKey(10)
+    if key == 27:
+        break
+    if key == ord(' '):
+    cv2.imwrite('vid_result.jpg',im)
+```
+上面VideoCapture从摄像头或文件中捕获视频。这里我们给它传递了一个整数作为初始化参数，它实际是视频设备的ID号，对于单个连着的摄像头，其ID号为0。read()方法解码并返回下一视频帧。waitKey()函数等待用户按下“Esc”(对应的ASCII码为27)终止应用，或按“space”将当前帧保存起来。
+
+我们将上面例子进行拓展，使其能够在OpenCV窗口中对输出的视频进行模糊。对上面的例子进行稍微的修改便可实现该功能：
+
+```python
+import cv2
+# setup video capture
+cap = cv2.VideoCapture(0)
+# get frame, apply Gaussian smoothing, show result
+while True:
+    ret,im = cap.read()
+    blur = cv2.GaussianBlur(im,(0,0),10)
+    cv2.imshow('camera blur',blur)
+    if cv2.waitKey(10) == 27:
+        break
+```
+上面对每一帧图像，将其传给GaussianBlur()函数，该函数实现对图像进行高斯滤波。在这个实例中，我们传递的是彩色图像，每一个颜色通道可以分别对其进行模糊。该函数以一个滤波器大小元组及高斯函数的标准差作为输入，如果滤波器大小设置为0，则它自动赋为标准差。运行上面的结果如下：
+![camera-blur](assets/images/figures/ch10/camera-blur.png)
+
+<h3 id="sec-10-3-2">10.3.2 读取视频到NumPy数组</h3>
+
+OpenCV可以从一个文件中读取视频帧序列，并将它们转换成NumPy数组。下面给出了一个从摄像头捕获视频，并将它们存储在NumPy数组中的例子。
+
+```python
+import cv2
+from pylab import *
+# setup video capture
+cap = cv2.VideoCapture(0)
+frames = []
+# get frame, store in array
+while True:
+    ret,im = cap.read()
+	cv2.imshow('video',im)
+	frames.append(im)
+	if cv2.waitKey(10) == 27:
+		break
+frames = array(frames)
+# check the sizes
+print im.shape
+print frames.shape
+```
+上面每一帧数组会被添加到列表的末尾直到捕获终止。打印出的数组大小表示的帧数、高度、宽度、3。运行上面代码打印出的结果为：
+
+```text
+(480, 640, 3)
+(40, 480, 640, 3)
+```
+这里，记录了40帧。类似如这样的视频数据数组非常适合视频处理，比兔计算视频帧差异以及跟踪。
+
+<h2 id="sec-10-4">10.4 跟踪</h2>
+
+跟踪是对视频帧序列中的物体进行跟踪。
+
+<h3 id="sec-10-3-2">10.4.1 光流法</h3>
+
 我们在[第九章](chapter9.html)中已经实现了一个完整且符合 REST 架构的资源：用户，本章我们要再实现一个资源：用户微博（micropost）。<sup>[1](#fn-1)</sup>微博是由用户发布的一种简短消息，我们在[第二章](chapter2.html)中实现了微博的雏形。 本章我们会在 [2.3 节](chapter2.html#sec-2-3)的基础上，实现一个功能完善的 Microposts 资源。首先，我们要创建微博所需的数据模型，通过  `has_many` 和 `belongs_to` 方法把微博和用户关联起来，再建立处理和显示微博所需的表单及局部视图。在 [第十一章](chapter11.html)，还要加入关注其他用户的功能，其时，我们这个山寨版 Twitter 才算完成。
 
 如果你使用 Git 做版本控制的话，和之前一样，我建议你新建一个分支：
