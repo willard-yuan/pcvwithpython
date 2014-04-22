@@ -3,6 +3,93 @@ layout: chapter
 title: 第九章 更新、显示和删除用户
 ---
 
+```python
+from pygraph.classes.digraph import digraph
+from pygraph.algorithms.minmax import maximum_flow
+
+gr = digraph()
+gr.add_nodes([0,1,2,3])
+gr.add_edge((0,1), wt=4)
+gr.add_edge((1,2), wt=3)
+gr.add_edge((2,3), wt=5)
+gr.add_edge((0,2), wt=3)
+gr.add_edge((1,3), wt=4)
+flows,cuts = maximum_flow(gr,0,3)
+print 'flow is:', flows
+print 'cut is:', cuts
+```
+
+```text
+flow is: {(0, 1): 4, (1, 2): 0, (1, 3): 4, (2, 3): 3, (0, 2): 3}
+cut is: {0: 0, 1: 1, 2: 1, 3: 1}
+```
+
+```python
+from scipy.misc import imresize
+from PCV.tools import graphcut
+from PIL import Image
+from pylab import *
+
+im = array(Image.open("../data/empire.jpg"))
+im = imresize(im, 0.07)
+size = im.shape[:2]
+
+# add two rectangular training regions
+labels = zeros(size)
+labels[3:18, 3:18] = -1
+labels[-18:-3, -18:-3] = 1
+
+# create graph
+g = graphcut.build_bayes_graph(im, labels, kappa=1)
+
+# cut the graph
+res = graphcut.cut_graph(g, size)
+
+figure()
+graphcut.show_labeling(im, labels)
+
+figure()
+imshow(res)
+gray()
+axis('off')
+show()
+```
+
+P203
+
+```python
+from PCV.tools import rof
+from pylab import *
+from PIL import Image
+import scipy.misc
+
+
+
+#im = array(Image.open('../data/ceramic-houses_t0.png').convert("L"))
+im = array(Image.open('../data/flower32_t0.png').convert("L"))
+figure()
+gray()
+subplot(131)
+axis('off')
+imshow(im)
+
+U, T = rof.denoise(im, im, tolerance=0.001)
+subplot(132)
+axis('off')
+imshow(U)
+
+#t = 0.4  # ceramic-houses_t0 threshold
+t = 0.8  # flower32_t0 threshold
+seg_im = U < t*U.max()
+#scipy.misc.imsave('ceramic-houses_t0_result.pdf', seg_im)
+scipy.misc.imsave('flower32_t0_result.pdf', seg_im)
+subplot(133)
+axis('off')
+imshow(seg_im)
+
+show()
+```
+
 本章我们要完成[表格 7.1](chapter7.html#table-7-1)所示的Users 资源，添加 `edit`、`update`、`index` 和 `destroy` 动作。首先我们要实现更新用户个人资料的功能，实现这样的功能自然要依靠安全验证系统（基于[第八章](chapter8.html)中实现的权限限制））。然后要创建一个页面列出所有的用户（也需要权限限制），期间会介绍示例数据和分页功能。最后，我们还要实现删除用户的功能，从数据库中删除用户记录。我们不会为所有用户都提供这种强大的权限，而是会创建管理员，授权他们来删除用户。
 
 在开始之前，我们要新建 `updating-users` 分支：
