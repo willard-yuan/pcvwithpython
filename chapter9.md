@@ -1,7 +1,9 @@
 ---
 layout: chapter
-title: 第九章 更新、显示和删除用户
+title: 第九章 图像分割
 ---
+
+图像分割是将一幅图像分割成有意义区域的过程。区域可以是图像的前景与背景或者单个对象。这些区域可以利用诸如颜色、边线或近邻相似性等特征构建。本章中，我们将看到一些不同的分割技术。
 
 ```python
 from pygraph.classes.digraph import digraph
@@ -89,6 +91,8 @@ imshow(seg_im)
 
 show()
 ```
+![ch09_fig9-7_flowers](assets/images/figures/ch09/ch09_fig9-7_flowers.png)
+![ch09_fig9-7](assets/images/figures/ch09/ch09_fig9-7.png)
 
 本章我们要完成[表格 7.1](chapter7.html#table-7-1)所示的Users 资源，添加 `edit`、`update`、`index` 和 `destroy` 动作。首先我们要实现更新用户个人资料的功能，实现这样的功能自然要依靠安全验证系统（基于[第八章](chapter8.html)中实现的权限限制））。然后要创建一个页面列出所有的用户（也需要权限限制），期间会介绍示例数据和分页功能。最后，我们还要实现删除用户的功能，从数据库中删除用户记录。我们不会为所有用户都提供这种强大的权限，而是会创建管理员，授权他们来删除用户。
 
