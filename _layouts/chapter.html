@@ -7,6 +7,11 @@
 	<div class="main">
         {{ content }}
     </div>
+
+    <div class="navigation">
+        <a class="prev_page" href="{{page.next.url}}">{{page.previous.title}}</a>
+        <a class="next_page" href="{{page.next.url}}">{{page.next.title}}</a>
+    </div>
 </div>
 
 {% include _footer.html %}
