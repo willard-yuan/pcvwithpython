@@ -8,5 +8,20 @@
         {{ content }}
     </div>
 </div>
+<div id="page-navigation"> 
+        <div class="clearfix">&nbsp;</div> 
+		<div class="pull-left"> 
+			{% if page.previous.url %} 
+			<a href="{{page.next.url}}" title="Previous Post: {{page.previous.title}}"><i class="icon-double-angle-left"></i>{{page.previous.title}}</a> 
+			{% endif %} 
+		</div> 
+
+		<div class="pull-right"> 
+			{% if page.next.url %} 
+			<a href="{{page.next.url}}" title="next Post:{{page.next.title}}"><i class="icon-double-angle-right"></i>{{page.next.title}} </a> 
+			{% endif %} 
+		</div>
+        <div class="clearfix">&nbsp;</div> 		
+</div>
 
 {% include _footer.html %}
