@@ -34,7 +34,7 @@ layout: default
 	
 	<div class="buy">
 	<h3>购买中译本</h3>
-	<p><a class="btn info" href="http://www.ituring.com.cn/book/1349?q=python" title="在图灵购买本书">在图灵购买本书</a>&nbsp;&nbsp;<a class="btn" href="http://pan.baidu.com/share/link?shareid=4032779507&uk=3440544532" title="全书数据下载">全书数据下载</a></p>
+	<p><a class="btn info" href="http://www.ituring.com.cn/book/1349?q=python" title="在图灵购买本书">在图灵购买本书</a>&nbsp;&nbsp;<a class="btn info" href="http://pan.baidu.com/share/link?shareid=4032779507&uk=3440544532" title="全书数据下载">全书数据下载</a></p>
 	</div>
 
 <!--	<div class="buy">
