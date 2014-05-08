@@ -34,7 +34,7 @@ layout: default
 	
 		<div class="buy">
 	<h3>购买中译本</h3>
-		<p><a class="btn info" href="http://www.ituring.com.cn/book/1349?q=python" title="在图灵购买本书">在图灵购买本书</a><br/>
+		<p><a class="checkbox info" href="http://www.ituring.com.cn/book/1349?q=python" title="在图灵购买本书">在图灵购买本书</a><br/>
 	</div>
 
 <!--	<div class="buy">
