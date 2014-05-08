@@ -21,19 +21,6 @@ layout: default
 		<dd>PDF, HTML</dd>
 	</dl>
 
-	<div class="buy">
-	<h3>购买中译本</h3>
-		<p><a class="btn info" href="http://www.ituring.com.cn/book/1349?q=python" title="在图灵购买本书">在图灵购买本书</a><br />
-	</div>
-
-<!--	<div class="buy">
-	<p><a class="btn" href="http://www.ituring.com.cn/book/1333" title="使用支付宝购买电子书">支付宝付款</a>&nbsp;&nbsp;<a class="btn" href="https://sellfy.com/p/qwyU/" title="在图灵社区购买电子书">PayPal 付款</a></p>
-	<ol class="notes">
-		<li>电子书包含三种格式：PDF、ePub 和 mobi；</li>
-        <li>使用支付宝购买只有 PDF 和 mobi 两种格式；</li>
-		<li>购买后，错误修正等更新免费获取，不再收费；</li>
-	</ol>
-	</div> -->
 
 	<div class="buy">
 	<p><a class="btn" href="http://programmingcomputervision.com/" title="源码下载">原书项目主页(已挂)</a>&nbsp;&nbsp;<a class="btn" href="https://github.com/willard-yuan/pcv-book-code" title="中译本源码下载">中译本源码下载(推荐)</a></p>
@@ -44,6 +31,20 @@ layout: default
         <li>完善了书中的实例；</li>
 	</ol>
 	</div>
+	
+		<div class="buy">
+	<h3>购买中译本</h3>
+		<p><a class="btn info" href="http://www.ituring.com.cn/book/1349?q=python" title="在图灵购买本书">在图灵购买本书</a><br/>
+	</div>
+
+<!--	<div class="buy">
+	<p><a class="btn" href="http://www.ituring.com.cn/book/1333" title="使用支付宝购买电子书">支付宝付款</a>&nbsp;&nbsp;<a class="btn" href="https://sellfy.com/p/qwyU/" title="在图灵社区购买电子书">PayPal 付款</a></p>
+	<ol class="notes">
+		<li>电子书包含三种格式：PDF、ePub 和 mobi；</li>
+        <li>使用支付宝购买只有 PDF 和 mobi 两种格式；</li>
+		<li>购买后，错误修正等更新免费获取，不再收费；</li>
+	</ol>
+	</div> -->
 
 </div>
 
