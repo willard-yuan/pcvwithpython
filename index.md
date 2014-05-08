@@ -10,7 +10,7 @@ layout: default
 		<dt>作者：</dt>
 		<dd>[瑞典] Jan Erik Solem</dd>
 		<dt>译者：</dt>
-		<dd>朱文涛 & 袁勇</dd>
+		<dd>朱文涛 & <a href="http://yuanyong.org/">袁勇</a></dd>
 		<dt>Python：</dt>
 		<dd>2.7.x</dd>
 		<dt>页数：</dt>
@@ -23,7 +23,7 @@ layout: default
 
 	<div class="buy">
 	<h3>购买中译本</h3>
-		<p><a class="btn info" href="https://sellfy.com/p/qwyU/" title="在图灵购买本书">在图灵购买本</a><br />
+		<p><a class="btn info" href="http://www.ituring.com.cn/book/1349?q=python" title="在图灵购买本书">在图灵购买本书</a><br />
 	</div>
 
 <!--	<div class="buy">
@@ -36,7 +36,7 @@ layout: default
 	</div> -->
 
 	<div class="buy">
-	<p><a class="btn" href="http://programmingcomputervision.com/" title="使用支付宝购买电子书">原书源码下载</a>&nbsp;&nbsp;<a class="btn" href="https://github.com/willard-yuan/pcv-book-code" title="中译本源码下载">中译本源码下载(推荐)</a></p>
+	<p><a class="btn" href="http://programmingcomputervision.com/" title="源码下载">原书项目主页(已挂)</a>&nbsp;&nbsp;<a class="btn" href="https://github.com/willard-yuan/pcv-book-code" title="中译本源码下载">中译本源码下载(推荐)</a></p>
 	<ol class="notes">
 		<li>中译本源码部分调试完毕，后续源码敬请期待；</li>
         <li>原英文书源码和数据库不全，推荐中译本源码；</li>
