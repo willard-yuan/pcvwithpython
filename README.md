@@ -1,37 +1,23 @@
-##《Programming Computer Vision with Python》中译本代码
+### **Programming Computer Vision with Python中译本**
 
-本 repo 是《Programming Computer Vision with Python》一书译者调试完善后的代码，原作者是 Jan Erik Solem。本书作为python实战性很强的计算机视觉方面的编程书籍，结合理论分析提供了大量丰富的编程实例。译者在翻译完本书后，对原书作者的代码进行了调试与完善。
+本repository 是Programming Computer Vision with Python中译简化版，原作者是 [Jan Erik Solem](http://www.maths.lth.se/matematiklth/personal/solem/)。
 
-**注意：**译者在调试的时候，采用的python 2.7.x，IDE是Pycharm
+![](http://yuanyong.org/pcvwithpython//assets/images/cover.png)
 
+本书作为python实战性很强的计算机视觉方面的编程书籍，结合理论分析提供了大量丰富的编程实例。译者在翻译完本书后，对原书作者的代码进行了调试与完善。
 
-英文原书的内容可以在 [Programming Computer Vision with Python](http://programmingcomputervision.com/) 获取。
+**注意：**译者调试平台为Windows，采用python 2.7.x。本书运行出来的结果保存的图片命名方式为：ch章节序号-p页数-fig序号。
 
-本书运行出来的结果保存的图片命名方式为：ch章节序号-p页数-fig序号。
+英文原书的内容可以在 [Programming Computer Vision with Python](http://programmingcomputervision.com/) （原书主页已挂）获取。
 
-## 翻译状态
+### **获取源码与数据库**
 
-**全书译完！**
+本书源码译者已做整理（部分代码实例还未完成），你可以在[**中译本**](http://yuanyong.org/pcvwithpython/)项目主页获取整理后的代码与本书中用到的所有图像数据。
 
-- 第一章 已翻译
-- 第二章 已翻译
-- 第三章 已翻译
-- 第四章 已翻译
-- 第五章 已翻译
-- 第六章 已翻译
-- 第七章 已翻译
-- 第八章 已翻译
-- 第九章 已翻译
-- 第十章 已翻译
-
-## 做贡献
+### **做贡献**
 
 如果你发现有翻译错误或不当之处，或者有错别字，可以在 [issues](https://github.com/willard-yuan/zh-pcvwithpy/issues) 中发贴，或者发送 pull request。
 
-**注意**：请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)
+### **版权许可**
 
-## 发布协议
-
-本项目和英文原书采用相同的发布协议：[Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/)在未得到本人及英文版作者许可的情况下，请勿用于任何商业用途。
-
-willard-yuan 保留部分权力，保留最终解释权。
+本书采用“保持署名—非商用”创意共享4.0许可证。只要保持原作者署名和非商用，您可以自由地阅读、分享、修改本书。详细的法律条文请参见[创意共享](http://creativecommons.org/licenses/by-nc/4.0/)网站。
