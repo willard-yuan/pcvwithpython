@@ -34,7 +34,7 @@ layout: default
 	
 	<div class="buy">
 	<h3>购买中译本</h3>
-	<p><a class="btn info" href="http://www.ituring.com.cn/book/1349?q=python" title="在图灵购买本书">在图灵购买本书</a>&nbsp;&nbsp;<a class="btn info" href="http://qd.baidupcs.com/file/036faea71c135105e81f62f493c9217c?fid=3440544532-250528-1074397666849504&time=1399555601&sign=FDTAXER-DCb740ccc5511e5e8fedcff06b081203-sOj19HYRLFSJlnZdnsy8KhYxnX8%3D&to=qb&fm=Q,B,T,nc&newver=1&expires=1399561119&rt=sh&r=155739086&logid=828865867&sh=1&vuk=3440544532&fn=PCV-book-data.7z" title="全书数据下载">全书数据下载</a></p>
+	<p><a class="btn info" href="http://pan.baidu.com/share/link?shareid=4059473268&uk=3440544532" title="全书数据下载">全书数据下载</a></p>
 	</div>
 
 <!--	<div class="buy">
