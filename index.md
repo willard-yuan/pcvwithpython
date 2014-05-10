@@ -23,7 +23,7 @@ layout: default
 
 
 	<div class="buy">
-	<p><a class="btn" href="http://programmingcomputervision.com/" title="源码下载">原书项目主页(已挂)</a>&nbsp;&nbsp;<a class="btn" href="https://github.com/willard-yuan/pcv-book-code" title="中译本源码下载">中译本源码下载(推荐)</a></p>
+	<p><a class="btn" href="http://programmingcomputervision.com/" title="源码下载">原书项目主页</a>&nbsp;&nbsp;<a class="btn" href="https://github.com/willard-yuan/pcv-book-code" title="中译本源码下载">中译本源码下载(推荐)</a></p>
 	<ol class="notes">
 		<li>中译本源码部分调试完毕，后续源码敬请期待；</li>
         <li>原英文书源码和数据库不全，推荐中译本源码；</li>
