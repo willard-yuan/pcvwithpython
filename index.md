@@ -63,7 +63,7 @@ layout: default
 		<ol>
 			<li><a href="{{ site.url }}author.html" title="作者译者">作者译者</a></li>
 			<li><a href="{{ site.url }}installation.html" title="安装">安装</a></li>
-			<li><a href="{{ site.url }}foreword.html" title="序">序</a></li>-->
+			<!--<li><a href="{{ site.url }}foreword.html" title="序">序</a></li>-->
 			<li><a href="{{ site.url }}chapter1.html" title="第一章 图像处理基础">第一章 图像处理基础(完成)</a></li>
 			<li><a href="{{ site.url }}chapter2.html" title="第二章 图像局部描述符">第二章 图像局部描述符(完成)</a></li>
 		    <!--<li><a href="{{ site.url }}chapter3.html" title="第三章 基本静态的页面">第三章 基本静态的页面</a></li>-->
