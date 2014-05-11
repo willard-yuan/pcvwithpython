@@ -887,3 +887,7 @@ show()
 同样，运行上面代码，可得原书P026 Fig1-14的结果，结果如下：
 ![ch01_fig1-14_rof_denoise](assets/images/figures/ch01/ch01_fig1-14_rof_denoise.png)
 正如你所看到的，在去除噪声的同时，ROF降噪能够保持边缘和图像结构。
+<div class="navigation">
+  <a class="prev_page" href="installation.html">&laquo; 安装</a>
+  <a class="next_page" href="chapter2.html">第二章 图像局部描述符 &raquo;</a>
+</div>
