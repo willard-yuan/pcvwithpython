@@ -10,5 +10,5 @@ title: 作者译者
 在本书的翻译过程中，为方便读者顺利完成本书的学习，译者[Willard Yuan](http://yuanyong.org/)对原书中的代码做了相应的整理(还在完善)，现已发放到GitHub上，如果需要，可以到[首页](http://yuanyong.org/pcvwithpython/)下载代码与数据库。
 
 <div class="navigation">
-  <a class="next_page" href="installation.html">致中国读者 &raquo;</a>
+  <a class="next_page" href="installation.html">安装 &raquo;</a>
 </div>
