@@ -14,11 +14,11 @@ layout: default
 		<dt>Python：</dt>
 		<dd>2.7.x</dd>
 		<dt>页数：</dt>
-		<dd>264</dd>
+		<dd>XXX</dd>
 		<dt>装帧：</dt>
-		<dd>电子书</dd>
+		<dd>XXX</dd>
 		<dt>格式：</dt>
-		<dd>PDF, HTML</dd>
+		<dd>HTML</dd>
 	</dl>
 
 

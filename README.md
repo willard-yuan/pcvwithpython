@@ -8,7 +8,7 @@
 
 **注意：**译者调试平台为Windows，采用python 2.7.x。本书运行出来的结果保存的图片命名方式为：ch章节序号-p页数-fig序号。
 
-英文原书的内容可以在 [Programming Computer Vision with Python](http://programmingcomputervision.com/) （原书主页已挂）获取。
+英文原书的内容可以在 [Programming Computer Vision with Python](http://programmingcomputervision.com/)获取。
 
 ### **获取源码与数据库**
 
