@@ -206,3 +206,17 @@ class SearchDemo:
 
 cherrypy.quickstart(SearchDemo(), '/', config=os.path.join(os.path.dirname(__file__), 'service.conf'))
 ```
+<h2 id="sec-7-5">7.5　配置service.conf</h2>
+
+```sh
+[global]
+server.socket_host = "127.0.0.1"
+server.socket_port = 8080
+server.thread_pool = 10
+tools.sessions.on = True
+[/]
+tools.staticdir.root = "E:/python/isoutu"
+[/first500]
+tools.staticdir.on = True
+tools.staticdir.dir = "first500"
+```
