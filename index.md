@@ -14,11 +14,9 @@ layout: default
 		<dt>Python：</dt>
 		<dd>2.7.x</dd>
 		<dt>页数：</dt>
-		<dd>XXX</dd>
-		<dt>装帧：</dt>
-		<dd>XXX</dd>
-		<dt>格式：</dt>
-		<dd>HTML</dd>
+		<dd>284</dd>
+		<dt>出版日期：</dt>
+		<dd>2014-06</dd>
 	</dl>
 
 
