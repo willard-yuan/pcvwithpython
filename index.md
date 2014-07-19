@@ -28,6 +28,7 @@ layout: default
 		<li>中译版源码在保持原英文源码的基础上进行了本土化；</li>
         <li>完善了书中的实例；</li>
 	</ol>
+	<p><font color="red"> <h3>Note the project page is still under development.</h3></font>></p>
 	</div>
 	
 	<div class="buy">
