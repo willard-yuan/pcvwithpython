@@ -2,7 +2,7 @@
 
 本repository 是Programming Computer Vision with Python中译简化版，原作者是 [Jan Erik Solem](http://www.maths.lth.se/matematiklth/personal/solem/)。
 
-![](http://yuanyong.org/pcvwithpython//assets/images/cover.png)
+![](http://willard-yuan.github.io/pcvwithpython/assets/images/cover.png)
 
 本书作为python实战性很强的计算机视觉方面的编程书籍，结合理论分析提供了大量丰富的编程实例。译者在翻译完本书后，对原书作者的代码进行了调试与完善。
 
